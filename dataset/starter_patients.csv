@@ -1,0 +1,7 @@
+patient_id,name,area,age,visits,total_billed,is_insured
+P001,Asha,Madhapur,34,3,4200,False
+P002,Rahul,Banjara Hills,58,7,18500,True
+P003,Meera,Gachibowli,27,1,1300,False
+P004,Imran,Secunderabad,45,4,7600,True
+P005,Divya,Madhapur,61,9,24100,True
+P006,Karthik,Kukatpally,19,2,2800,False
