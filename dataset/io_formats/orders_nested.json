@@ -1,0 +1,376 @@
+[
+  {
+    "order_id": "ORD-0000001",
+    "store_id": "S10",
+    "product_id": "P028",
+    "metrics": {
+      "quantity": 2,
+      "net_revenue": 6046.83
+    },
+    "fulfillment": {
+      "status": "Completed",
+      "tags": [
+        "new",
+        "web"
+      ]
+    }
+  },
+  {
+    "order_id": "ORD-0000002",
+    "store_id": "S18",
+    "product_id": "P120",
+    "metrics": {
+      "quantity": 5,
+      "net_revenue": 3682.45
+    },
+    "fulfillment": {
+      "status": "Completed",
+      "tags": [
+        "express"
+      ]
+    }
+  },
+  {
+    "order_id": "ORD-0000003",
+    "store_id": "S19",
+    "product_id": "P075",
+    "metrics": {
+      "quantity": 1,
+      "net_revenue": 982.0
+    },
+    "fulfillment": {
+      "status": "Completed",
+      "tags": [
+        "new",
+        "web"
+      ]
+    }
+  },
+  {
+    "order_id": "ORD-0000004",
+    "store_id": "S20",
+    "product_id": "P118",
+    "metrics": {
+      "quantity": 2,
+      "net_revenue": 8186.64
+    },
+    "fulfillment": {
+      "status": "Completed",
+      "tags": [
+        "express"
+      ]
+    }
+  },
+  {
+    "order_id": "ORD-0000005",
+    "store_id": "S17",
+    "product_id": "P062",
+    "metrics": {
+      "quantity": 1,
+      "net_revenue": 5935.36
+    },
+    "fulfillment": {
+      "status": "Shipped",
+      "tags": [
+        "gift"
+      ]
+    }
+  },
+  {
+    "order_id": "ORD-0000006",
+    "store_id": "S09",
+    "product_id": "P068",
+    "metrics": {
+      "quantity": 3,
+      "net_revenue": 1734.82
+    },
+    "fulfillment": {
+      "status": "Processing",
+      "tags": [
+        "sale",
+        "app"
+      ]
+    }
+  },
+  {
+    "order_id": "ORD-0000007",
+    "store_id": "S11",
+    "product_id": "P060",
+    "metrics": {
+      "quantity": 3,
+      "net_revenue": 12301.8
+    },
+    "fulfillment": {
+      "status": "Completed",
+      "tags": [
+        "new",
+        "web"
+      ]
+    }
+  },
+  {
+    "order_id": "ORD-0000008",
+    "store_id": "S11",
+    "product_id": "P058",
+    "metrics": {
+      "quantity": 4,
+      "net_revenue": 24493.64
+    },
+    "fulfillment": {
+      "status": "Completed",
+      "tags": []
+    }
+  },
+  {
+    "order_id": "ORD-0000009",
+    "store_id": "S12",
+    "product_id": "P037",
+    "metrics": {
+      "quantity": 3,
+      "net_revenue": 5383.38
+    },
+    "fulfillment": {
+      "status": "Completed",
+      "tags": [
+        "gift",
+        "express"
+      ]
+    }
+  },
+  {
+    "order_id": "ORD-0000010",
+    "store_id": "S21",
+    "product_id": "P116",
+    "metrics": {
+      "quantity": 2,
+      "net_revenue": 10883.7
+    },
+    "fulfillment": {
+      "status": "Completed",
+      "tags": [
+        "gift"
+      ]
+    }
+  },
+  {
+    "order_id": "ORD-0000011",
+    "store_id": "S09",
+    "product_id": "P010",
+    "metrics": {
+      "quantity": 1,
+      "net_revenue": 3527.1
+    },
+    "fulfillment": {
+      "status": "Completed",
+      "tags": []
+    }
+  },
+  {
+    "order_id": "ORD-0000012",
+    "store_id": "S16",
+    "product_id": "P081",
+    "metrics": {
+      "quantity": 3,
+      "net_revenue": 13194.82
+    },
+    "fulfillment": {
+      "status": "Shipped",
+      "tags": [
+        "gift"
+      ]
+    }
+  },
+  {
+    "order_id": "ORD-0000013",
+    "store_id": "S14",
+    "product_id": "P106",
+    "metrics": {
+      "quantity": 1,
+      "net_revenue": 5830.04
+    },
+    "fulfillment": {
+      "status": "Completed",
+      "tags": [
+        "express"
+      ]
+    }
+  },
+  {
+    "order_id": "ORD-0000014",
+    "store_id": "S01",
+    "product_id": "P016",
+    "metrics": {
+      "quantity": 2,
+      "net_revenue": 446.13
+    },
+    "fulfillment": {
+      "status": "Completed",
+      "tags": [
+        "sale",
+        "app"
+      ]
+    }
+  },
+  {
+    "order_id": "ORD-0000015",
+    "store_id": "S07",
+    "product_id": "P112",
+    "metrics": {
+      "quantity": 2,
+      "net_revenue": 5936.0
+    },
+    "fulfillment": {
+      "status": "Shipped",
+      "tags": []
+    }
+  },
+  {
+    "order_id": "ORD-0000016",
+    "store_id": "S22",
+    "product_id": "P026",
+    "metrics": {
+      "quantity": 2,
+      "net_revenue": 3667.02
+    },
+    "fulfillment": {
+      "status": "Completed",
+      "tags": [
+        "express"
+      ]
+    }
+  },
+  {
+    "order_id": "ORD-0000017",
+    "store_id": "S13",
+    "product_id": "P116",
+    "metrics": {
+      "quantity": 4,
+      "net_revenue": 22793.08
+    },
+    "fulfillment": {
+      "status": "Completed",
+      "tags": [
+        "gift"
+      ]
+    }
+  },
+  {
+    "order_id": "ORD-0000018",
+    "store_id": "S10",
+    "product_id": "P079",
+    "metrics": {
+      "quantity": 3,
+      "net_revenue": 3721.98
+    },
+    "fulfillment": {
+      "status": "Completed",
+      "tags": [
+        "express"
+      ]
+    }
+  },
+  {
+    "order_id": "ORD-0000019",
+    "store_id": "S11",
+    "product_id": "P055",
+    "metrics": {
+      "quantity": 1,
+      "net_revenue": 1184.0
+    },
+    "fulfillment": {
+      "status": "Processing",
+      "tags": []
+    }
+  },
+  {
+    "order_id": "ORD-0000020",
+    "store_id": "S18",
+    "product_id": "P114",
+    "metrics": {
+      "quantity": 1,
+      "net_revenue": 3409.27
+    },
+    "fulfillment": {
+      "status": "Shipped",
+      "tags": [
+        "gift",
+        "express"
+      ]
+    }
+  },
+  {
+    "order_id": "ORD-0000021",
+    "store_id": "S15",
+    "product_id": "P024",
+    "metrics": {
+      "quantity": 1,
+      "net_revenue": 3536.95
+    },
+    "fulfillment": {
+      "status": "Processing",
+      "tags": [
+        "new",
+        "web"
+      ]
+    }
+  },
+  {
+    "order_id": "ORD-0000022",
+    "store_id": "S09",
+    "product_id": "P040",
+    "metrics": {
+      "quantity": 5,
+      "net_revenue": 22775.96
+    },
+    "fulfillment": {
+      "status": "Completed",
+      "tags": [
+        "express"
+      ]
+    }
+  },
+  {
+    "order_id": "ORD-0000023",
+    "store_id": "S14",
+    "product_id": "P072",
+    "metrics": {
+      "quantity": 2,
+      "net_revenue": 3488.4
+    },
+    "fulfillment": {
+      "status": "Completed",
+      "tags": [
+        "new",
+        "web"
+      ]
+    }
+  },
+  {
+    "order_id": "ORD-0000024",
+    "store_id": "S13",
+    "product_id": "P015",
+    "metrics": {
+      "quantity": 4,
+      "net_revenue": 13041.72
+    },
+    "fulfillment": {
+      "status": "Completed",
+      "tags": []
+    }
+  },
+  {
+    "order_id": "ORD-0000025",
+    "store_id": "S04",
+    "product_id": "P020",
+    "metrics": {
+      "quantity": 1,
+      "net_revenue": 627.35
+    },
+    "fulfillment": {
+      "status": "Shipped",
+      "tags": [
+        "express"
+      ]
+    }
+  }
+]

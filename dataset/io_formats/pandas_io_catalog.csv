@@ -1,0 +1,22 @@
+format,reader,writer,dependency,course_asset
+CSV,read_csv,to_csv,built in,same cleaned orders
+TSV/custom delimiter,read_csv,to_csv,built in,same cleaned orders
+Fixed width,read_fwf,-,built in,orders subset
+JSON,read_json,to_json,built in,same cleaned orders
+JSON Lines,read_json,to_json,built in,same cleaned orders
+Nested JSON,json_normalize,-,built in,local safe file
+XML,read_xml,to_xml,lxml,same cleaned orders
+Excel XLSX,read_excel,to_excel,openpyxl,same cleaned orders + bundle
+ODS,read_excel,to_excel,odfpy,same cleaned orders
+HTML table,read_html,to_html,lxml,LOCAL file only
+Pickle,read_pickle,to_pickle,built in,same cleaned orders
+HDF5,read_hdf,to_hdf,tables,same cleaned orders
+Stata,read_stata,to_stata,built in,same cleaned orders
+SQLite/SQL,read_sql,to_sql,sqlite3/SQLAlchemy,all five tables
+Parquet,read_parquet,to_parquet,pyarrow,generated locally
+Feather,read_feather,to_feather,pyarrow,generated locally
+ORC,read_orc,to_orc,pyarrow,skip on Windows unless tested
+SPSS,read_spss,-,pyreadstat,optional
+SAS,read_sas,-,format reader,concept only
+Iceberg,read_iceberg,to_iceberg,pyiceberg + catalog,concept/real catalog
+Clipboard,read_clipboard,to_clipboard,desktop clipboard,live desktop only

@@ -1,0 +1,3503 @@
+<?xml version='1.0' encoding='utf-8'?>
+<orders>
+  <order>
+    <order_id>ORD-0000001</order_id>
+    <order_date>2026-05-11 00:00:00</order_date>
+    <order_timestamp>2026-05-11 19:48:32</order_timestamp>
+    <store_id>S10</store_id>
+    <product_id>P028</product_id>
+    <channel>Web</channel>
+    <quantity>2</quantity>
+    <unit_price>3556.96</unit_price>
+    <discount_pct>15.0</discount_pct>
+    <net_revenue>6046.832</net_revenue>
+    <status>Completed</status>
+    <tags>new|web</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000002</order_id>
+    <order_date>2025-06-02 00:00:00</order_date>
+    <order_timestamp>2025-06-02 19:00:28</order_timestamp>
+    <store_id>S18</store_id>
+    <product_id>P120</product_id>
+    <channel>App</channel>
+    <quantity>5</quantity>
+    <unit_price>736.49</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>3682.45</net_revenue>
+    <status>Completed</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000003</order_id>
+    <order_date>2026-05-09 00:00:00</order_date>
+    <order_timestamp>2026-05-09 17:25:47</order_timestamp>
+    <store_id>S19</store_id>
+    <product_id>P075</product_id>
+    <channel>Store</channel>
+    <quantity>1</quantity>
+    <unit_price>982.0</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>982.0</net_revenue>
+    <status>Completed</status>
+    <tags>new|web</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000004</order_id>
+    <order_date>2025-05-24 00:00:00</order_date>
+    <order_timestamp>2025-05-24 09:15:51</order_timestamp>
+    <store_id>S20</store_id>
+    <product_id>P118</product_id>
+    <channel>App</channel>
+    <quantity>2</quantity>
+    <unit_price>5116.65</unit_price>
+    <discount_pct>20.0</discount_pct>
+    <net_revenue>8186.639999999999</net_revenue>
+    <status>Completed</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000005</order_id>
+    <order_date>2025-09-10 00:00:00</order_date>
+    <order_timestamp>2025-09-10 21:18:19</order_timestamp>
+    <store_id>S17</store_id>
+    <product_id>P062</product_id>
+    <channel>App</channel>
+    <quantity>1</quantity>
+    <unit_price>5935.36</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>5935.36</net_revenue>
+    <status>Shipped</status>
+    <tags>gift</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000006</order_id>
+    <order_date>2025-01-17 00:00:00</order_date>
+    <order_timestamp>2025-01-17 17:34:47</order_timestamp>
+    <store_id>S09</store_id>
+    <product_id>P068</product_id>
+    <channel>App</channel>
+    <quantity>3</quantity>
+    <unit_price>771.03</unit_price>
+    <discount_pct>25.0</discount_pct>
+    <net_revenue>1734.8175</net_revenue>
+    <status>Processing</status>
+    <tags>sale|app</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000007</order_id>
+    <order_date>2025-07-31 00:00:00</order_date>
+    <order_timestamp>2025-07-31 19:35:35</order_timestamp>
+    <store_id>S11</store_id>
+    <product_id>P060</product_id>
+    <channel>Web</channel>
+    <quantity>3</quantity>
+    <unit_price>5858.0</unit_price>
+    <discount_pct>30.0</discount_pct>
+    <net_revenue>12301.8</net_revenue>
+    <status>Completed</status>
+    <tags>new|web</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000008</order_id>
+    <order_date>2026-08-18 00:00:00</order_date>
+    <order_timestamp>2026-08-18 13:19:16</order_timestamp>
+    <store_id>S11</store_id>
+    <product_id>P058</product_id>
+    <channel>Web</channel>
+    <quantity>4</quantity>
+    <unit_price>6123.41</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>24493.64</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000009</order_id>
+    <order_date>2025-10-02 00:00:00</order_date>
+    <order_timestamp>2025-10-02 10:46:33</order_timestamp>
+    <store_id>S12</store_id>
+    <product_id>P037</product_id>
+    <channel>Store</channel>
+    <quantity>3</quantity>
+    <unit_price>1794.46</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>5383.38</net_revenue>
+    <status>Completed</status>
+    <tags>gift|express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000010</order_id>
+    <order_date>2026-03-17 00:00:00</order_date>
+    <order_timestamp>2026-03-17 19:30:02</order_timestamp>
+    <store_id>S21</store_id>
+    <product_id>P116</product_id>
+    <channel>App</channel>
+    <quantity>2</quantity>
+    <unit_price>5441.85</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>10883.7</net_revenue>
+    <status>Completed</status>
+    <tags>gift</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000011</order_id>
+    <order_date>2025-03-08 00:00:00</order_date>
+    <order_timestamp>2025-03-08 08:43:03</order_timestamp>
+    <store_id>S09</store_id>
+    <product_id>P010</product_id>
+    <channel>Web</channel>
+    <quantity>1</quantity>
+    <unit_price>3919.0</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>3527.1</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000012</order_id>
+    <order_date>2026-01-30 00:00:00</order_date>
+    <order_timestamp>2026-01-30 10:33:24</order_timestamp>
+    <store_id>S16</store_id>
+    <product_id>P081</product_id>
+    <channel>Web</channel>
+    <quantity>3</quantity>
+    <unit_price>5497.84</unit_price>
+    <discount_pct>20.0</discount_pct>
+    <net_revenue>13194.816</net_revenue>
+    <status>Shipped</status>
+    <tags>gift</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000013</order_id>
+    <order_date>2025-08-19 00:00:00</order_date>
+    <order_timestamp>2025-08-19 10:09:57</order_timestamp>
+    <store_id>S14</store_id>
+    <product_id>P106</product_id>
+    <channel>Store</channel>
+    <quantity>1</quantity>
+    <unit_price>5830.04</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>5830.04</net_revenue>
+    <status>Completed</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000014</order_id>
+    <order_date>2026-04-07 00:00:00</order_date>
+    <order_timestamp>2026-04-07 09:10:35</order_timestamp>
+    <store_id>S01</store_id>
+    <product_id>P016</product_id>
+    <channel>App</channel>
+    <quantity>2</quantity>
+    <unit_price>247.85</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>446.13</net_revenue>
+    <status>Completed</status>
+    <tags>sale|app</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000015</order_id>
+    <order_date>2026-07-30 00:00:00</order_date>
+    <order_timestamp>2026-07-30 15:42:40</order_timestamp>
+    <store_id>S07</store_id>
+    <product_id>P112</product_id>
+    <channel>App</channel>
+    <quantity>2</quantity>
+    <unit_price>2968.0</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>5936.0</net_revenue>
+    <status>Shipped</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000016</order_id>
+    <order_date>2025-11-26 00:00:00</order_date>
+    <order_timestamp>2025-11-26 11:11:51</order_timestamp>
+    <store_id>S22</store_id>
+    <product_id>P026</product_id>
+    <channel>App</channel>
+    <quantity>2</quantity>
+    <unit_price>1833.51</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>3667.02</net_revenue>
+    <status>Completed</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000017</order_id>
+    <order_date>2025-03-05 00:00:00</order_date>
+    <order_timestamp>2025-03-05 21:31:26</order_timestamp>
+    <store_id>S13</store_id>
+    <product_id>P116</product_id>
+    <channel>App</channel>
+    <quantity>4</quantity>
+    <unit_price>5698.27</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>22793.08</net_revenue>
+    <status>Completed</status>
+    <tags>gift</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000018</order_id>
+    <order_date>2025-10-23 00:00:00</order_date>
+    <order_timestamp>2025-10-23 21:02:31</order_timestamp>
+    <store_id>S10</store_id>
+    <product_id>P079</product_id>
+    <channel>Web</channel>
+    <quantity>3</quantity>
+    <unit_price>1378.51</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>3721.977</net_revenue>
+    <status>Completed</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000019</order_id>
+    <order_date>2025-03-18 00:00:00</order_date>
+    <order_timestamp>2025-03-18 10:21:16</order_timestamp>
+    <store_id>S11</store_id>
+    <product_id>P055</product_id>
+    <channel>App</channel>
+    <quantity>1</quantity>
+    <unit_price>1184.0</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>1184.0</net_revenue>
+    <status>Processing</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000020</order_id>
+    <order_date>2025-10-06 00:00:00</order_date>
+    <order_timestamp>2025-10-06 19:36:15</order_timestamp>
+    <store_id>S18</store_id>
+    <product_id>P114</product_id>
+    <channel>Store</channel>
+    <quantity>1</quantity>
+    <unit_price>3409.27</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>3409.27</net_revenue>
+    <status>Shipped</status>
+    <tags>gift|express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000021</order_id>
+    <order_date>2025-02-07 00:00:00</order_date>
+    <order_timestamp>2025-02-07 08:32:55</order_timestamp>
+    <store_id>S15</store_id>
+    <product_id>P024</product_id>
+    <channel>App</channel>
+    <quantity>1</quantity>
+    <unit_price>3536.95</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>3536.95</net_revenue>
+    <status>Processing</status>
+    <tags>new|web</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000022</order_id>
+    <order_date>2026-02-02 00:00:00</order_date>
+    <order_timestamp>2026-02-02 12:00:41</order_timestamp>
+    <store_id>S09</store_id>
+    <product_id>P040</product_id>
+    <channel>Web</channel>
+    <quantity>5</quantity>
+    <unit_price>5359.05</unit_price>
+    <discount_pct>15.0</discount_pct>
+    <net_revenue>22775.962499999998</net_revenue>
+    <status>Completed</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000023</order_id>
+    <order_date>2025-07-12 00:00:00</order_date>
+    <order_timestamp>2025-07-12 17:14:07</order_timestamp>
+    <store_id>S14</store_id>
+    <product_id>P072</product_id>
+    <channel>Store</channel>
+    <quantity>2</quantity>
+    <unit_price>1938.0</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>3488.4</net_revenue>
+    <status>Completed</status>
+    <tags>new|web</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000024</order_id>
+    <order_date>2025-05-05 00:00:00</order_date>
+    <order_timestamp>2025-05-05 10:53:24</order_timestamp>
+    <store_id>S13</store_id>
+    <product_id>P015</product_id>
+    <channel>Web</channel>
+    <quantity>4</quantity>
+    <unit_price>4347.24</unit_price>
+    <discount_pct>25.0</discount_pct>
+    <net_revenue>13041.72</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000025</order_id>
+    <order_date>2025-01-11 00:00:00</order_date>
+    <order_timestamp>2025-01-11 09:05:46</order_timestamp>
+    <store_id>S04</store_id>
+    <product_id>P020</product_id>
+    <channel>App</channel>
+    <quantity>1</quantity>
+    <unit_price>738.06</unit_price>
+    <discount_pct>15.0</discount_pct>
+    <net_revenue>627.3509999999999</net_revenue>
+    <status>Shipped</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000026</order_id>
+    <order_date>2026-07-05 00:00:00</order_date>
+    <order_timestamp>2026-07-05 10:11:49</order_timestamp>
+    <store_id>S12</store_id>
+    <product_id>P092</product_id>
+    <channel>Web</channel>
+    <quantity>2</quantity>
+    <unit_price>3776.41</unit_price>
+    <discount_pct>25.0</discount_pct>
+    <net_revenue>5664.615</net_revenue>
+    <status>Processing</status>
+    <tags>bulk|priority</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000027</order_id>
+    <order_date>2026-06-04 00:00:00</order_date>
+    <order_timestamp>2026-06-04 17:13:39</order_timestamp>
+    <store_id>S05</store_id>
+    <product_id>P017</product_id>
+    <channel>Store</channel>
+    <quantity>2</quantity>
+    <unit_price>6467.0</unit_price>
+    <discount_pct>15.0</discount_pct>
+    <net_revenue>10993.9</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000028</order_id>
+    <order_date>2026-05-19 00:00:00</order_date>
+    <order_timestamp>2026-05-19 11:05:01</order_timestamp>
+    <store_id>S02</store_id>
+    <product_id>P025</product_id>
+    <channel>App</channel>
+    <quantity>2</quantity>
+    <unit_price>3227.04</unit_price>
+    <discount_pct>20.0</discount_pct>
+    <net_revenue>5163.264</net_revenue>
+    <status>Shipped</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000029</order_id>
+    <order_date>2025-02-06 00:00:00</order_date>
+    <order_timestamp>2025-02-06 11:26:22</order_timestamp>
+    <store_id>S23</store_id>
+    <product_id>P108</product_id>
+    <channel>Web</channel>
+    <quantity>1</quantity>
+    <unit_price>3515.85</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>3164.265</net_revenue>
+    <status>Completed</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000030</order_id>
+    <order_date>2025-08-05 00:00:00</order_date>
+    <order_timestamp>2025-08-05 10:52:25</order_timestamp>
+    <store_id>S10</store_id>
+    <product_id>P012</product_id>
+    <channel>App</channel>
+    <quantity>5</quantity>
+    <unit_price>6041.91</unit_price>
+    <discount_pct>15.0</discount_pct>
+    <net_revenue>25678.1175</net_revenue>
+    <status>Completed</status>
+    <tags>sale|app</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000031</order_id>
+    <order_date>2026-08-26 00:00:00</order_date>
+    <order_timestamp>2026-08-26 20:20:10</order_timestamp>
+    <store_id>S20</store_id>
+    <product_id>P076</product_id>
+    <channel>Web</channel>
+    <quantity>4</quantity>
+    <unit_price>1289.0</unit_price>
+    <discount_pct>25.0</discount_pct>
+    <net_revenue>3867.0</net_revenue>
+    <status>Shipped</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000032</order_id>
+    <order_date>2025-12-25 00:00:00</order_date>
+    <order_timestamp>2025-12-25 20:26:25</order_timestamp>
+    <store_id>S06</store_id>
+    <product_id>P083</product_id>
+    <channel>App</channel>
+    <quantity>4</quantity>
+    <unit_price>3090.13</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>12360.52</net_revenue>
+    <status>Completed</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000033</order_id>
+    <order_date>2025-03-21 00:00:00</order_date>
+    <order_timestamp>2025-03-21 19:16:22</order_timestamp>
+    <store_id>S04</store_id>
+    <product_id>P011</product_id>
+    <channel>Web</channel>
+    <quantity>1</quantity>
+    <unit_price>1249.78</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>1249.78</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000034</order_id>
+    <order_date>2025-03-29 00:00:00</order_date>
+    <order_timestamp>2025-03-29 08:16:35</order_timestamp>
+    <store_id>S15</store_id>
+    <product_id>P066</product_id>
+    <channel>Web</channel>
+    <quantity>4</quantity>
+    <unit_price>4515.53</unit_price>
+    <discount_pct>5.0</discount_pct>
+    <net_revenue>17159.014</net_revenue>
+    <status>Cancelled</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000035</order_id>
+    <order_date>2025-06-13 00:00:00</order_date>
+    <order_timestamp>2025-06-13 11:30:18</order_timestamp>
+    <store_id>S06</store_id>
+    <product_id>P050</product_id>
+    <channel>Web</channel>
+    <quantity>4</quantity>
+    <unit_price>5793.0</unit_price>
+    <discount_pct>15.0</discount_pct>
+    <net_revenue>19696.2</net_revenue>
+    <status>Completed</status>
+    <tags>gift</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000036</order_id>
+    <order_date>2026-08-26 00:00:00</order_date>
+    <order_timestamp>2026-08-26 20:19:21</order_timestamp>
+    <store_id>S24</store_id>
+    <product_id>P053</product_id>
+    <channel>Web</channel>
+    <quantity>4</quantity>
+    <unit_price>1633.52</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>6534.08</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000037</order_id>
+    <order_date>2025-04-16 00:00:00</order_date>
+    <order_timestamp>2025-04-16 15:45:52</order_timestamp>
+    <store_id>S06</store_id>
+    <product_id>P039</product_id>
+    <channel>Web</channel>
+    <quantity>3</quantity>
+    <unit_price>4744.44</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>12809.988</net_revenue>
+    <status>Processing</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000038</order_id>
+    <order_date>2026-07-14 00:00:00</order_date>
+    <order_timestamp>2026-07-14 08:34:24</order_timestamp>
+    <store_id>S19</store_id>
+    <product_id>P007</product_id>
+    <channel>App</channel>
+    <quantity>4</quantity>
+    <unit_price>2258.15</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>8129.34</net_revenue>
+    <status>Shipped</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000039</order_id>
+    <order_date>2026-02-25 00:00:00</order_date>
+    <order_timestamp>2026-02-25 11:29:11</order_timestamp>
+    <store_id>S05</store_id>
+    <product_id>P061</product_id>
+    <channel>Store</channel>
+    <quantity>2</quantity>
+    <unit_price>5520.0</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>9936.0</net_revenue>
+    <status>Completed</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000040</order_id>
+    <order_date>2026-07-26 00:00:00</order_date>
+    <order_timestamp>2026-07-26 19:34:44</order_timestamp>
+    <store_id>S22</store_id>
+    <product_id>P002</product_id>
+    <channel>App</channel>
+    <quantity>1</quantity>
+    <unit_price>4747.02</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>4272.318</net_revenue>
+    <status>Shipped</status>
+    <tags>sale|app</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000041</order_id>
+    <order_date>2026-05-28 00:00:00</order_date>
+    <order_timestamp>2026-05-28 20:18:15</order_timestamp>
+    <store_id>S17</store_id>
+    <product_id>P051</product_id>
+    <channel>Store</channel>
+    <quantity>1</quantity>
+    <unit_price>2413.38</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>2172.0420000000004</net_revenue>
+    <status>Completed</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000042</order_id>
+    <order_date>2025-07-25 00:00:00</order_date>
+    <order_timestamp>2025-07-25 13:57:10</order_timestamp>
+    <store_id>S12</store_id>
+    <product_id>P050</product_id>
+    <channel>Store</channel>
+    <quantity>1</quantity>
+    <unit_price>7939.04</unit_price>
+    <discount_pct>25.0</discount_pct>
+    <net_revenue>5954.28</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000043</order_id>
+    <order_date>2026-05-29 00:00:00</order_date>
+    <order_timestamp>2026-05-29 10:07:45</order_timestamp>
+    <store_id/>
+    <product_id>P073</product_id>
+    <channel>Web</channel>
+    <quantity>5</quantity>
+    <unit_price>874.0</unit_price>
+    <discount_pct>20.0</discount_pct>
+    <net_revenue>3496.0</net_revenue>
+    <status>Completed</status>
+    <tags>gift|express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000044</order_id>
+    <order_date>2025-04-15 00:00:00</order_date>
+    <order_timestamp>2025-04-15 09:04:14</order_timestamp>
+    <store_id>S02</store_id>
+    <product_id>P073</product_id>
+    <channel>Store</channel>
+    <quantity>2</quantity>
+    <unit_price>868.38</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>1563.084</net_revenue>
+    <status>Shipped</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000045</order_id>
+    <order_date>2025-06-30 00:00:00</order_date>
+    <order_timestamp>2025-06-30 11:09:00</order_timestamp>
+    <store_id>S13</store_id>
+    <product_id>P091</product_id>
+    <channel>Web</channel>
+    <quantity>4</quantity>
+    <unit_price>4260.75</unit_price>
+    <discount_pct>20.0</discount_pct>
+    <net_revenue>13634.400000000001</net_revenue>
+    <status>Completed</status>
+    <tags>sale|app</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000046</order_id>
+    <order_date>2025-05-12 00:00:00</order_date>
+    <order_timestamp>2025-05-12 19:11:06</order_timestamp>
+    <store_id>S06</store_id>
+    <product_id>P106</product_id>
+    <channel>Web</channel>
+    <quantity>4</quantity>
+    <unit_price>6452.92</unit_price>
+    <discount_pct>30.0</discount_pct>
+    <net_revenue>18068.176</net_revenue>
+    <status>Completed</status>
+    <tags>gift|express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000047</order_id>
+    <order_date>2025-03-24 00:00:00</order_date>
+    <order_timestamp>2025-03-24 19:34:44</order_timestamp>
+    <store_id>S10</store_id>
+    <product_id>P062</product_id>
+    <channel>App</channel>
+    <quantity>2</quantity>
+    <unit_price>5427.0</unit_price>
+    <discount_pct>5.0</discount_pct>
+    <net_revenue>10311.3</net_revenue>
+    <status>Processing</status>
+    <tags>new|web</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000048</order_id>
+    <order_date>2025-02-25 00:00:00</order_date>
+    <order_timestamp>2025-02-25 11:35:15</order_timestamp>
+    <store_id>S12</store_id>
+    <product_id>P072</product_id>
+    <channel>Store</channel>
+    <quantity>2</quantity>
+    <unit_price>1736.78</unit_price>
+    <discount_pct>25.0</discount_pct>
+    <net_revenue>2605.17</net_revenue>
+    <status>Processing</status>
+    <tags>gift</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000049</order_id>
+    <order_date>2025-04-27 00:00:00</order_date>
+    <order_timestamp>2025-04-27 21:40:23</order_timestamp>
+    <store_id>S04</store_id>
+    <product_id>P063</product_id>
+    <channel>Web</channel>
+    <quantity>3</quantity>
+    <unit_price>3589.97</unit_price>
+    <discount_pct>25.0</discount_pct>
+    <net_revenue>8077.4325</net_revenue>
+    <status>Cancelled</status>
+    <tags>new|web</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000050</order_id>
+    <order_date>2025-03-16 00:00:00</order_date>
+    <order_timestamp>2025-03-16 20:17:30</order_timestamp>
+    <store_id>S09</store_id>
+    <product_id>P059</product_id>
+    <channel>App</channel>
+    <quantity>4</quantity>
+    <unit_price>6356.1</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>25424.4</net_revenue>
+    <status>Shipped</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000051</order_id>
+    <order_date>2025-08-24 00:00:00</order_date>
+    <order_timestamp>2025-08-24 21:49:16</order_timestamp>
+    <store_id>S05</store_id>
+    <product_id>P072</product_id>
+    <channel>Web</channel>
+    <quantity>3</quantity>
+    <unit_price>1778.0</unit_price>
+    <discount_pct>30.0</discount_pct>
+    <net_revenue>3733.7999999999997</net_revenue>
+    <status>Completed</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000052</order_id>
+    <order_date>2025-02-14 00:00:00</order_date>
+    <order_timestamp>2025-02-14 18:31:11</order_timestamp>
+    <store_id>S12</store_id>
+    <product_id>P022</product_id>
+    <channel>Web</channel>
+    <quantity>3</quantity>
+    <unit_price>3346.93</unit_price>
+    <discount_pct>20.0</discount_pct>
+    <net_revenue>8032.632</net_revenue>
+    <status>Shipped</status>
+    <tags>sale|app</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000053</order_id>
+    <order_date>2025-02-07 00:00:00</order_date>
+    <order_timestamp>2025-02-07 16:01:04</order_timestamp>
+    <store_id>S15</store_id>
+    <product_id>P004</product_id>
+    <channel>Store</channel>
+    <quantity>4</quantity>
+    <unit_price>2706.25</unit_price>
+    <discount_pct>15.0</discount_pct>
+    <net_revenue>9201.25</net_revenue>
+    <status>Shipped</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000054</order_id>
+    <order_date>2026-09-06 00:00:00</order_date>
+    <order_timestamp>2026-09-06 21:44:04</order_timestamp>
+    <store_id>S21</store_id>
+    <product_id>P019</product_id>
+    <channel>Web</channel>
+    <quantity>5</quantity>
+    <unit_price>5474.23</unit_price>
+    <discount_pct>5.0</discount_pct>
+    <net_revenue>26002.592499999995</net_revenue>
+    <status>Completed</status>
+    <tags>gift|express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000055</order_id>
+    <order_date>2025-02-24 00:00:00</order_date>
+    <order_timestamp>2025-02-24 17:38:54</order_timestamp>
+    <store_id>S05</store_id>
+    <product_id>P021</product_id>
+    <channel>App</channel>
+    <quantity>5</quantity>
+    <unit_price>3619.0</unit_price>
+    <discount_pct>25.0</discount_pct>
+    <net_revenue>13571.25</net_revenue>
+    <status>Completed</status>
+    <tags>gift|express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000056</order_id>
+    <order_date>2025-02-15 00:00:00</order_date>
+    <order_timestamp>2025-02-15 19:38:59</order_timestamp>
+    <store_id>S01</store_id>
+    <product_id>P074</product_id>
+    <channel>App</channel>
+    <quantity>4</quantity>
+    <unit_price>5527.01</unit_price>
+    <discount_pct>15.0</discount_pct>
+    <net_revenue>18791.834</net_revenue>
+    <status>Shipped</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000057</order_id>
+    <order_date>2025-01-19 00:00:00</order_date>
+    <order_timestamp>2025-01-19 13:38:38</order_timestamp>
+    <store_id>S15</store_id>
+    <product_id>P013</product_id>
+    <channel>App</channel>
+    <quantity>2</quantity>
+    <unit_price>3924.51</unit_price>
+    <discount_pct>15.0</discount_pct>
+    <net_revenue>6671.667</net_revenue>
+    <status>Processing</status>
+    <tags>gift|express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000058</order_id>
+    <order_date>2025-03-24 00:00:00</order_date>
+    <order_timestamp>2025-03-24 11:22:27</order_timestamp>
+    <store_id>S06</store_id>
+    <product_id>P043</product_id>
+    <channel>Web</channel>
+    <quantity>2</quantity>
+    <unit_price>1415.99</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>2548.782</net_revenue>
+    <status>Processing</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000059</order_id>
+    <order_date>2025-11-24 00:00:00</order_date>
+    <order_timestamp>2025-11-24 16:01:48</order_timestamp>
+    <store_id>S13</store_id>
+    <product_id>P013</product_id>
+    <channel>App</channel>
+    <quantity>1</quantity>
+    <unit_price>3608.0</unit_price>
+    <discount_pct>30.0</discount_pct>
+    <net_revenue>2525.6</net_revenue>
+    <status>Cancelled</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000060</order_id>
+    <order_date>2026-05-28 00:00:00</order_date>
+    <order_timestamp>2026-05-28 13:43:49</order_timestamp>
+    <store_id>S24</store_id>
+    <product_id>P019</product_id>
+    <channel>Web</channel>
+    <quantity>3</quantity>
+    <unit_price>4840.68</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>13069.836000000001</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000061</order_id>
+    <order_date>2026-04-01 00:00:00</order_date>
+    <order_timestamp>2026-04-01 12:54:26</order_timestamp>
+    <store_id>S10</store_id>
+    <product_id>P078</product_id>
+    <channel>Web</channel>
+    <quantity>2</quantity>
+    <unit_price>5475.17</unit_price>
+    <discount_pct>5.0</discount_pct>
+    <net_revenue>10402.823</net_revenue>
+    <status>Shipped</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000062</order_id>
+    <order_date>2025-12-26 00:00:00</order_date>
+    <order_timestamp>2025-12-26 17:45:44</order_timestamp>
+    <store_id>S15</store_id>
+    <product_id>P048</product_id>
+    <channel>App</channel>
+    <quantity>5</quantity>
+    <unit_price>5995.41</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>29977.05</net_revenue>
+    <status>Shipped</status>
+    <tags>bulk|priority</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000063</order_id>
+    <order_date>2025-02-22 00:00:00</order_date>
+    <order_timestamp>2025-02-22 16:32:05</order_timestamp>
+    <store_id>S22</store_id>
+    <product_id>P098</product_id>
+    <channel>Store</channel>
+    <quantity>5</quantity>
+    <unit_price>880.0</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>3960.0</net_revenue>
+    <status>Processing</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000064</order_id>
+    <order_date>2026-04-26 00:00:00</order_date>
+    <order_timestamp>2026-04-26 12:25:09</order_timestamp>
+    <store_id>S09</store_id>
+    <product_id>P089</product_id>
+    <channel>Web</channel>
+    <quantity>2</quantity>
+    <unit_price>914.33</unit_price>
+    <discount_pct>5.0</discount_pct>
+    <net_revenue>1737.227</net_revenue>
+    <status>Processing</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000065</order_id>
+    <order_date>2025-01-24 00:00:00</order_date>
+    <order_timestamp>2025-01-24 11:22:50</order_timestamp>
+    <store_id>S04</store_id>
+    <product_id>P030</product_id>
+    <channel>Store</channel>
+    <quantity>4</quantity>
+    <unit_price>256.64</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>1026.56</net_revenue>
+    <status>Completed</status>
+    <tags>new|web</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000066</order_id>
+    <order_date>2026-01-27 00:00:00</order_date>
+    <order_timestamp>2026-01-27 15:39:30</order_timestamp>
+    <store_id>S05</store_id>
+    <product_id>P010</product_id>
+    <channel>Web</channel>
+    <quantity>2</quantity>
+    <unit_price>4062.76</unit_price>
+    <discount_pct>20.0</discount_pct>
+    <net_revenue>6500.416000000001</net_revenue>
+    <status>Completed</status>
+    <tags>gift</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000067</order_id>
+    <order_date>2025-09-11 00:00:00</order_date>
+    <order_timestamp>2025-09-11 12:34:48</order_timestamp>
+    <store_id>S01</store_id>
+    <product_id>P116</product_id>
+    <channel>App</channel>
+    <quantity>4</quantity>
+    <unit_price>5042.0</unit_price>
+    <discount_pct>25.0</discount_pct>
+    <net_revenue>15126.0</net_revenue>
+    <status>Completed</status>
+    <tags>bulk|priority</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000068</order_id>
+    <order_date>2026-07-01 00:00:00</order_date>
+    <order_timestamp>2026-07-01 11:19:34</order_timestamp>
+    <store_id>S11</store_id>
+    <product_id>P016</product_id>
+    <channel>Store</channel>
+    <quantity>4</quantity>
+    <unit_price>234.77</unit_price>
+    <discount_pct>25.0</discount_pct>
+    <net_revenue>704.3100000000001</net_revenue>
+    <status>Shipped</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000069</order_id>
+    <order_date>2025-07-10 00:00:00</order_date>
+    <order_timestamp>2025-07-10 11:06:07</order_timestamp>
+    <store_id>S20</store_id>
+    <product_id>P082</product_id>
+    <channel>Store</channel>
+    <quantity>1</quantity>
+    <unit_price>6860.7</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>6174.63</net_revenue>
+    <status>Processing</status>
+    <tags>new|web</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000070</order_id>
+    <order_date>2026-01-31 00:00:00</order_date>
+    <order_timestamp>2026-01-31 17:16:09</order_timestamp>
+    <store_id>S20</store_id>
+    <product_id>P071</product_id>
+    <channel>Store</channel>
+    <quantity>3</quantity>
+    <unit_price>6269.15</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>18807.449999999997</net_revenue>
+    <status>Completed</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000071</order_id>
+    <order_date>2025-09-30 00:00:00</order_date>
+    <order_timestamp>2025-09-30 13:48:31</order_timestamp>
+    <store_id>S06</store_id>
+    <product_id>P099</product_id>
+    <channel>Store</channel>
+    <quantity>1</quantity>
+    <unit_price>6514.0</unit_price>
+    <discount_pct>5.0</discount_pct>
+    <net_revenue>6188.299999999999</net_revenue>
+    <status>Completed</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000072</order_id>
+    <order_date>2025-11-20 00:00:00</order_date>
+    <order_timestamp>2025-11-20 12:47:06</order_timestamp>
+    <store_id>S24</store_id>
+    <product_id>P067</product_id>
+    <channel>Web</channel>
+    <quantity>2</quantity>
+    <unit_price>2729.73</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>4913.514</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000073</order_id>
+    <order_date>2026-08-06 00:00:00</order_date>
+    <order_timestamp>2026-08-06 09:36:50</order_timestamp>
+    <store_id>S11</store_id>
+    <product_id>P001</product_id>
+    <channel>App</channel>
+    <quantity>2</quantity>
+    <unit_price>3605.21</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>7210.42</net_revenue>
+    <status>Shipped</status>
+    <tags>gift|express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000074</order_id>
+    <order_date>2026-03-18 00:00:00</order_date>
+    <order_timestamp>2026-03-18 08:46:15</order_timestamp>
+    <store_id>S07</store_id>
+    <product_id>P019</product_id>
+    <channel>Store</channel>
+    <quantity>3</quantity>
+    <unit_price>5229.48</unit_price>
+    <discount_pct>5.0</discount_pct>
+    <net_revenue>14904.017999999998</net_revenue>
+    <status>Cancelled</status>
+    <tags>gift|express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000075</order_id>
+    <order_date>2025-09-15 00:00:00</order_date>
+    <order_timestamp>2025-09-15 17:43:41</order_timestamp>
+    <store_id>S04</store_id>
+    <product_id>P100</product_id>
+    <channel>Store</channel>
+    <quantity>1</quantity>
+    <unit_price>2500.0</unit_price>
+    <discount_pct>15.0</discount_pct>
+    <net_revenue>2125.0</net_revenue>
+    <status>Shipped</status>
+    <tags>gift</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000076</order_id>
+    <order_date>2025-10-05 00:00:00</order_date>
+    <order_timestamp>2025-10-05 21:32:15</order_timestamp>
+    <store_id>S20</store_id>
+    <product_id>P073</product_id>
+    <channel>Web</channel>
+    <quantity>2</quantity>
+    <unit_price>740.81</unit_price>
+    <discount_pct>30.0</discount_pct>
+    <net_revenue>1037.1339999999998</net_revenue>
+    <status>Completed</status>
+    <tags>gift|express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000077</order_id>
+    <order_date>2026-03-13 00:00:00</order_date>
+    <order_timestamp>2026-03-13 12:32:46</order_timestamp>
+    <store_id>S21</store_id>
+    <product_id>P093</product_id>
+    <channel>Web</channel>
+    <quantity>2</quantity>
+    <unit_price>1333.96</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>2667.92</net_revenue>
+    <status>Cancelled</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000078</order_id>
+    <order_date>2025-08-03 00:00:00</order_date>
+    <order_timestamp>2025-08-03 19:48:16</order_timestamp>
+    <store_id>S01</store_id>
+    <product_id>P076</product_id>
+    <channel>Store</channel>
+    <quantity>1</quantity>
+    <unit_price>1190.93</unit_price>
+    <discount_pct>5.0</discount_pct>
+    <net_revenue>1131.3835</net_revenue>
+    <status>Processing</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000079</order_id>
+    <order_date>2025-04-15 00:00:00</order_date>
+    <order_timestamp>2025-04-15 16:25:31</order_timestamp>
+    <store_id>S15</store_id>
+    <product_id>P118</product_id>
+    <channel>Store</channel>
+    <quantity>1</quantity>
+    <unit_price>5441.0</unit_price>
+    <discount_pct>20.0</discount_pct>
+    <net_revenue>4352.8</net_revenue>
+    <status>Shipped</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000080</order_id>
+    <order_date>2025-10-17 00:00:00</order_date>
+    <order_timestamp>2025-10-17 12:15:15</order_timestamp>
+    <store_id>S19</store_id>
+    <product_id>P010</product_id>
+    <channel>Store</channel>
+    <quantity>2</quantity>
+    <unit_price>3801.66</unit_price>
+    <discount_pct>30.0</discount_pct>
+    <net_revenue>5322.324</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000081</order_id>
+    <order_date>2025-02-12 00:00:00</order_date>
+    <order_timestamp>2025-02-12 15:56:52</order_timestamp>
+    <store_id>S24</store_id>
+    <product_id>P010</product_id>
+    <channel>App</channel>
+    <quantity>5</quantity>
+    <unit_price>4073.56</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>20367.8</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000082</order_id>
+    <order_date>2025-04-16 00:00:00</order_date>
+    <order_timestamp>2025-04-16 09:48:32</order_timestamp>
+    <store_id>S21</store_id>
+    <product_id>P088</product_id>
+    <channel>Web</channel>
+    <quantity>2</quantity>
+    <unit_price>4670.1</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>9340.2</net_revenue>
+    <status>Shipped</status>
+    <tags>bulk|priority</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000083</order_id>
+    <order_date>2025-09-18 00:00:00</order_date>
+    <order_timestamp>2025-09-18 12:43:31</order_timestamp>
+    <store_id>S12</store_id>
+    <product_id>P006</product_id>
+    <channel>Store</channel>
+    <quantity>2</quantity>
+    <unit_price>2964.0</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>5928.0</net_revenue>
+    <status>Completed</status>
+    <tags>sale|app</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000084</order_id>
+    <order_date>2026-05-09 00:00:00</order_date>
+    <order_timestamp>2026-05-09 18:17:17</order_timestamp>
+    <store_id>S08</store_id>
+    <product_id>P014</product_id>
+    <channel>Web</channel>
+    <quantity>4</quantity>
+    <unit_price>2136.45</unit_price>
+    <discount_pct>25.0</discount_pct>
+    <net_revenue>6409.349999999999</net_revenue>
+    <status>Completed</status>
+    <tags>gift</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000085</order_id>
+    <order_date>2026-04-30 00:00:00</order_date>
+    <order_timestamp>2026-04-30 19:54:10</order_timestamp>
+    <store_id>S24</store_id>
+    <product_id>P088</product_id>
+    <channel>Web</channel>
+    <quantity>2</quantity>
+    <unit_price>4600.75</unit_price>
+    <discount_pct>15.0</discount_pct>
+    <net_revenue>7821.275</net_revenue>
+    <status>Completed</status>
+    <tags>new|web</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000086</order_id>
+    <order_date>2025-06-11 00:00:00</order_date>
+    <order_timestamp>2025-06-11 11:05:46</order_timestamp>
+    <store_id>S17</store_id>
+    <product_id>P092</product_id>
+    <channel>Store</channel>
+    <quantity>1</quantity>
+    <unit_price>3435.46</unit_price>
+    <discount_pct>20.0</discount_pct>
+    <net_revenue>2748.3680000000004</net_revenue>
+    <status>Cancelled</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000087</order_id>
+    <order_date>2025-09-19 00:00:00</order_date>
+    <order_timestamp>2025-09-19 20:45:03</order_timestamp>
+    <store_id>S07</store_id>
+    <product_id>P102</product_id>
+    <channel>Store</channel>
+    <quantity>3</quantity>
+    <unit_price>3042.0</unit_price>
+    <discount_pct>5.0</discount_pct>
+    <net_revenue>8669.699999999999</net_revenue>
+    <status>Completed</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000088</order_id>
+    <order_date>2025-04-06 00:00:00</order_date>
+    <order_timestamp>2025-04-06 16:28:03</order_timestamp>
+    <store_id>S24</store_id>
+    <product_id>P030</product_id>
+    <channel>Store</channel>
+    <quantity>3</quantity>
+    <unit_price>280.74</unit_price>
+    <discount_pct>25.0</discount_pct>
+    <net_revenue>631.665</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000089</order_id>
+    <order_date>2026-04-14 00:00:00</order_date>
+    <order_timestamp>2026-04-14 11:12:39</order_timestamp>
+    <store_id>S12</store_id>
+    <product_id>P081</product_id>
+    <channel>Store</channel>
+    <quantity>4</quantity>
+    <unit_price>5018.93</unit_price>
+    <discount_pct>15.0</discount_pct>
+    <net_revenue>17064.362</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000090</order_id>
+    <order_date>2025-06-02 00:00:00</order_date>
+    <order_timestamp>2025-06-02 18:54:37</order_timestamp>
+    <store_id>S16</store_id>
+    <product_id>P028</product_id>
+    <channel>Web</channel>
+    <quantity>3</quantity>
+    <unit_price>2894.38</unit_price>
+    <discount_pct>15.0</discount_pct>
+    <net_revenue>7380.668999999999</net_revenue>
+    <status>Completed</status>
+    <tags>gift|express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000091</order_id>
+    <order_date>2026-05-11 00:00:00</order_date>
+    <order_timestamp>2026-05-11 20:20:19</order_timestamp>
+    <store_id>S12</store_id>
+    <product_id>P120</product_id>
+    <channel>App</channel>
+    <quantity>4</quantity>
+    <unit_price>724.0</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>2896.0</net_revenue>
+    <status>Completed</status>
+    <tags>sale|app</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000092</order_id>
+    <order_date>2026-06-07 00:00:00</order_date>
+    <order_timestamp>2026-06-07 11:48:46</order_timestamp>
+    <store_id>S15</store_id>
+    <product_id>P081</product_id>
+    <channel>Store</channel>
+    <quantity>5</quantity>
+    <unit_price>5572.81</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>25077.645000000004</net_revenue>
+    <status>Completed</status>
+    <tags>sale|app</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000093</order_id>
+    <order_date>2026-03-04 00:00:00</order_date>
+    <order_timestamp>2026-03-04 09:28:03</order_timestamp>
+    <store_id>S12</store_id>
+    <product_id>P093</product_id>
+    <channel>Web</channel>
+    <quantity>3</quantity>
+    <unit_price>1468.01</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>3963.627</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000094</order_id>
+    <order_date>2025-07-24 00:00:00</order_date>
+    <order_timestamp>2025-07-24 11:59:26</order_timestamp>
+    <store_id>S02</store_id>
+    <product_id>P080</product_id>
+    <channel>App</channel>
+    <quantity>2</quantity>
+    <unit_price>2010.3</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>3618.54</net_revenue>
+    <status>Cancelled</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000095</order_id>
+    <order_date>2026-08-14 00:00:00</order_date>
+    <order_timestamp>2026-08-14 18:35:54</order_timestamp>
+    <store_id>S14</store_id>
+    <product_id>P119</product_id>
+    <channel>App</channel>
+    <quantity>1</quantity>
+    <unit_price>238.0</unit_price>
+    <discount_pct>5.0</discount_pct>
+    <net_revenue>226.1</net_revenue>
+    <status>Completed</status>
+    <tags>gift</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000096</order_id>
+    <order_date>2026-03-02 00:00:00</order_date>
+    <order_timestamp>2026-03-02 08:51:19</order_timestamp>
+    <store_id>S06</store_id>
+    <product_id>P033</product_id>
+    <channel>App</channel>
+    <quantity>1</quantity>
+    <unit_price>1089.35</unit_price>
+    <discount_pct>25.0</discount_pct>
+    <net_revenue>817.0124999999999</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000097</order_id>
+    <order_date>2026-02-05 00:00:00</order_date>
+    <order_timestamp>2026-02-05 12:02:47</order_timestamp>
+    <store_id>S02</store_id>
+    <product_id>P092</product_id>
+    <channel>Web</channel>
+    <quantity>5</quantity>
+    <unit_price>3547.56</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>17737.8</net_revenue>
+    <status>Completed</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000098</order_id>
+    <order_date>2026-06-15 00:00:00</order_date>
+    <order_timestamp>2026-06-15 12:28:18</order_timestamp>
+    <store_id>S07</store_id>
+    <product_id>P116</product_id>
+    <channel>Web</channel>
+    <quantity>5</quantity>
+    <unit_price>5449.96</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>27249.8</net_revenue>
+    <status>Cancelled</status>
+    <tags>gift|express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000099</order_id>
+    <order_date>2026-07-01 00:00:00</order_date>
+    <order_timestamp>2026-07-01 08:14:13</order_timestamp>
+    <store_id>S21</store_id>
+    <product_id>P026</product_id>
+    <channel>App</channel>
+    <quantity>3</quantity>
+    <unit_price>1698.0</unit_price>
+    <discount_pct>30.0</discount_pct>
+    <net_revenue>3565.7999999999997</net_revenue>
+    <status>Completed</status>
+    <tags>gift|express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000100</order_id>
+    <order_date>2025-02-18 00:00:00</order_date>
+    <order_timestamp>2025-02-18 16:21:19</order_timestamp>
+    <store_id>S04</store_id>
+    <product_id>P047</product_id>
+    <channel>Store</channel>
+    <quantity>3</quantity>
+    <unit_price>5604.34</unit_price>
+    <discount_pct>20.0</discount_pct>
+    <net_revenue>13450.416000000001</net_revenue>
+    <status>Completed</status>
+    <tags>bulk|priority</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000101</order_id>
+    <order_date>2026-07-01 00:00:00</order_date>
+    <order_timestamp>2026-07-01 19:17:17</order_timestamp>
+    <store_id>S18</store_id>
+    <product_id>P085</product_id>
+    <channel>Store</channel>
+    <quantity>5</quantity>
+    <unit_price>226.86</unit_price>
+    <discount_pct>25.0</discount_pct>
+    <net_revenue>850.7250000000001</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000102</order_id>
+    <order_date>2026-04-20 00:00:00</order_date>
+    <order_timestamp>2026-04-20 10:10:07</order_timestamp>
+    <store_id>S03</store_id>
+    <product_id>P049</product_id>
+    <channel>Web</channel>
+    <quantity>2</quantity>
+    <unit_price>2350.33</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>4230.594</net_revenue>
+    <status>Completed</status>
+    <tags>gift|express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000103</order_id>
+    <order_date>2025-05-09 00:00:00</order_date>
+    <order_timestamp>2025-05-09 20:24:54</order_timestamp>
+    <store_id>S14</store_id>
+    <product_id>P085</product_id>
+    <channel>App</channel>
+    <quantity>4</quantity>
+    <unit_price>206.0</unit_price>
+    <discount_pct>20.0</discount_pct>
+    <net_revenue>659.2</net_revenue>
+    <status>Cancelled</status>
+    <tags>gift</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000104</order_id>
+    <order_date>2025-07-10 00:00:00</order_date>
+    <order_timestamp>2025-07-10 21:20:34</order_timestamp>
+    <store_id>S22</store_id>
+    <product_id>P025</product_id>
+    <channel>App</channel>
+    <quantity>1</quantity>
+    <unit_price>3325.97</unit_price>
+    <discount_pct>30.0</discount_pct>
+    <net_revenue>2328.1789999999996</net_revenue>
+    <status>Completed</status>
+    <tags>gift</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000105</order_id>
+    <order_date>2026-04-12 00:00:00</order_date>
+    <order_timestamp>2026-04-12 20:11:57</order_timestamp>
+    <store_id>S10</store_id>
+    <product_id>P010</product_id>
+    <channel>App</channel>
+    <quantity>5</quantity>
+    <unit_price>4018.59</unit_price>
+    <discount_pct>20.0</discount_pct>
+    <net_revenue>16074.36</net_revenue>
+    <status>Completed</status>
+    <tags>gift</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000106</order_id>
+    <order_date>2025-05-15 00:00:00</order_date>
+    <order_timestamp>2025-05-15 18:06:37</order_timestamp>
+    <store_id>S05</store_id>
+    <product_id>P007</product_id>
+    <channel>Store</channel>
+    <quantity>1</quantity>
+    <unit_price>2126.04</unit_price>
+    <discount_pct>25.0</discount_pct>
+    <net_revenue>1594.53</net_revenue>
+    <status>Shipped</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000107</order_id>
+    <order_date>2025-10-08 00:00:00</order_date>
+    <order_timestamp>2025-10-08 14:16:53</order_timestamp>
+    <store_id>S08</store_id>
+    <product_id>P023</product_id>
+    <channel>App</channel>
+    <quantity>5</quantity>
+    <unit_price>5472.0</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>24624.0</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000108</order_id>
+    <order_date>2026-03-04 00:00:00</order_date>
+    <order_timestamp>2026-03-04 10:51:23</order_timestamp>
+    <store_id>S21</store_id>
+    <product_id>P099</product_id>
+    <channel>App</channel>
+    <quantity>5</quantity>
+    <unit_price>6661.76</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>33308.8</net_revenue>
+    <status>Completed</status>
+    <tags>gift|express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000109</order_id>
+    <order_date>2026-02-08 00:00:00</order_date>
+    <order_timestamp>2026-02-08 20:46:11</order_timestamp>
+    <store_id>S22</store_id>
+    <product_id>P082</product_id>
+    <channel>Web</channel>
+    <quantity>4</quantity>
+    <unit_price>6309.37</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>25237.48</net_revenue>
+    <status>Completed</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000110</order_id>
+    <order_date>2026-07-19 00:00:00</order_date>
+    <order_timestamp>2026-07-19 15:25:57</order_timestamp>
+    <store_id>S23</store_id>
+    <product_id>P041</product_id>
+    <channel>App</channel>
+    <quantity>5</quantity>
+    <unit_price>792.56</unit_price>
+    <discount_pct>5.0</discount_pct>
+    <net_revenue>3764.6599999999994</net_revenue>
+    <status>Shipped</status>
+    <tags>sale|app</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000111</order_id>
+    <order_date>2025-03-11 00:00:00</order_date>
+    <order_timestamp>2025-03-11 14:19:49</order_timestamp>
+    <store_id>S05</store_id>
+    <product_id>P081</product_id>
+    <channel>Web</channel>
+    <quantity>2</quantity>
+    <unit_price>5294.0</unit_price>
+    <discount_pct>25.0</discount_pct>
+    <net_revenue>7941.0</net_revenue>
+    <status>Completed</status>
+    <tags>gift</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000112</order_id>
+    <order_date>2025-07-02 00:00:00</order_date>
+    <order_timestamp>2025-07-02 13:28:54</order_timestamp>
+    <store_id>S10</store_id>
+    <product_id>P059</product_id>
+    <channel>App</channel>
+    <quantity>2</quantity>
+    <unit_price>6796.66</unit_price>
+    <discount_pct>30.0</discount_pct>
+    <net_revenue>9515.323999999999</net_revenue>
+    <status>Shipped</status>
+    <tags>bulk|priority</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000113</order_id>
+    <order_date>2026-09-03 00:00:00</order_date>
+    <order_timestamp>2026-09-03 11:03:55</order_timestamp>
+    <store_id>S09</store_id>
+    <product_id>P022</product_id>
+    <channel>App</channel>
+    <quantity>3</quantity>
+    <unit_price>2712.72</unit_price>
+    <discount_pct>25.0</discount_pct>
+    <net_revenue>6103.62</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000114</order_id>
+    <order_date>2025-12-19 00:00:00</order_date>
+    <order_timestamp>2025-12-19 13:21:17</order_timestamp>
+    <store_id>S07</store_id>
+    <product_id>P095</product_id>
+    <channel>Web</channel>
+    <quantity>5</quantity>
+    <unit_price>5396.88</unit_price>
+    <discount_pct>15.0</discount_pct>
+    <net_revenue>22936.74</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000115</order_id>
+    <order_date>2025-06-04 00:00:00</order_date>
+    <order_timestamp>2025-06-04 19:10:32</order_timestamp>
+    <store_id>S07</store_id>
+    <product_id>P005</product_id>
+    <channel>App</channel>
+    <quantity>3</quantity>
+    <unit_price>382.0</unit_price>
+    <discount_pct>5.0</discount_pct>
+    <net_revenue>1088.7</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000116</order_id>
+    <order_date>2025-06-29 00:00:00</order_date>
+    <order_timestamp>2025-06-29 15:50:43</order_timestamp>
+    <store_id>S20</store_id>
+    <product_id>P013</product_id>
+    <channel>Web</channel>
+    <quantity>4</quantity>
+    <unit_price>3859.39</unit_price>
+    <discount_pct>20.0</discount_pct>
+    <net_revenue>12350.048</net_revenue>
+    <status>Completed</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000117</order_id>
+    <order_date>2025-07-30 00:00:00</order_date>
+    <order_timestamp>2025-07-30 13:32:52</order_timestamp>
+    <store_id>S02</store_id>
+    <product_id>P032</product_id>
+    <channel>Store</channel>
+    <quantity>1</quantity>
+    <unit_price>5382.24</unit_price>
+    <discount_pct>25.0</discount_pct>
+    <net_revenue>4036.68</net_revenue>
+    <status>Cancelled</status>
+    <tags>gift</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000118</order_id>
+    <order_date>2025-12-10 00:00:00</order_date>
+    <order_timestamp>2025-12-10 09:30:06</order_timestamp>
+    <store_id>S24</store_id>
+    <product_id>P075</product_id>
+    <channel>Web</channel>
+    <quantity>1</quantity>
+    <unit_price>959.27</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>863.343</net_revenue>
+    <status>Processing</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000119</order_id>
+    <order_date>2025-06-26 00:00:00</order_date>
+    <order_timestamp>2025-06-26 13:48:55</order_timestamp>
+    <store_id>S19</store_id>
+    <product_id>P043</product_id>
+    <channel>Web</channel>
+    <quantity>1</quantity>
+    <unit_price>1647.0</unit_price>
+    <discount_pct>25.0</discount_pct>
+    <net_revenue>1235.25</net_revenue>
+    <status>Completed</status>
+    <tags>bulk|priority</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000120</order_id>
+    <order_date>2026-01-21 00:00:00</order_date>
+    <order_timestamp>2026-01-21 11:00:45</order_timestamp>
+    <store_id>S04</store_id>
+    <product_id>P044</product_id>
+    <channel>Web</channel>
+    <quantity>1</quantity>
+    <unit_price>348.77</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>313.893</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000121</order_id>
+    <order_date>2025-10-04 00:00:00</order_date>
+    <order_timestamp>2025-10-04 13:34:28</order_timestamp>
+    <store_id>S14</store_id>
+    <product_id>P065</product_id>
+    <channel>Web</channel>
+    <quantity>5</quantity>
+    <unit_price>4805.6</unit_price>
+    <discount_pct>20.0</discount_pct>
+    <net_revenue>19222.4</net_revenue>
+    <status>Completed</status>
+    <tags>sale|app</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000122</order_id>
+    <order_date>2026-01-14 00:00:00</order_date>
+    <order_timestamp>2026-01-14 10:05:44</order_timestamp>
+    <store_id>S09</store_id>
+    <product_id>P101</product_id>
+    <channel>Store</channel>
+    <quantity>4</quantity>
+    <unit_price>1897.52</unit_price>
+    <discount_pct>25.0</discount_pct>
+    <net_revenue>5692.5599999999995</net_revenue>
+    <status>Shipped</status>
+    <tags>new|web</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000123</order_id>
+    <order_date>2025-04-07 00:00:00</order_date>
+    <order_timestamp>2025-04-07 21:16:16</order_timestamp>
+    <store_id>S06</store_id>
+    <product_id>P040</product_id>
+    <channel>Web</channel>
+    <quantity>3</quantity>
+    <unit_price>4288.0</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>11577.6</net_revenue>
+    <status>Completed</status>
+    <tags>gift|express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000124</order_id>
+    <order_date>2026-01-22 00:00:00</order_date>
+    <order_timestamp>2026-01-22 10:26:21</order_timestamp>
+    <store_id>S19</store_id>
+    <product_id>P047</product_id>
+    <channel>Store</channel>
+    <quantity>3</quantity>
+    <unit_price>5351.71</unit_price>
+    <discount_pct>25.0</discount_pct>
+    <net_revenue>12041.3475</net_revenue>
+    <status>Cancelled</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000125</order_id>
+    <order_date>2026-07-28 00:00:00</order_date>
+    <order_timestamp>2026-07-28 09:44:11</order_timestamp>
+    <store_id>S10</store_id>
+    <product_id>P005</product_id>
+    <channel>App</channel>
+    <quantity>1</quantity>
+    <unit_price>389.51</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>389.51</net_revenue>
+    <status>Completed</status>
+    <tags>gift</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000126</order_id>
+    <order_date>2025-03-25 00:00:00</order_date>
+    <order_timestamp>2025-03-25 17:10:23</order_timestamp>
+    <store_id>S01</store_id>
+    <product_id>P115</product_id>
+    <channel>App</channel>
+    <quantity>4</quantity>
+    <unit_price>6413.49</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>23088.564</net_revenue>
+    <status>Completed</status>
+    <tags>sale|app</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000127</order_id>
+    <order_date>2025-07-23 00:00:00</order_date>
+    <order_timestamp>2025-07-23 12:48:18</order_timestamp>
+    <store_id>S09</store_id>
+    <product_id>P102</product_id>
+    <channel>Store</channel>
+    <quantity>3</quantity>
+    <unit_price>3296.0</unit_price>
+    <discount_pct>20.0</discount_pct>
+    <net_revenue>7910.400000000001</net_revenue>
+    <status>Completed</status>
+    <tags>gift</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000128</order_id>
+    <order_date>2026-03-06 00:00:00</order_date>
+    <order_timestamp>2026-03-06 21:56:35</order_timestamp>
+    <store_id>S10</store_id>
+    <product_id>P045</product_id>
+    <channel>App</channel>
+    <quantity>5</quantity>
+    <unit_price>3670.88</unit_price>
+    <discount_pct>25.0</discount_pct>
+    <net_revenue>13765.800000000001</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000129</order_id>
+    <order_date>2026-01-18 00:00:00</order_date>
+    <order_timestamp>2026-01-18 13:39:26</order_timestamp>
+    <store_id>S08</store_id>
+    <product_id>P102</product_id>
+    <channel>App</channel>
+    <quantity>5</quantity>
+    <unit_price>2954.32</unit_price>
+    <discount_pct>25.0</discount_pct>
+    <net_revenue>11078.7</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000130</order_id>
+    <order_date>2026-02-23 00:00:00</order_date>
+    <order_timestamp>2026-02-23 17:06:16</order_timestamp>
+    <store_id>S03</store_id>
+    <product_id>P004</product_id>
+    <channel>Web</channel>
+    <quantity>3</quantity>
+    <unit_price>2977.73</unit_price>
+    <discount_pct>30.0</discount_pct>
+    <net_revenue>6253.233</net_revenue>
+    <status>Completed</status>
+    <tags>sale|app</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000131</order_id>
+    <order_date>2025-12-13 00:00:00</order_date>
+    <order_timestamp>2025-12-13 19:40:23</order_timestamp>
+    <store_id>S17</store_id>
+    <product_id>P009</product_id>
+    <channel>Store</channel>
+    <quantity>2</quantity>
+    <unit_price>757.0</unit_price>
+    <discount_pct>20.0</discount_pct>
+    <net_revenue>1211.2</net_revenue>
+    <status>Shipped</status>
+    <tags>new|web</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000132</order_id>
+    <order_date>2026-02-28 00:00:00</order_date>
+    <order_timestamp>2026-02-28 21:47:34</order_timestamp>
+    <store_id>S20</store_id>
+    <product_id>P066</product_id>
+    <channel>Web</channel>
+    <quantity>1</quantity>
+    <unit_price>4410.17</unit_price>
+    <discount_pct>30.0</discount_pct>
+    <net_revenue>3087.1189999999997</net_revenue>
+    <status>Completed</status>
+    <tags>new|web</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000133</order_id>
+    <order_date>2026-01-13 00:00:00</order_date>
+    <order_timestamp>2026-01-13 19:20:47</order_timestamp>
+    <store_id>S22</store_id>
+    <product_id>P067</product_id>
+    <channel>App</channel>
+    <quantity>5</quantity>
+    <unit_price>2357.83</unit_price>
+    <discount_pct>20.0</discount_pct>
+    <net_revenue>9431.32</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000134</order_id>
+    <order_date>2025-02-15 00:00:00</order_date>
+    <order_timestamp>2025-02-15 16:04:53</order_timestamp>
+    <store_id>S07</store_id>
+    <product_id>P016</product_id>
+    <channel>Store</channel>
+    <quantity>4</quantity>
+    <unit_price>284.09</unit_price>
+    <discount_pct>15.0</discount_pct>
+    <net_revenue>965.9059999999998</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000135</order_id>
+    <order_date>2026-04-11 00:00:00</order_date>
+    <order_timestamp>2026-04-11 19:24:15</order_timestamp>
+    <store_id>S13</store_id>
+    <product_id>P062</product_id>
+    <channel>App</channel>
+    <quantity>3</quantity>
+    <unit_price>6386.0</unit_price>
+    <discount_pct>20.0</discount_pct>
+    <net_revenue>15326.400000000001</net_revenue>
+    <status>Shipped</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000136</order_id>
+    <order_date>2025-10-05 00:00:00</order_date>
+    <order_timestamp>2025-10-05 11:57:26</order_timestamp>
+    <store_id>S15</store_id>
+    <product_id>P017</product_id>
+    <channel>App</channel>
+    <quantity>4</quantity>
+    <unit_price>5942.81</unit_price>
+    <discount_pct>15.0</discount_pct>
+    <net_revenue>20205.554</net_revenue>
+    <status>Completed</status>
+    <tags>new|web</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000137</order_id>
+    <order_date>2025-02-01 00:00:00</order_date>
+    <order_timestamp>2025-02-01 20:10:42</order_timestamp>
+    <store_id>S05</store_id>
+    <product_id>P055</product_id>
+    <channel>Web</channel>
+    <quantity>1</quantity>
+    <unit_price>1320.71</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>1320.71</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000138</order_id>
+    <order_date>2025-09-11 00:00:00</order_date>
+    <order_timestamp>2025-09-11 20:12:12</order_timestamp>
+    <store_id>S14</store_id>
+    <product_id>P058</product_id>
+    <channel>Store</channel>
+    <quantity>4</quantity>
+    <unit_price>6966.27</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>27865.08</net_revenue>
+    <status>Completed</status>
+    <tags>bulk|priority</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000139</order_id>
+    <order_date>2025-09-27 00:00:00</order_date>
+    <order_timestamp>2025-09-27 13:22:44</order_timestamp>
+    <store_id>S09</store_id>
+    <product_id>P025</product_id>
+    <channel>App</channel>
+    <quantity>3</quantity>
+    <unit_price>3657.0</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>10971.0</net_revenue>
+    <status>Cancelled</status>
+    <tags>bulk|priority</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000140</order_id>
+    <order_date>2025-02-23 00:00:00</order_date>
+    <order_timestamp>2025-02-23 08:56:33</order_timestamp>
+    <store_id>S23</store_id>
+    <product_id>P035</product_id>
+    <channel>Web</channel>
+    <quantity>1</quantity>
+    <unit_price>900.89</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>810.801</net_revenue>
+    <status>Completed</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000141</order_id>
+    <order_date>2026-09-10 00:00:00</order_date>
+    <order_timestamp>2026-09-10 17:35:08</order_timestamp>
+    <store_id>S18</store_id>
+    <product_id>P062</product_id>
+    <channel>Store</channel>
+    <quantity>3</quantity>
+    <unit_price>5834.66</unit_price>
+    <discount_pct>20.0</discount_pct>
+    <net_revenue>14003.184000000001</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000142</order_id>
+    <order_date>2025-05-18 00:00:00</order_date>
+    <order_timestamp>2025-05-18 09:26:39</order_timestamp>
+    <store_id>S02</store_id>
+    <product_id>P066</product_id>
+    <channel>Store</channel>
+    <quantity>5</quantity>
+    <unit_price>3920.29</unit_price>
+    <discount_pct>15.0</discount_pct>
+    <net_revenue>16661.232500000002</net_revenue>
+    <status>Cancelled</status>
+    <tags>gift</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000143</order_id>
+    <order_date>2025-07-25 00:00:00</order_date>
+    <order_timestamp>2025-07-25 08:14:09</order_timestamp>
+    <store_id>S07</store_id>
+    <product_id>P118</product_id>
+    <channel>App</channel>
+    <quantity>3</quantity>
+    <unit_price>5312.0</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>15936.0</net_revenue>
+    <status>Processing</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000144</order_id>
+    <order_date>2025-10-01 00:00:00</order_date>
+    <order_timestamp>2025-10-01 21:16:31</order_timestamp>
+    <store_id>S12</store_id>
+    <product_id>P080</product_id>
+    <channel>Web</channel>
+    <quantity>5</quantity>
+    <unit_price>1832.84</unit_price>
+    <discount_pct>20.0</discount_pct>
+    <net_revenue>7331.36</net_revenue>
+    <status>Completed</status>
+    <tags>gift|express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000145</order_id>
+    <order_date>2026-06-01 00:00:00</order_date>
+    <order_timestamp>2026-06-01 15:56:18</order_timestamp>
+    <store_id>S02</store_id>
+    <product_id>P091</product_id>
+    <channel>App</channel>
+    <quantity>1</quantity>
+    <unit_price>4925.27</unit_price>
+    <discount_pct>20.0</discount_pct>
+    <net_revenue>3940.2160000000003</net_revenue>
+    <status>Completed</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000146</order_id>
+    <order_date>2026-04-06 00:00:00</order_date>
+    <order_timestamp>2026-04-06 17:06:01</order_timestamp>
+    <store_id>S22</store_id>
+    <product_id>P109</product_id>
+    <channel>App</channel>
+    <quantity>1</quantity>
+    <unit_price>4253.7</unit_price>
+    <discount_pct>25.0</discount_pct>
+    <net_revenue>3190.2749999999996</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000147</order_id>
+    <order_date>2026-04-23 00:00:00</order_date>
+    <order_timestamp>2026-04-23 20:19:40</order_timestamp>
+    <store_id>S22</store_id>
+    <product_id>P046</product_id>
+    <channel>Store</channel>
+    <quantity>3</quantity>
+    <unit_price>2382.0</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>6431.400000000001</net_revenue>
+    <status>Cancelled</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000148</order_id>
+    <order_date>2025-05-27 00:00:00</order_date>
+    <order_timestamp>2025-05-27 21:00:40</order_timestamp>
+    <store_id>S13</store_id>
+    <product_id>P035</product_id>
+    <channel>App</channel>
+    <quantity>5</quantity>
+    <unit_price>799.28</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>3596.7599999999998</net_revenue>
+    <status>Completed</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000149</order_id>
+    <order_date>2026-06-09 00:00:00</order_date>
+    <order_timestamp>2026-06-09 21:23:16</order_timestamp>
+    <store_id>S08</store_id>
+    <product_id>P071</product_id>
+    <channel>Web</channel>
+    <quantity>3</quantity>
+    <unit_price>6758.19</unit_price>
+    <discount_pct>20.0</discount_pct>
+    <net_revenue>16219.656</net_revenue>
+    <status>Shipped</status>
+    <tags>gift|express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000150</order_id>
+    <order_date>2026-05-30 00:00:00</order_date>
+    <order_timestamp>2026-05-30 09:51:02</order_timestamp>
+    <store_id>S24</store_id>
+    <product_id>P062</product_id>
+    <channel>Store</channel>
+    <quantity>5</quantity>
+    <unit_price>6024.93</unit_price>
+    <discount_pct>30.0</discount_pct>
+    <net_revenue>21087.255</net_revenue>
+    <status>Shipped</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000151</order_id>
+    <order_date>2025-10-15 00:00:00</order_date>
+    <order_timestamp>2025-10-15 12:32:52</order_timestamp>
+    <store_id>S04</store_id>
+    <product_id>P077</product_id>
+    <channel>App</channel>
+    <quantity>5</quantity>
+    <unit_price>3939.0</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>17725.5</net_revenue>
+    <status>Completed</status>
+    <tags>new|web</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000152</order_id>
+    <order_date>2025-12-05 00:00:00</order_date>
+    <order_timestamp>2025-12-05 18:45:25</order_timestamp>
+    <store_id>S06</store_id>
+    <product_id>P092</product_id>
+    <channel>Store</channel>
+    <quantity>5</quantity>
+    <unit_price>3721.95</unit_price>
+    <discount_pct>30.0</discount_pct>
+    <net_revenue>13026.824999999999</net_revenue>
+    <status>Completed</status>
+    <tags>gift</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000153</order_id>
+    <order_date>2025-01-24 00:00:00</order_date>
+    <order_timestamp>2025-01-24 08:24:51</order_timestamp>
+    <store_id>S15</store_id>
+    <product_id>P073</product_id>
+    <channel>Store</channel>
+    <quantity>5</quantity>
+    <unit_price>917.02</unit_price>
+    <discount_pct>25.0</discount_pct>
+    <net_revenue>3438.8250000000003</net_revenue>
+    <status>Shipped</status>
+    <tags>bulk|priority</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000154</order_id>
+    <order_date>2026-04-17 00:00:00</order_date>
+    <order_timestamp>2026-04-17 11:17:24</order_timestamp>
+    <store_id>S12</store_id>
+    <product_id>P070</product_id>
+    <channel>Store</channel>
+    <quantity>2</quantity>
+    <unit_price>1915.56</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>3831.12</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000155</order_id>
+    <order_date>2026-08-19 00:00:00</order_date>
+    <order_timestamp>2026-08-19 15:12:44</order_timestamp>
+    <store_id>S05</store_id>
+    <product_id>P099</product_id>
+    <channel>Store</channel>
+    <quantity>1</quantity>
+    <unit_price>6299.0</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>6299.0</net_revenue>
+    <status>Completed</status>
+    <tags>sale|app</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000156</order_id>
+    <order_date>2025-10-20 00:00:00</order_date>
+    <order_timestamp>2025-10-20 12:48:50</order_timestamp>
+    <store_id>S20</store_id>
+    <product_id>P044</product_id>
+    <channel>Web</channel>
+    <quantity>5</quantity>
+    <unit_price>330.14</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>1650.6999999999998</net_revenue>
+    <status>Cancelled</status>
+    <tags>new|web</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000157</order_id>
+    <order_date>2025-12-02 00:00:00</order_date>
+    <order_timestamp>2025-12-02 10:25:40</order_timestamp>
+    <store_id>S12</store_id>
+    <product_id>P022</product_id>
+    <channel>Web</channel>
+    <quantity>5</quantity>
+    <unit_price>3391.44</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>16957.2</net_revenue>
+    <status>Completed</status>
+    <tags>gift</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000158</order_id>
+    <order_date>2025-11-06 00:00:00</order_date>
+    <order_timestamp>2025-11-06 20:35:51</order_timestamp>
+    <store_id>S11</store_id>
+    <product_id>P011</product_id>
+    <channel>Store</channel>
+    <quantity>3</quantity>
+    <unit_price>1123.57</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>3033.639</net_revenue>
+    <status>Shipped</status>
+    <tags>gift</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000159</order_id>
+    <order_date>2025-02-21 00:00:00</order_date>
+    <order_timestamp>2025-02-21 14:16:03</order_timestamp>
+    <store_id>S07</store_id>
+    <product_id>P021</product_id>
+    <channel>Store</channel>
+    <quantity>1</quantity>
+    <unit_price>3246.0</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>3246.0</net_revenue>
+    <status>Processing</status>
+    <tags>sale|app</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000160</order_id>
+    <order_date>2026-01-20 00:00:00</order_date>
+    <order_timestamp>2026-01-20 13:45:46</order_timestamp>
+    <store_id>S07</store_id>
+    <product_id>P023</product_id>
+    <channel>Web</channel>
+    <quantity>1</quantity>
+    <unit_price>5155.46</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>5155.46</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000161</order_id>
+    <order_date>2026-03-24 00:00:00</order_date>
+    <order_timestamp>2026-03-24 17:12:43</order_timestamp>
+    <store_id>S22</store_id>
+    <product_id>P054</product_id>
+    <channel>App</channel>
+    <quantity>2</quantity>
+    <unit_price>5946.51</unit_price>
+    <discount_pct>5.0</discount_pct>
+    <net_revenue>11298.369</net_revenue>
+    <status>Shipped</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000162</order_id>
+    <order_date>2026-07-30 00:00:00</order_date>
+    <order_timestamp>2026-07-30 17:23:49</order_timestamp>
+    <store_id>S03</store_id>
+    <product_id>P005</product_id>
+    <channel>Web</channel>
+    <quantity>2</quantity>
+    <unit_price>367.72</unit_price>
+    <discount_pct>15.0</discount_pct>
+    <net_revenue>625.124</net_revenue>
+    <status>Completed</status>
+    <tags>gift</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000163</order_id>
+    <order_date>2026-07-31 00:00:00</order_date>
+    <order_timestamp>2026-07-31 14:53:38</order_timestamp>
+    <store_id>S09</store_id>
+    <product_id>P093</product_id>
+    <channel>Web</channel>
+    <quantity>3</quantity>
+    <unit_price>1270.0</unit_price>
+    <discount_pct>30.0</discount_pct>
+    <net_revenue>2667.0</net_revenue>
+    <status>Shipped</status>
+    <tags>new|web</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000164</order_id>
+    <order_date>2025-11-01 00:00:00</order_date>
+    <order_timestamp>2025-11-01 20:25:13</order_timestamp>
+    <store_id>S21</store_id>
+    <product_id>P074</product_id>
+    <channel>Store</channel>
+    <quantity>4</quantity>
+    <unit_price>5280.25</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>21121.0</net_revenue>
+    <status>Completed</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000165</order_id>
+    <order_date>2026-08-18 00:00:00</order_date>
+    <order_timestamp>2026-08-18 12:08:36</order_timestamp>
+    <store_id>S22</store_id>
+    <product_id>P031</product_id>
+    <channel>App</channel>
+    <quantity>4</quantity>
+    <unit_price>5805.84</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>20901.024</net_revenue>
+    <status>Cancelled</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000166</order_id>
+    <order_date>2025-11-24 00:00:00</order_date>
+    <order_timestamp>2025-11-24 20:11:42</order_timestamp>
+    <store_id>S04</store_id>
+    <product_id>P061</product_id>
+    <channel>App</channel>
+    <quantity>4</quantity>
+    <unit_price>5485.4</unit_price>
+    <discount_pct>25.0</discount_pct>
+    <net_revenue>16456.199999999997</net_revenue>
+    <status>Completed</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000167</order_id>
+    <order_date>2026-02-03 00:00:00</order_date>
+    <order_timestamp>2026-02-03 20:09:59</order_timestamp>
+    <store_id>S13</store_id>
+    <product_id>P011</product_id>
+    <channel>App</channel>
+    <quantity>4</quantity>
+    <unit_price>1075.0</unit_price>
+    <discount_pct>30.0</discount_pct>
+    <net_revenue>3010.0</net_revenue>
+    <status>Shipped</status>
+    <tags>new|web</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000168</order_id>
+    <order_date>2026-01-09 00:00:00</order_date>
+    <order_timestamp>2026-01-09 08:07:44</order_timestamp>
+    <store_id>S04</store_id>
+    <product_id>P036</product_id>
+    <channel>App</channel>
+    <quantity>4</quantity>
+    <unit_price>4968.49</unit_price>
+    <discount_pct>5.0</discount_pct>
+    <net_revenue>18880.262</net_revenue>
+    <status>Completed</status>
+    <tags>gift|express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000169</order_id>
+    <order_date>2026-09-12 00:00:00</order_date>
+    <order_timestamp>2026-09-12 18:33:50</order_timestamp>
+    <store_id>S23</store_id>
+    <product_id>P058</product_id>
+    <channel>App</channel>
+    <quantity>1</quantity>
+    <unit_price>6272.4</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>6272.4</net_revenue>
+    <status>Shipped</status>
+    <tags>sale|app</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000170</order_id>
+    <order_date>2026-04-03 00:00:00</order_date>
+    <order_timestamp>2026-04-03 10:12:46</order_timestamp>
+    <store_id>S10</store_id>
+    <product_id>P114</product_id>
+    <channel>Web</channel>
+    <quantity>4</quantity>
+    <unit_price>4330.71</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>17322.84</net_revenue>
+    <status>Completed</status>
+    <tags>sale|app</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000171</order_id>
+    <order_date>2025-03-16 00:00:00</order_date>
+    <order_timestamp>2025-03-16 14:47:06</order_timestamp>
+    <store_id>S19</store_id>
+    <product_id>P079</product_id>
+    <channel>Web</channel>
+    <quantity>2</quantity>
+    <unit_price>1268.0</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>2536.0</net_revenue>
+    <status>Completed</status>
+    <tags>gift|express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000172</order_id>
+    <order_date>2025-02-14 00:00:00</order_date>
+    <order_timestamp>2025-02-14 20:51:47</order_timestamp>
+    <store_id>S23</store_id>
+    <product_id>P061</product_id>
+    <channel>App</channel>
+    <quantity>5</quantity>
+    <unit_price>6312.89</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>28408.005</net_revenue>
+    <status>Cancelled</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000173</order_id>
+    <order_date>2025-09-12 00:00:00</order_date>
+    <order_timestamp>2025-09-12 10:44:42</order_timestamp>
+    <store_id>S21</store_id>
+    <product_id>P120</product_id>
+    <channel>Store</channel>
+    <quantity>1</quantity>
+    <unit_price>874.22</unit_price>
+    <discount_pct>5.0</discount_pct>
+    <net_revenue>830.509</net_revenue>
+    <status>Completed</status>
+    <tags>sale|app</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000174</order_id>
+    <order_date>2025-11-16 00:00:00</order_date>
+    <order_timestamp>2025-11-16 15:52:09</order_timestamp>
+    <store_id>S14</store_id>
+    <product_id>P119</product_id>
+    <channel>Web</channel>
+    <quantity>1</quantity>
+    <unit_price>250.13</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>225.117</net_revenue>
+    <status>Completed</status>
+    <tags>gift</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000175</order_id>
+    <order_date>2026-02-19 00:00:00</order_date>
+    <order_timestamp>2026-02-19 18:53:11</order_timestamp>
+    <store_id>S05</store_id>
+    <product_id>P065</product_id>
+    <channel>Store</channel>
+    <quantity>3</quantity>
+    <unit_price>5293.0</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>15879.0</net_revenue>
+    <status>Completed</status>
+    <tags>gift|express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000176</order_id>
+    <order_date>2025-10-26 00:00:00</order_date>
+    <order_timestamp>2025-10-26 14:43:15</order_timestamp>
+    <store_id>S09</store_id>
+    <product_id>P045</product_id>
+    <channel>Web</channel>
+    <quantity>2</quantity>
+    <unit_price>3977.05</unit_price>
+    <discount_pct>20.0</discount_pct>
+    <net_revenue>6363.280000000001</net_revenue>
+    <status>Completed</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000177</order_id>
+    <order_date>2025-11-16 00:00:00</order_date>
+    <order_timestamp>2025-11-16 09:05:35</order_timestamp>
+    <store_id>S22</store_id>
+    <product_id>P044</product_id>
+    <channel>App</channel>
+    <quantity>5</quantity>
+    <unit_price>356.24</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>1781.2</net_revenue>
+    <status>Completed</status>
+    <tags>new|web</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000178</order_id>
+    <order_date>2026-07-26 00:00:00</order_date>
+    <order_timestamp>2026-07-26 08:54:47</order_timestamp>
+    <store_id>S23</store_id>
+    <product_id>P075</product_id>
+    <channel>Web</channel>
+    <quantity>3</quantity>
+    <unit_price>1082.99</unit_price>
+    <discount_pct>20.0</discount_pct>
+    <net_revenue>2599.1760000000004</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000179</order_id>
+    <order_date>2025-07-27 00:00:00</order_date>
+    <order_timestamp>2025-07-27 15:15:52</order_timestamp>
+    <store_id>S09</store_id>
+    <product_id>P095</product_id>
+    <channel>Store</channel>
+    <quantity>1</quantity>
+    <unit_price>4980.0</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>4980.0</net_revenue>
+    <status>Shipped</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000180</order_id>
+    <order_date>2025-11-02 00:00:00</order_date>
+    <order_timestamp>2025-11-02 08:21:08</order_timestamp>
+    <store_id>S07</store_id>
+    <product_id>P038</product_id>
+    <channel>Web</channel>
+    <quantity>3</quantity>
+    <unit_price>4935.31</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>13325.337000000001</net_revenue>
+    <status>Cancelled</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000181</order_id>
+    <order_date>2025-12-12 00:00:00</order_date>
+    <order_timestamp>2025-12-12 08:12:58</order_timestamp>
+    <store_id>S13</store_id>
+    <product_id>P102</product_id>
+    <channel>Web</channel>
+    <quantity>5</quantity>
+    <unit_price>4010.63</unit_price>
+    <discount_pct>20.0</discount_pct>
+    <net_revenue>16042.520000000002</net_revenue>
+    <status>Completed</status>
+    <tags>sale|app</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000182</order_id>
+    <order_date>2025-10-18 00:00:00</order_date>
+    <order_timestamp>2025-10-18 21:20:07</order_timestamp>
+    <store_id>S01</store_id>
+    <product_id>P112</product_id>
+    <channel>App</channel>
+    <quantity>4</quantity>
+    <unit_price>2845.22</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>11380.88</net_revenue>
+    <status>Shipped</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000183</order_id>
+    <order_date>2026-08-24 00:00:00</order_date>
+    <order_timestamp>2026-08-24 15:27:35</order_timestamp>
+    <store_id>S16</store_id>
+    <product_id>P068</product_id>
+    <channel>App</channel>
+    <quantity>5</quantity>
+    <unit_price>682.0</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>3069.0</net_revenue>
+    <status>Completed</status>
+    <tags>gift</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000184</order_id>
+    <order_date>2026-08-20 00:00:00</order_date>
+    <order_timestamp>2026-08-20 14:38:58</order_timestamp>
+    <store_id>S09</store_id>
+    <product_id>P031</product_id>
+    <channel>Web</channel>
+    <quantity>4</quantity>
+    <unit_price>5363.33</unit_price>
+    <discount_pct>15.0</discount_pct>
+    <net_revenue>18235.322</net_revenue>
+    <status>Completed</status>
+    <tags>sale|app</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000185</order_id>
+    <order_date>2025-11-15 00:00:00</order_date>
+    <order_timestamp>2025-11-15 09:24:24</order_timestamp>
+    <store_id>S22</store_id>
+    <product_id>P036</product_id>
+    <channel>Web</channel>
+    <quantity>4</quantity>
+    <unit_price>4166.79</unit_price>
+    <discount_pct>20.0</discount_pct>
+    <net_revenue>13333.728000000001</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000186</order_id>
+    <order_date>2025-10-07 00:00:00</order_date>
+    <order_timestamp>2025-10-07 19:00:58</order_timestamp>
+    <store_id>S16</store_id>
+    <product_id>P024</product_id>
+    <channel>App</channel>
+    <quantity>2</quantity>
+    <unit_price>3769.75</unit_price>
+    <discount_pct>15.0</discount_pct>
+    <net_revenue>6408.575</net_revenue>
+    <status>Shipped</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000187</order_id>
+    <order_date>2026-01-01 00:00:00</order_date>
+    <order_timestamp>2026-01-01 15:08:37</order_timestamp>
+    <store_id>S08</store_id>
+    <product_id>P032</product_id>
+    <channel>Store</channel>
+    <quantity>2</quantity>
+    <unit_price>5846.0</unit_price>
+    <discount_pct>5.0</discount_pct>
+    <net_revenue>11107.4</net_revenue>
+    <status>Completed</status>
+    <tags>gift|express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000188</order_id>
+    <order_date>2025-04-23 00:00:00</order_date>
+    <order_timestamp>2025-04-23 11:04:20</order_timestamp>
+    <store_id>S22</store_id>
+    <product_id>P077</product_id>
+    <channel>Web</channel>
+    <quantity>4</quantity>
+    <unit_price>4050.73</unit_price>
+    <discount_pct>5.0</discount_pct>
+    <net_revenue>15392.774</net_revenue>
+    <status>Shipped</status>
+    <tags>sale|app</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000189</order_id>
+    <order_date>2025-09-22 00:00:00</order_date>
+    <order_timestamp>2025-09-22 18:32:52</order_timestamp>
+    <store_id>S18</store_id>
+    <product_id>P007</product_id>
+    <channel>App</channel>
+    <quantity>5</quantity>
+    <unit_price>2301.75</unit_price>
+    <discount_pct>20.0</discount_pct>
+    <net_revenue>9207.0</net_revenue>
+    <status>Shipped</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000190</order_id>
+    <order_date>2025-05-15 00:00:00</order_date>
+    <order_timestamp>2025-05-15 11:19:00</order_timestamp>
+    <store_id>S15</store_id>
+    <product_id>P040</product_id>
+    <channel>Web</channel>
+    <quantity>2</quantity>
+    <unit_price>5170.34</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>10340.68</net_revenue>
+    <status>Completed</status>
+    <tags>gift|express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000191</order_id>
+    <order_date>2025-03-31 00:00:00</order_date>
+    <order_timestamp>2025-03-31 15:02:45</order_timestamp>
+    <store_id>S14</store_id>
+    <product_id>P102</product_id>
+    <channel>Store</channel>
+    <quantity>4</quantity>
+    <unit_price>2881.0</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>11524.0</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000192</order_id>
+    <order_date>2025-03-01 00:00:00</order_date>
+    <order_timestamp>2025-03-01 15:50:23</order_timestamp>
+    <store_id>S15</store_id>
+    <product_id>P105</product_id>
+    <channel>App</channel>
+    <quantity>2</quantity>
+    <unit_price>1837.39</unit_price>
+    <discount_pct>5.0</discount_pct>
+    <net_revenue>3491.041</net_revenue>
+    <status>Completed</status>
+    <tags>new|web</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000193</order_id>
+    <order_date>2025-12-30 00:00:00</order_date>
+    <order_timestamp>2025-12-30 11:54:42</order_timestamp>
+    <store_id>S05</store_id>
+    <product_id>P010</product_id>
+    <channel>Store</channel>
+    <quantity>4</quantity>
+    <unit_price>3563.53</unit_price>
+    <discount_pct>15.0</discount_pct>
+    <net_revenue>12116.002</net_revenue>
+    <status>Shipped</status>
+    <tags>gift|express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000194</order_id>
+    <order_date>2025-01-01 00:00:00</order_date>
+    <order_timestamp>2025-01-01 20:15:01</order_timestamp>
+    <store_id>S18</store_id>
+    <product_id>P015</product_id>
+    <channel>Web</channel>
+    <quantity>1</quantity>
+    <unit_price>4106.56</unit_price>
+    <discount_pct>15.0</discount_pct>
+    <net_revenue>3490.576</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000195</order_id>
+    <order_date>2026-02-05 00:00:00</order_date>
+    <order_timestamp>2026-02-05 17:50:54</order_timestamp>
+    <store_id>S07</store_id>
+    <product_id>P029</product_id>
+    <channel>App</channel>
+    <quantity>3</quantity>
+    <unit_price>2480.0</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>6696.0</net_revenue>
+    <status>Cancelled</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000196</order_id>
+    <order_date>2025-09-25 00:00:00</order_date>
+    <order_timestamp>2025-09-25 12:02:08</order_timestamp>
+    <store_id>S06</store_id>
+    <product_id>P008</product_id>
+    <channel>Store</channel>
+    <quantity>4</quantity>
+    <unit_price>1152.19</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>4608.76</net_revenue>
+    <status>Completed</status>
+    <tags>bulk|priority</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000197</order_id>
+    <order_date>2025-08-16 00:00:00</order_date>
+    <order_timestamp>2025-08-16 10:11:36</order_timestamp>
+    <store_id>S22</store_id>
+    <product_id>P069</product_id>
+    <channel>Store</channel>
+    <quantity>1</quantity>
+    <unit_price>5146.34</unit_price>
+    <discount_pct>5.0</discount_pct>
+    <net_revenue>4889.023</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000198</order_id>
+    <order_date>2026-04-22 00:00:00</order_date>
+    <order_timestamp>2026-04-22 12:36:13</order_timestamp>
+    <store_id>S22</store_id>
+    <product_id>P004</product_id>
+    <channel>Web</channel>
+    <quantity>1</quantity>
+    <unit_price>2832.4</unit_price>
+    <discount_pct>15.0</discount_pct>
+    <net_revenue>2407.54</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000199</order_id>
+    <order_date>2025-12-01 00:00:00</order_date>
+    <order_timestamp>2025-12-01 14:30:55</order_timestamp>
+    <store_id>S02</store_id>
+    <product_id>P030</product_id>
+    <channel>Store</channel>
+    <quantity>3</quantity>
+    <unit_price>236.0</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>708.0</net_revenue>
+    <status>Completed</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000200</order_id>
+    <order_date>2026-03-31 00:00:00</order_date>
+    <order_timestamp>2026-03-31 15:42:50</order_timestamp>
+    <store_id>S15</store_id>
+    <product_id>P037</product_id>
+    <channel>App</channel>
+    <quantity>2</quantity>
+    <unit_price>1913.3</unit_price>
+    <discount_pct>25.0</discount_pct>
+    <net_revenue>2869.95</net_revenue>
+    <status>Completed</status>
+    <tags>gift|express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000201</order_id>
+    <order_date>2026-03-16 00:00:00</order_date>
+    <order_timestamp>2026-03-16 13:36:50</order_timestamp>
+    <store_id>S09</store_id>
+    <product_id>P106</product_id>
+    <channel>App</channel>
+    <quantity>5</quantity>
+    <unit_price>5315.01</unit_price>
+    <discount_pct>25.0</discount_pct>
+    <net_revenue>19931.287500000002</net_revenue>
+    <status>Cancelled</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000202</order_id>
+    <order_date>2025-01-20 00:00:00</order_date>
+    <order_timestamp>2025-01-20 08:33:22</order_timestamp>
+    <store_id>S13</store_id>
+    <product_id>P097</product_id>
+    <channel>App</channel>
+    <quantity>5</quantity>
+    <unit_price>1025.46</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>5127.3</net_revenue>
+    <status>Cancelled</status>
+    <tags>gift</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000203</order_id>
+    <order_date>2025-05-14 00:00:00</order_date>
+    <order_timestamp>2025-05-14 17:27:10</order_timestamp>
+    <store_id>S21</store_id>
+    <product_id>P090</product_id>
+    <channel>App</channel>
+    <quantity>2</quantity>
+    <unit_price>3366.0</unit_price>
+    <discount_pct>25.0</discount_pct>
+    <net_revenue>5049.0</net_revenue>
+    <status>Cancelled</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000204</order_id>
+    <order_date>2025-12-20 00:00:00</order_date>
+    <order_timestamp>2025-12-20 13:18:00</order_timestamp>
+    <store_id>S16</store_id>
+    <product_id>P111</product_id>
+    <channel>App</channel>
+    <quantity>4</quantity>
+    <unit_price>1147.12</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>4129.632</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000205</order_id>
+    <order_date>2026-08-28 00:00:00</order_date>
+    <order_timestamp>2026-08-28 12:41:12</order_timestamp>
+    <store_id>S12</store_id>
+    <product_id>P118</product_id>
+    <channel>App</channel>
+    <quantity>1</quantity>
+    <unit_price>5755.17</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>5179.653</net_revenue>
+    <status>Shipped</status>
+    <tags>bulk|priority</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000206</order_id>
+    <order_date>2025-04-06 00:00:00</order_date>
+    <order_timestamp>2025-04-06 15:47:38</order_timestamp>
+    <store_id>S03</store_id>
+    <product_id>P109</product_id>
+    <channel>Store</channel>
+    <quantity>2</quantity>
+    <unit_price>4261.57</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>7670.826</net_revenue>
+    <status>Completed</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000207</order_id>
+    <order_date>2025-03-07 00:00:00</order_date>
+    <order_timestamp>2025-03-07 19:41:20</order_timestamp>
+    <store_id>S05</store_id>
+    <product_id>P114</product_id>
+    <channel>Store</channel>
+    <quantity>3</quantity>
+    <unit_price>4197.0</unit_price>
+    <discount_pct>15.0</discount_pct>
+    <net_revenue>10702.35</net_revenue>
+    <status>Completed</status>
+    <tags>new|web</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000208</order_id>
+    <order_date>2026-08-07 00:00:00</order_date>
+    <order_timestamp>2026-08-07 08:04:04</order_timestamp>
+    <store_id>S16</store_id>
+    <product_id>P112</product_id>
+    <channel>App</channel>
+    <quantity>2</quantity>
+    <unit_price>3173.25</unit_price>
+    <discount_pct>30.0</discount_pct>
+    <net_revenue>4442.549999999999</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000209</order_id>
+    <order_date>2026-08-23 00:00:00</order_date>
+    <order_timestamp>2026-08-23 21:27:59</order_timestamp>
+    <store_id>S11</store_id>
+    <product_id>P027</product_id>
+    <channel>App</channel>
+    <quantity>3</quantity>
+    <unit_price>1976.72</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>5337.144</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000210</order_id>
+    <order_date>2025-04-14 00:00:00</order_date>
+    <order_timestamp>2025-04-14 16:55:53</order_timestamp>
+    <store_id>S03</store_id>
+    <product_id>P036</product_id>
+    <channel>App</channel>
+    <quantity>5</quantity>
+    <unit_price>4332.63</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>19496.835000000003</net_revenue>
+    <status>Cancelled</status>
+    <tags>gift</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000211</order_id>
+    <order_date>2025-09-07 00:00:00</order_date>
+    <order_timestamp>2025-09-07 15:39:26</order_timestamp>
+    <store_id>S03</store_id>
+    <product_id>P057</product_id>
+    <channel>App</channel>
+    <quantity>1</quantity>
+    <unit_price>2879.0</unit_price>
+    <discount_pct>30.0</discount_pct>
+    <net_revenue>2015.3</net_revenue>
+    <status>Completed</status>
+    <tags>gift|express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000212</order_id>
+    <order_date>2026-01-24 00:00:00</order_date>
+    <order_timestamp>2026-01-24 08:42:14</order_timestamp>
+    <store_id>S13</store_id>
+    <product_id>P067</product_id>
+    <channel>App</channel>
+    <quantity>3</quantity>
+    <unit_price>2673.23</unit_price>
+    <discount_pct>15.0</discount_pct>
+    <net_revenue>6816.7365</net_revenue>
+    <status>Shipped</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000213</order_id>
+    <order_date>2025-05-02 00:00:00</order_date>
+    <order_timestamp>2025-05-02 17:57:26</order_timestamp>
+    <store_id>S17</store_id>
+    <product_id>P055</product_id>
+    <channel>Store</channel>
+    <quantity>4</quantity>
+    <unit_price>1197.38</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>4789.52</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000214</order_id>
+    <order_date>2025-07-22 00:00:00</order_date>
+    <order_timestamp>2025-07-22 18:04:14</order_timestamp>
+    <store_id/>
+    <product_id>P043</product_id>
+    <channel>Store</channel>
+    <quantity>1</quantity>
+    <unit_price>1616.87</unit_price>
+    <discount_pct>30.0</discount_pct>
+    <net_revenue>1131.8089999999997</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000215</order_id>
+    <order_date>2025-09-03 00:00:00</order_date>
+    <order_timestamp>2025-09-03 15:50:04</order_timestamp>
+    <store_id>S21</store_id>
+    <product_id>P053</product_id>
+    <channel>Store</channel>
+    <quantity>2</quantity>
+    <unit_price>1569.0</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>3138.0</net_revenue>
+    <status>Shipped</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000216</order_id>
+    <order_date>2026-02-02 00:00:00</order_date>
+    <order_timestamp>2026-02-02 19:13:23</order_timestamp>
+    <store_id>S04</store_id>
+    <product_id>P085</product_id>
+    <channel>Web</channel>
+    <quantity>4</quantity>
+    <unit_price>197.42</unit_price>
+    <discount_pct>30.0</discount_pct>
+    <net_revenue>552.776</net_revenue>
+    <status>Completed</status>
+    <tags>new|web</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000217</order_id>
+    <order_date>2025-07-10 00:00:00</order_date>
+    <order_timestamp>2025-07-10 19:44:09</order_timestamp>
+    <store_id>S01</store_id>
+    <product_id>P090</product_id>
+    <channel>Web</channel>
+    <quantity>5</quantity>
+    <unit_price>3533.04</unit_price>
+    <discount_pct>25.0</discount_pct>
+    <net_revenue>13248.900000000001</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000218</order_id>
+    <order_date>2025-09-13 00:00:00</order_date>
+    <order_timestamp>2025-09-13 19:44:06</order_timestamp>
+    <store_id>S10</store_id>
+    <product_id>P110</product_id>
+    <channel>Web</channel>
+    <quantity>2</quantity>
+    <unit_price>796.55</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>1593.1</net_revenue>
+    <status>Completed</status>
+    <tags>new|web</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000219</order_id>
+    <order_date>2025-06-29 00:00:00</order_date>
+    <order_timestamp>2025-06-29 12:34:59</order_timestamp>
+    <store_id>S04</store_id>
+    <product_id>P097</product_id>
+    <channel>Web</channel>
+    <quantity>4</quantity>
+    <unit_price>930.0</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>3720.0</net_revenue>
+    <status>Completed</status>
+    <tags>gift|express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000220</order_id>
+    <order_date>2026-04-16 00:00:00</order_date>
+    <order_timestamp>2026-04-16 17:25:01</order_timestamp>
+    <store_id>S16</store_id>
+    <product_id>P020</product_id>
+    <channel>Store</channel>
+    <quantity>2</quantity>
+    <unit_price>637.1</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>1146.78</net_revenue>
+    <status>Cancelled</status>
+    <tags>sale|app</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000221</order_id>
+    <order_date>2025-04-05 00:00:00</order_date>
+    <order_timestamp>2025-04-05 08:48:49</order_timestamp>
+    <store_id>S16</store_id>
+    <product_id>P025</product_id>
+    <channel>Store</channel>
+    <quantity>3</quantity>
+    <unit_price>3380.26</unit_price>
+    <discount_pct>25.0</discount_pct>
+    <net_revenue>7605.585000000001</net_revenue>
+    <status>Cancelled</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000222</order_id>
+    <order_date>2025-05-24 00:00:00</order_date>
+    <order_timestamp>2025-05-24 15:51:54</order_timestamp>
+    <store_id>S16</store_id>
+    <product_id>P058</product_id>
+    <channel>App</channel>
+    <quantity>3</quantity>
+    <unit_price>6717.57</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>18137.439</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000223</order_id>
+    <order_date>2025-06-04 00:00:00</order_date>
+    <order_timestamp>2025-06-04 10:02:25</order_timestamp>
+    <store_id>S11</store_id>
+    <product_id>P104</product_id>
+    <channel>App</channel>
+    <quantity>5</quantity>
+    <unit_price>5932.0</unit_price>
+    <discount_pct>15.0</discount_pct>
+    <net_revenue>25211.0</net_revenue>
+    <status>Shipped</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000224</order_id>
+    <order_date>2026-07-16 00:00:00</order_date>
+    <order_timestamp>2026-07-16 12:18:51</order_timestamp>
+    <store_id>S04</store_id>
+    <product_id>P054</product_id>
+    <channel>Store</channel>
+    <quantity>3</quantity>
+    <unit_price>7063.09</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>21189.27</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000225</order_id>
+    <order_date>2026-08-09 00:00:00</order_date>
+    <order_timestamp>2026-08-09 17:28:30</order_timestamp>
+    <store_id>S12</store_id>
+    <product_id>P016</product_id>
+    <channel>Store</channel>
+    <quantity>5</quantity>
+    <unit_price>266.61</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>1333.0500000000002</net_revenue>
+    <status>Completed</status>
+    <tags>gift|express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000226</order_id>
+    <order_date>2025-11-07 00:00:00</order_date>
+    <order_timestamp>2025-11-07 13:56:54</order_timestamp>
+    <store_id>S08</store_id>
+    <product_id>P109</product_id>
+    <channel>App</channel>
+    <quantity>5</quantity>
+    <unit_price>3944.7</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>17751.15</net_revenue>
+    <status>Completed</status>
+    <tags>sale|app</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000227</order_id>
+    <order_date>2025-04-07 00:00:00</order_date>
+    <order_timestamp>2025-04-07 20:05:49</order_timestamp>
+    <store_id>S20</store_id>
+    <product_id>P072</product_id>
+    <channel>Web</channel>
+    <quantity>3</quantity>
+    <unit_price>1562.0</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>4686.0</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000228</order_id>
+    <order_date>2026-04-14 00:00:00</order_date>
+    <order_timestamp>2026-04-14 09:13:40</order_timestamp>
+    <store_id>S01</store_id>
+    <product_id>P107</product_id>
+    <channel>Store</channel>
+    <quantity>4</quantity>
+    <unit_price>291.28</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>1165.12</net_revenue>
+    <status>Completed</status>
+    <tags>sale|app</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000229</order_id>
+    <order_date>2025-11-02 00:00:00</order_date>
+    <order_timestamp>2025-11-02 21:36:34</order_timestamp>
+    <store_id>S16</store_id>
+    <product_id>P044</product_id>
+    <channel>App</channel>
+    <quantity>2</quantity>
+    <unit_price>387.45</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>774.9</net_revenue>
+    <status>Completed</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000230</order_id>
+    <order_date>2026-06-11 00:00:00</order_date>
+    <order_timestamp>2026-06-11 17:53:00</order_timestamp>
+    <store_id>S20</store_id>
+    <product_id>P104</product_id>
+    <channel>App</channel>
+    <quantity>2</quantity>
+    <unit_price>6891.09</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>12403.962000000001</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000231</order_id>
+    <order_date>2025-08-12 00:00:00</order_date>
+    <order_timestamp>2025-08-12 14:01:16</order_timestamp>
+    <store_id>S16</store_id>
+    <product_id>P007</product_id>
+    <channel>Store</channel>
+    <quantity>4</quantity>
+    <unit_price>2381.0</unit_price>
+    <discount_pct>5.0</discount_pct>
+    <net_revenue>9047.8</net_revenue>
+    <status>Cancelled</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000232</order_id>
+    <order_date>2026-09-12 00:00:00</order_date>
+    <order_timestamp>2026-09-12 08:20:58</order_timestamp>
+    <store_id>S20</store_id>
+    <product_id>P090</product_id>
+    <channel>Web</channel>
+    <quantity>5</quantity>
+    <unit_price>3470.1</unit_price>
+    <discount_pct>15.0</discount_pct>
+    <net_revenue>14747.925</net_revenue>
+    <status>Completed</status>
+    <tags>sale|app</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000233</order_id>
+    <order_date>2026-05-16 00:00:00</order_date>
+    <order_timestamp>2026-05-16 08:35:55</order_timestamp>
+    <store_id>S21</store_id>
+    <product_id>P119</product_id>
+    <channel>App</channel>
+    <quantity>2</quantity>
+    <unit_price>215.13</unit_price>
+    <discount_pct>15.0</discount_pct>
+    <net_revenue>365.721</net_revenue>
+    <status>Completed</status>
+    <tags>sale|app</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000234</order_id>
+    <order_date>2025-05-19 00:00:00</order_date>
+    <order_timestamp>2025-05-19 13:47:42</order_timestamp>
+    <store_id>S13</store_id>
+    <product_id>P111</product_id>
+    <channel>App</channel>
+    <quantity>2</quantity>
+    <unit_price>1096.51</unit_price>
+    <discount_pct>15.0</discount_pct>
+    <net_revenue>1864.067</net_revenue>
+    <status>Completed</status>
+    <tags>gift</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000235</order_id>
+    <order_date>2026-03-26 00:00:00</order_date>
+    <order_timestamp>2026-03-26 16:00:29</order_timestamp>
+    <store_id>S06</store_id>
+    <product_id>P999</product_id>
+    <channel>Store</channel>
+    <quantity>5</quantity>
+    <unit_price>417.0</unit_price>
+    <discount_pct>15.0</discount_pct>
+    <net_revenue>1772.25</net_revenue>
+    <status>Completed</status>
+    <tags>gift|express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000236</order_id>
+    <order_date>2025-06-27 00:00:00</order_date>
+    <order_timestamp>2025-06-27 15:05:24</order_timestamp>
+    <store_id>S24</store_id>
+    <product_id>P120</product_id>
+    <channel>Store</channel>
+    <quantity>2</quantity>
+    <unit_price>870.93</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>1741.86</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000237</order_id>
+    <order_date>2025-08-05 00:00:00</order_date>
+    <order_timestamp>2025-08-05 12:09:25</order_timestamp>
+    <store_id>S01</store_id>
+    <product_id>P119</product_id>
+    <channel>App</channel>
+    <quantity>4</quantity>
+    <unit_price>239.17</unit_price>
+    <discount_pct>20.0</discount_pct>
+    <net_revenue>765.344</net_revenue>
+    <status>Completed</status>
+    <tags>sale|app</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000238</order_id>
+    <order_date>2025-06-05 00:00:00</order_date>
+    <order_timestamp>2025-06-05 17:06:43</order_timestamp>
+    <store_id>S03</store_id>
+    <product_id>P016</product_id>
+    <channel>Store</channel>
+    <quantity>3</quantity>
+    <unit_price>263.09</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>789.27</net_revenue>
+    <status>Processing</status>
+    <tags>gift</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000239</order_id>
+    <order_date>2026-02-27 00:00:00</order_date>
+    <order_timestamp>2026-02-27 16:35:15</order_timestamp>
+    <store_id>S15</store_id>
+    <product_id>P059</product_id>
+    <channel>Store</channel>
+    <quantity>5</quantity>
+    <unit_price>5790.0</unit_price>
+    <discount_pct>5.0</discount_pct>
+    <net_revenue>27502.5</net_revenue>
+    <status>Completed</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000240</order_id>
+    <order_date>2025-06-12 00:00:00</order_date>
+    <order_timestamp>2025-06-12 12:48:34</order_timestamp>
+    <store_id>S16</store_id>
+    <product_id>P110</product_id>
+    <channel>Web</channel>
+    <quantity>5</quantity>
+    <unit_price>817.72</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>4088.6000000000004</net_revenue>
+    <status>Completed</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000241</order_id>
+    <order_date>2026-02-01 00:00:00</order_date>
+    <order_timestamp>2026-02-01 12:33:37</order_timestamp>
+    <store_id>S03</store_id>
+    <product_id>P105</product_id>
+    <channel>Store</channel>
+    <quantity>3</quantity>
+    <unit_price>1933.58</unit_price>
+    <discount_pct>20.0</discount_pct>
+    <net_revenue>4640.592</net_revenue>
+    <status>Cancelled</status>
+    <tags>bulk|priority</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000242</order_id>
+    <order_date>2025-12-28 00:00:00</order_date>
+    <order_timestamp>2025-12-28 14:11:40</order_timestamp>
+    <store_id>S05</store_id>
+    <product_id>P067</product_id>
+    <channel>Web</channel>
+    <quantity>5</quantity>
+    <unit_price>2221.1</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>9994.95</net_revenue>
+    <status>Shipped</status>
+    <tags>gift</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000243</order_id>
+    <order_date>2026-04-11 00:00:00</order_date>
+    <order_timestamp>2026-04-11 18:24:09</order_timestamp>
+    <store_id>S08</store_id>
+    <product_id>P029</product_id>
+    <channel>Web</channel>
+    <quantity>3</quantity>
+    <unit_price>3392.0</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>10176.0</net_revenue>
+    <status>Completed</status>
+    <tags>express</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000244</order_id>
+    <order_date>2026-09-08 00:00:00</order_date>
+    <order_timestamp>2026-09-08 16:13:49</order_timestamp>
+    <store_id>S09</store_id>
+    <product_id>P033</product_id>
+    <channel>Web</channel>
+    <quantity>1</quantity>
+    <unit_price>947.05</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>947.05</net_revenue>
+    <status>Completed</status>
+    <tags>gift</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000245</order_id>
+    <order_date>2025-01-06 00:00:00</order_date>
+    <order_timestamp>2025-01-06 09:46:26</order_timestamp>
+    <store_id>S24</store_id>
+    <product_id>P012</product_id>
+    <channel>App</channel>
+    <quantity>4</quantity>
+    <unit_price>5156.16</unit_price>
+    <discount_pct>10.0</discount_pct>
+    <net_revenue>18562.176</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000246</order_id>
+    <order_date>2026-09-06 00:00:00</order_date>
+    <order_timestamp>2026-09-06 20:55:56</order_timestamp>
+    <store_id>S02</store_id>
+    <product_id>P069</product_id>
+    <channel>Web</channel>
+    <quantity>5</quantity>
+    <unit_price>4701.69</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>23508.449999999997</net_revenue>
+    <status>Completed</status>
+    <tags>sale|app</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000247</order_id>
+    <order_date>2025-03-09 00:00:00</order_date>
+    <order_timestamp>2025-03-09 10:49:26</order_timestamp>
+    <store_id>S19</store_id>
+    <product_id>P004</product_id>
+    <channel>Store</channel>
+    <quantity>5</quantity>
+    <unit_price>2529.0</unit_price>
+    <discount_pct>5.0</discount_pct>
+    <net_revenue>12012.75</net_revenue>
+    <status>Completed</status>
+    <tags/>
+  </order>
+  <order>
+    <order_id>ORD-0000248</order_id>
+    <order_date>2025-11-23 00:00:00</order_date>
+    <order_timestamp>2025-11-23 17:24:47</order_timestamp>
+    <store_id>S04</store_id>
+    <product_id>P060</product_id>
+    <channel>Web</channel>
+    <quantity>1</quantity>
+    <unit_price>6045.41</unit_price>
+    <discount_pct>25.0</discount_pct>
+    <net_revenue>4534.0575</net_revenue>
+    <status>Completed</status>
+    <tags>sale|app</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000249</order_id>
+    <order_date>2025-07-31 00:00:00</order_date>
+    <order_timestamp>2025-07-31 08:14:06</order_timestamp>
+    <store_id>S02</store_id>
+    <product_id>P022</product_id>
+    <channel>Web</channel>
+    <quantity>3</quantity>
+    <unit_price>3209.25</unit_price>
+    <discount_pct>5.0</discount_pct>
+    <net_revenue>9146.3625</net_revenue>
+    <status>Completed</status>
+    <tags>bulk|priority</tags>
+  </order>
+  <order>
+    <order_id>ORD-0000250</order_id>
+    <order_date>2026-02-01 00:00:00</order_date>
+    <order_timestamp>2026-02-01 11:33:53</order_timestamp>
+    <store_id>S09</store_id>
+    <product_id>P065</product_id>
+    <channel>App</channel>
+    <quantity>4</quantity>
+    <unit_price>5432.82</unit_price>
+    <discount_pct>0.0</discount_pct>
+    <net_revenue>21731.28</net_revenue>
+    <status>Completed</status>
+    <tags>sale|app</tags>
+  </order>
+</orders>
