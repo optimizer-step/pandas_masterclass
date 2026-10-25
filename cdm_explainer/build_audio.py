@@ -164,7 +164,9 @@ def main():
         s_start = t if si else 0.0
         sents = []
         for s in sc["sentences"]:
-            audio, sr = tts.create(s["say"], voice=cfg["voice"], speed=cfg["speed"], lang="en-us")
+            # espeak spells the plural "Ms" in "L L Ms" / "C D Ms" as "em-ess"; say "ems".
+            ph = tts.tokenizer.phonemize(s["say"], "en-us").replace("ˌɛmˈɛs", "ˈɛmz")
+            audio, sr = tts.create(ph, voice=cfg["voice"], speed=cfg["speed"], lang="en-us", is_phonemes=True)
             a = resample(trim(audio), sr)
             dur = len(a) / SR
             clips.append((t, a))
