@@ -184,6 +184,7 @@ function sphereAt(i, cx, cy, R, ang) {
 }
 
 const CL = hex(C.llm), CJ = hex(C.jev), CD = hex(C.cdm), CG = hex(C.gray), CR = hex(C.red);
+const BLUE = hex('#4a8fe8'), GOLD = hex('#ffb547');
 // Shape keyframes: [start, duration, fn(i, t) -> {x, y, r, a, c, d}]
 function keys() {
   const sph = (cx, cy, R, colorFn) => (i, t) => {
@@ -202,6 +203,11 @@ function keys() {
     const a = (i / N) * 6.2832 + t * .5, rr = 330 + (rnd(i + 11) - .5) * 26;
     return { x: 540 + Math.cos(a) * rr, y: 880 + Math.sin(a) * rr, r: 2.2, a: .35 + .65 * rnd(i + 12), c: CD };
   };
+  const logoRing = (i, t) => {
+    const a = (i / N) * 6.2832 - 1.5708 + t * .25, rr = RING.r + (rnd(i + 21) - .5) * 6;
+    const x = RING.x + Math.cos(a) * rr, y = RING.y + Math.sin(a) * rr;
+    return { x, y, r: 2.2, a: .9, c: mixC(BLUE, GOLD, clamp((x - RING.x + RING.r) / (2 * RING.r))) };
+  };
   const finale = sph(t => 540, t => 1180, t => 210, (i, t, lon) => {
     const s = ((lon + Math.PI) / 6.2832 * 3) | 0; return [CL, CJ, CD][s % 3];
   });
@@ -212,6 +218,7 @@ function keys() {
     [E.claim - .55, .9, ring],
     [SC.end.t0 + .05, 1.0, grid(true)],
     [E.finale[0] - .15, 1.1, finale],
+    [SC.outro.t0 - .3, 1.0, logoRing],
   ];
 }
 let KEYS = null;
@@ -225,7 +232,7 @@ function points(t) {
     const a = prev(i, t);
     out[i] = { x: lerp(a.x, b.x, m), y: lerp(a.y, b.y, m), r: lerp(a.r, b.r, m), a: lerp(a.a, b.a, m), c: mixC(a.c, b.c, m), d: lerp(a.d ?? .8, b.d ?? .8, m) };
   }
-  const edgeA = k === 0 ? 1 - eCubic(prog(t, E.jev_pass, E.jev_pass + .4)) : k === KEYS.length - 1 ? eInOut(prog(t, t0 + .6, t0 + 1.6)) : 0;
+  const edgeA = k === 0 ? 1 - eCubic(prog(t, E.jev_pass, E.jev_pass + .4)) : k === 5 ? eInOut(prog(t, t0 + .6, t0 + 1.6)) : k === 6 ? 1 - eCubic(prog(t, t0, t0 + .5)) : 0;
   return { pts: out, edgeA };
 }
 function drawCloud(t, fade) {
@@ -264,7 +271,7 @@ function drawCloud(t, fade) {
 
 // ---------------- background ----------------
 function accentAt(t) {
-  const segs = [[0, CL], [SC.jev.t0, CJ], [SC.cdm.t0, CD], [SC.end.t0, CR], [E.finale[0], CD]];
+  const segs = [[0, CL], [SC.jev.t0, CJ], [SC.cdm.t0, CD], [SC.end.t0, CR], [E.finale[0], CD], [SC.outro.t0, hex('#3a6fd8')]];
   let c = segs[0][1];
   for (let i = 1; i < segs.length; i++) c = mixC(c, segs[i][1], eInOut(prog(t, segs[i][0] - .5, segs[i][0] + .7)));
   return c;
@@ -287,7 +294,7 @@ function background(t, acc) {
 // ---------------- captions ----------------
 function captions(t) {
   let sent = null;
-  for (const s of TL.scenes) for (const x of s.sentences) if (t >= x.t0 - .1 && t <= x.t1 + .3) sent = x;
+  for (const s of TL.scenes) if (s.id !== 'outro') for (const x of s.sentences) if (t >= x.t0 - .1 && t <= x.t1 + .3) sent = x;
   if (!sent) return;
   const chunks = []; let cur = [];
   for (const w of sent.words) {
@@ -466,14 +473,209 @@ function sEnd(t) {
   maskText('ANSWER  ✗', M, 1220, 30, { weight: 700, fam: MONO, color: C.red, spacing: 2 }, prog(t, cT - .1, cT + .5), ko);
   maskText('customer wanted a refund', W - M, 1220, 28, { weight: 500, color: C.mute, align: 'right' }, prog(t, cT, cT + .6), ko);
   const lines = [['LLMs write.', C.llm], ['Jev decides.', C.jev], ['CDMs structure.', C.cdm]];
-  const fo = prog(t, TL.duration - .9, TL.duration - .2);
+  const fo = prog(t, SC.outro.t0 - .9, SC.outro.t0 - .2);
   lines.forEach(([s, c], i) => {
     const ta = E.finale[i] - .1, y = 520 + i * 150;
     dot(M + 18, y - 36, 13 * eQuint(prog(t, ta, ta + .5)), c, 1 - fo);
-    headline(s, M + 62, y, 100, t, ta, TL.duration - .9, C.ink);
+    headline(s, M + 62, y, 100, t, ta, SC.outro.t0 - .9, C.ink);
   });
   const sk = prog(t, se('end', 1) + .2, se('end', 1) + .8);
-  maskText('Jev: TypeSafe AI  ·  CDMs: ScaleDown  ·  figures vendor-reported', 540, 1480, 20, { weight: 500, fam: MONO, color: C.mute, align: 'center' }, sk, prog(t, TL.duration - .9, TL.duration - .4));
+  maskText('Jev: TypeSafe AI  ·  CDMs: ScaleDown  ·  figures vendor-reported', 540, 1480, 20, { weight: 500, fam: MONO, color: C.mute, align: 'center' }, sk, prog(t, SC.outro.t0 - .9, SC.outro.t0 - .4));
+}
+
+// ======================= END CARD · OPTIMIZER STEP =========================
+// The logo is a 1254² raster; it's revealed in layers (emblem, wordmark,
+// divider) and composited with 'screen' so its dark backdrop melts into ours.
+const LG = { s: .75, x0: 540 - 627 * .75, y0: 288 };
+const LX = x => LG.x0 + x * LG.s, LY = y => LG.y0 + y * LG.s;
+const RING = { x: LX(622), y: LY(557), r: 501 * LG.s };
+const BALLS = [[348, 239], [434, 328], [510, 427], [592, 538], [677, 649], [776, 773]].map(([x, y]) => [LX(x), LY(y)]);
+const STARS = [[560, 140], [640, 95], [700, 190], [770, 120], [850, 170], [965, 205], [600, 250], [905, 110], [1010, 300], [480, 200]].map(([x, y]) => [LX(x), LY(y)]);
+let LOGO_IMG, WM, KEY;     // KEY: wordmark + divider band (logo y 880–1120) with the backdrop keyed out
+
+function ballAt(t) {
+  const o = E.outro;
+  if (t < o.start) return { x: BALLS[0][0], y: BALLS[0][1] };
+  const ts = [o.start, ...o.steps];
+  let i = 0; while (i < 5 && t >= ts[i + 1]) i++;
+  if (i >= 5) {                                            // settled at the minimum, tiny bounce
+    const k = t - o.land;
+    return { x: BALLS[5][0], y: BALLS[5][1] - Math.abs(Math.sin(k * 14)) * 10 * Math.exp(-k * 6) };
+  }
+  const k = prog(t, ts[i], ts[i + 1]), e = eInOut(k);
+  const [ax, ay] = BALLS[i], [bx, by] = BALLS[i + 1];
+  return { x: lerp(ax, bx, e), y: lerp(ay, by, e) - Math.sin(Math.PI * k) * 26 };
+}
+function glowBall(x, y, r, a) {
+  const g = ctx.createRadialGradient(x, y, 0, x, y, r * 4);
+  g.addColorStop(0, `rgba(255,250,235,${a})`); g.addColorStop(.18, `rgba(255,214,120,${a})`);
+  g.addColorStop(.45, `rgba(255,170,60,${.35 * a})`); g.addColorStop(1, 'rgba(255,150,40,0)');
+  ctx.fillStyle = g; ctx.beginPath(); ctx.arc(x, y, r * 4, 0, 6.2832); ctx.fill();
+}
+function sparkle(x, y, r, a) {
+  if (a <= 0) return;
+  ctx.save(); ctx.globalAlpha *= a; ctx.strokeStyle = '#fff'; ctx.lineCap = 'round';
+  ctx.lineWidth = 1.6; ctx.beginPath(); ctx.moveTo(x - r, y); ctx.lineTo(x + r, y); ctx.moveTo(x, y - r); ctx.lineTo(x, y + r); ctx.stroke();
+  ctx.restore(); dot(x, y, 2, '#ffffff', a);
+}
+function sOutro(t) {
+  const o = E.outro;
+  // whole lockup: settle-in scale + slow drift once landed
+  const sc = 1 + .045 * (1 - eQuint(prog(t, o.reveal, o.reveal + 1.6))) + .02 * prog(t, o.land, TL.duration);
+  const fy = Math.sin((t - o.land) * 1.4) * 4 * prog(t, o.land, o.land + 1);
+  ctx.save();
+  ctx.translate(RING.x, RING.y + fy); ctx.scale(sc, sc); ctx.translate(-RING.x, -RING.y);
+
+  // backdrop glow
+  const gk = eCubic(prog(t, o.reveal - .3, o.reveal + .8));
+  let g = ctx.createRadialGradient(RING.x, RING.y, 0, RING.x, RING.y, 700);
+  g.addColorStop(0, `rgba(58,111,216,${.22 * gk})`); g.addColorStop(1, 'rgba(58,111,216,0)');
+  ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+
+  // ring draws itself (the dots have just formed it), then hands over to the logo's own ring
+  const rk = eInOut(prog(t, o.ring, o.reveal + .2)), ra = 1 - eCubic(prog(t, o.reveal + .3, o.reveal + 1));
+  if (rk > 0 && ra > 0) {
+    ctx.save(); ctx.globalCompositeOperation = 'lighter'; ctx.globalAlpha *= ra;
+    const lg = ctx.createLinearGradient(RING.x - RING.r, 0, RING.x + RING.r, 0);
+    lg.addColorStop(0, '#4a8fe8'); lg.addColorStop(1, '#ffb547');
+    ctx.strokeStyle = lg; ctx.lineWidth = 5; ctx.shadowColor = '#ffb547'; ctx.shadowBlur = 24;
+    ctx.beginPath(); ctx.arc(RING.x, RING.y, RING.r, -1.5708, -1.5708 + 6.2832 * rk); ctx.stroke();
+    ctx.restore();
+  }
+
+  // emblem: iris opens from the centre
+  const ik = eCubic(prog(t, o.reveal, o.reveal + .85));
+  if (ik > 0) {
+    ctx.save();
+    ctx.beginPath(); ctx.arc(RING.x, RING.y, (RING.r + 40) * ik, 0, 6.2832); ctx.clip();
+    ctx.globalCompositeOperation = 'screen'; ctx.globalAlpha *= eCubic(prog(t, o.reveal, o.reveal + .5));
+    ctx.drawImage(LOGO_IMG, 0, 0, 1254, 885, LG.x0, LG.y0, 1254 * LG.s, 885 * LG.s);
+    ctx.restore();
+    const fl = Math.exp(-Math.max(0, t - o.reveal) / .28) * (t >= o.reveal ? 1 : 0);
+    g = ctx.createRadialGradient(RING.x, RING.y, 0, RING.x, RING.y, RING.r);
+    g.addColorStop(0, `rgba(255,255,255,${.35 * fl})`); g.addColorStop(1, 'rgba(255,255,255,0)');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+    // twinkling stars in the emblem sky
+    STARS.forEach(([x, y], i) => sparkle(x, y, 5 + 4 * rnd(i + 70), ik * Math.max(0, Math.sin(t * (1.6 + rnd(i) * 1.4) + i * 2.1)) * .8));
+  }
+
+  // the optimizer step: a glowing ball hops down the loss curve to the minimum
+  const ba = eCubic(prog(t, o.start - .45, o.start - .1));
+  if (ba > 0) {
+    ctx.save(); ctx.globalCompositeOperation = 'lighter';
+    for (let j = 8; j >= 1; j--) {                          // motion trail
+      const tp = t - j * .022;
+      if (tp < o.start || tp > o.land + .1) continue;
+      const p = ballAt(tp); glowBall(p.x, p.y, 9 * (1 - j / 10), ba * .25 * (1 - j / 9));
+    }
+    const charge = t < o.start ? .5 + .5 * Math.sin(t * 22) : 1;
+    const p = ballAt(t); glowBall(p.x, p.y, 13, ba * (.75 + .25 * charge));
+    // ripple at each landing
+    o.steps.forEach((ts, i) => {
+      const k = prog(t, ts, ts + .5);
+      if (k > 0 && k < 1) {
+        ctx.strokeStyle = `rgba(255,200,110,${.7 * (1 - k)})`; ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.arc(BALLS[i + 1][0], BALLS[i + 1][1], 10 + 50 * eCubic(k), 0, 6.2832); ctx.stroke();
+      }
+    });
+    // landing: bloom + shockwave
+    const lk = prog(t, o.land, o.land + 1.3);
+    if (lk > 0) {
+      const [lx, ly] = BALLS[5];
+      g = ctx.createRadialGradient(lx, ly, 0, lx, ly, 460);
+      g.addColorStop(0, `rgba(255,190,90,${.55 * (1 - eCubic(lk))})`); g.addColorStop(1, 'rgba(255,170,60,0)');
+      ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+      if (lk < 1) { ctx.strokeStyle = `rgba(255,214,140,${.8 * (1 - lk)})`; ctx.lineWidth = 3 * (1 - lk) + .5;
+        ctx.beginPath(); ctx.arc(lx, ly, 20 + 560 * eQuint(lk), 0, 6.2832); ctx.stroke(); }
+      const hold = .18 + .06 * Math.sin(t * 3);              // warm glow stays at the minimum
+      g = ctx.createRadialGradient(lx, ly, 0, lx, ly, 140);
+      g.addColorStop(0, `rgba(255,200,110,${hold * eCubic(lk * 3 > 1 ? 1 : lk * 3)})`); g.addColorStop(1, 'rgba(255,170,60,0)');
+      ctx.fillStyle = g; ctx.fillRect(lx - 140, ly - 140, 280, 280);
+    }
+    ctx.restore();
+  }
+
+  // a glint laps the ring every few seconds after landing
+  const gp = (t - o.land - .5) % 3.4;
+  if (t > o.land + .5 && gp < 1.3) {
+    const a0 = -1.5708 + eInOut(gp / 1.3) * 6.2832;
+    ctx.save(); ctx.globalCompositeOperation = 'lighter';
+    for (let j = 0; j < 14; j++) {
+      ctx.strokeStyle = `rgba(255,236,200,${.5 * (1 - j / 14) * Math.sin(Math.PI * gp / 1.3)})`; ctx.lineWidth = 4;
+      ctx.beginPath(); ctx.arc(RING.x, RING.y, RING.r, a0 - (j + 1) * .025, a0 - j * .025); ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  // wordmark: feathered left-to-right wipe, then a specular sweep
+  const wk = prog(t, o.word, o.word + 1.0);
+  if (wk > 0) {
+    const w = WM.getContext('2d');
+    w.globalCompositeOperation = 'source-over'; w.clearRect(0, 0, 1254, 190);
+    w.drawImage(KEY, 0, 0, 1254, 190, 0, 0, 1254, 190);
+    w.clearRect(570, 158, 112, 32);                        // keep the divider bars out of this layer
+    const rx = lerp(-160, 1414, eInOut(wk));
+    let mg = w.createLinearGradient(rx - 160, 0, rx, 0);
+    mg.addColorStop(0, 'rgba(0,0,0,1)'); mg.addColorStop(1, 'rgba(0,0,0,0)');
+    w.globalCompositeOperation = 'destination-in'; w.fillStyle = mg; w.fillRect(0, 0, 1254, 190);
+    ctx.save();
+    ctx.drawImage(WM, LG.x0, LY(880) + (1 - eQuint(wk)) * 16, 1254 * LG.s, 190 * LG.s);
+    // specular sweep: re-add the wordmark through a moving band, so only the letters brighten
+    const sk = prog(t, o.shine, o.shine + 1.0);
+    if (sk > 0 && sk < 1) {
+      const sx = lerp(-250, 1500, eInOut(sk));
+      mg = w.createLinearGradient(sx - 140, 0, sx + 140, 190);
+      mg.addColorStop(0, 'rgba(0,0,0,0)'); mg.addColorStop(.5, 'rgba(0,0,0,1)'); mg.addColorStop(1, 'rgba(0,0,0,0)');
+      w.globalCompositeOperation = 'destination-in'; w.fillStyle = mg; w.fillRect(0, 0, 1254, 190);
+      ctx.globalCompositeOperation = 'lighter';
+      ctx.drawImage(WM, LG.x0, LY(880), 1254 * LG.s, 190 * LG.s);
+      ctx.drawImage(WM, LG.x0, LY(880), 1254 * LG.s, 190 * LG.s);
+    }
+    ctx.restore();
+  }
+  // divider: lines grow out from the centre, bars rise
+  const dk = eQuint(prog(t, o.divider, o.divider + .8)), bk = eQuint(prog(t, o.divider + .15, o.divider + .75));
+  if (dk > 0) {
+    ctx.save();
+    const L0 = 240, L1 = 565, R0 = 685, R1 = 1030, y0 = 1068, h = 30;
+    const lw = (L1 - L0) * dk, rw = (R1 - R0) * dk;
+    ctx.drawImage(KEY, L1 - lw, y0 - 880, lw, h, LX(L1 - lw), LY(y0), lw * LG.s, h * LG.s);
+    ctx.drawImage(KEY, R0, y0 - 880, rw, h, LX(R0), LY(y0), rw * LG.s, h * LG.s);
+    const bh = 78 * bk;
+    if (bh > 1) ctx.drawImage(KEY, 572, 238 - bh, 106, bh, LX(572), LY(1118 - bh), 106 * LG.s, bh * LG.s);
+    ctx.restore();
+  }
+  ctx.restore();
+
+  // call to action
+  const c0 = o.cta;
+  const l1 = 'Follow for more ', l2 = 'AI, decoded.', size = 50;
+  const w1 = measure(l1, size, 700, DISPLAY, -1), w2 = measure(l2, size, 700, DISPLAY, -1), x0 = 540 - (w1 + w2) / 2;
+  maskText(l1, x0, 1265, size, { weight: 700, fam: DISPLAY, color: C.ink, spacing: -1 }, prog(t, c0, c0 + .7));
+  maskText(l2, x0 + w1, 1265, size, { weight: 700, fam: DISPLAY, color: '#ffb547', spacing: -1 }, prog(t, c0 + .12, c0 + .82));
+  const bk2 = eQuint(prog(t, c0 + .4, c0 + 1.0));
+  if (bk2 > 0) {
+    const pp = prog(t, o.tap - .08, o.tap + .22), press = 1 - .07 * Math.sin(Math.PI * pp);
+    const fill = eCubic(prog(t, o.tap, o.tap + .3));
+    const bw = 340, bh = 92, bx = 540, by = 1385;
+    ctx.save(); ctx.globalAlpha *= bk2;
+    ctx.translate(bx, by + (1 - bk2) * 30); ctx.scale(press * lerp(.85, 1, bk2), press * lerp(.85, 1, bk2));
+    ctx.beginPath(); ctx.roundRect(-bw / 2, -bh / 2, bw, bh, bh / 2);
+    ctx.fillStyle = `rgba(255,181,71,${.08 + .92 * fill})`; ctx.fill();
+    ctx.strokeStyle = '#ffb547'; ctx.lineWidth = 2.5; ctx.shadowColor = '#ffb547'; ctx.shadowBlur = 20 + 20 * fill; ctx.stroke();
+    ctx.shadowBlur = 0;
+    const rp = prog(t, o.tap, o.tap + .6);               // tap ripple
+    if (rp > 0 && rp < 1) {
+      ctx.save(); ctx.clip(); ctx.fillStyle = `rgba(255,255,255,${.35 * (1 - rp)})`;
+      ctx.beginPath(); ctx.arc(70, 10, 260 * eCubic(rp), 0, 6.2832); ctx.fill(); ctx.restore();
+    }
+    const sw = eCubic(prog(t, o.tap + .05, o.tap + .35));
+    ctx.save(); ctx.beginPath(); ctx.rect(-bw / 2, -bh / 2, bw, bh); ctx.clip();
+    txt('+  Follow', 0, 12 - sw * 50, { size: 34, weight: 700, fam: SANS, color: '#ffb547', align: 'center', alpha: 1 - sw });
+    txt('✓  Following', 0, 12 + (1 - sw) * 50, { size: 34, weight: 700, fam: SANS, color: '#1a1205', align: 'center', alpha: sw });
+    ctx.restore();
+    ctx.restore();
+  }
 }
 
 // ---------------- frame ----------------
@@ -483,21 +685,34 @@ function renderFrame(t) {
   background(t, acc);
   const fade = eCubic(prog(t, 0, .9)) * (1 - eCubic(prog(t, TL.duration - 1.0, TL.duration - .1)));
   ctx.save(); ctx.globalAlpha = fade;
-  drawCloud(t, fade);
+  drawCloud(t, fade * (1 - eCubic(prog(t, E.outro.reveal + .15, E.outro.reveal + .8))));
   if (window.PLATE) { ctx.restore(); return; }     // seed frame for Higgsfield: no type
   if (t < SC.jev.t0 + .2) sLLM(t);
   if (t > SC.jev.t0 - 1 && t < SC.cdm.t0 + .2) sJev(t);
   if (t > SC.cdm.t0 - 1 && t < SC.end.t0 + .2) sCDM(t);
-  if (t > SC.end.t0 - 1) sEnd(t);
+  if (t > SC.end.t0 - 1 && t < SC.outro.t0 + .2) sEnd(t);
+  if (t > SC.outro.t0) sOutro(t);
   ctx.restore();
   captions(t);
   grain(t);
   ctx.fillStyle = rgba(acc, .7); ctx.fillRect(0, H - 4, W * t / TL.duration, 4);
 }
 
-window.init = tl => {
+window.init = (tl, logoSrc) => {
   TL = tl; E = tl.events; for (const s of tl.scenes) SC[s.id] = s;
-  return document.fonts.ready.then(() => Promise.all([
+  LOGO_IMG = new Image(); LOGO_IMG.src = logoSrc || 'assets/optimizer_step_logo.png';
+  WM = document.createElement('canvas'); WM.width = 1254; WM.height = 190;
+  const keyBand = () => {
+    KEY = document.createElement('canvas'); KEY.width = 1254; KEY.height = 240;
+    const k = KEY.getContext('2d'); k.drawImage(LOGO_IMG, 0, 880, 1254, 240, 0, 0, 1254, 240);
+    const im = k.getImageData(0, 0, 1254, 240), d = im.data;
+    for (let i = 0; i < d.length; i += 4) {
+      const m = Math.max(d[i], d[i + 1], d[i + 2]), a = clamp((m - 30) / 80);
+      d[i + 3] = 255 * a * a * (3 - 2 * a);
+    }
+    k.putImageData(im, 0, 0);
+  };
+  return LOGO_IMG.decode().then(keyBand).then(() => document.fonts.ready).then(() => Promise.all([
     document.fonts.load(`700 100px ${DISPLAY}`), document.fonts.load(`600 40px ${SANS}`), document.fonts.load(`500 40px ${SANS}`),
     document.fonts.load(`700 40px ${MONO}`), document.fonts.load(`500 40px ${MONO}`), document.fonts.load(`600 40px ${MONO}`)]))
     .then(() => { layoutTokens(); KEYS = keys(); });

@@ -144,6 +144,15 @@ def pulse(total, start, end, bpm=96):
     return out
 
 
+def bell(f=880, d=2.4, a=0.5):
+    """Soft glassy chime: inharmonic partials with staggered decays."""
+    n = int(d * SR)
+    t = np.arange(n) / SR
+    y = sum(w * np.sin(2 * np.pi * f * r * t) * env_exp(n, tau)
+            for r, w, tau in ((1, 1, .9), (2.0, .45, .5), (3.01, .25, .3), (4.2, .12, .18)))
+    return a * y * np.clip(t / .004, 0, 1)
+
+
 def place(buf, clip, t, gain=1.0):
     i = int(t * SR)
     if i < 0:
@@ -164,6 +173,7 @@ def main():
         s_start = t if si else 0.0
         sents = []
         for s in sc["sentences"]:
+            t += s.get("pause_before", 0)
             # espeak spells the plural "Ms" in "L L Ms" / "C D Ms" as "em-ess"; say "ems".
             ph = tts.tokenizer.phonemize(s["say"], "en-us").replace("ˌɛmˈɛs", "ˈɛmz")
             audio, sr = tts.create(ph, voice=cfg["voice"], speed=cfg["speed"], lang="en-us", is_phonemes=True)
@@ -193,6 +203,13 @@ def main():
         "claim": round(word_at(cdm[3], "200"), 3),
         "finale": [round(word_at(end[1], w), 3) for w in ("LLMs", "Jev", "CDMs")],
     }
+    # End card: ring forms -> emblem reveal -> ball steps down the loss curve -> land -> wordmark -> CTA tap
+    O = S["outro"]["t0"]
+    steps = [round(O + 1.75 + i * 0.3, 3) for i in range(5)]
+    land = steps[-1]
+    events["outro"] = {"ring": round(O + .25, 3), "reveal": round(O + .95, 3), "start": round(O + 1.45, 3),
+                       "steps": steps, "land": land, "word": round(land + .05, 3), "divider": round(land + .55, 3),
+                       "cta": round(land + .9, 3), "shine": round(land + 1.3, 3), "tap": round(land + 2.4, 3)}
     json.dump({"duration": total, "fps": 30, "scenes": scenes, "events": events},
               open(os.path.join(BUILD, "timeline.json"), "w"), indent=1)
 
@@ -229,6 +246,21 @@ def main():
     place(sfx, impact(a=0.9), events["claim"])
     for tt in events["finale"]:
         place(sfx, impact(a=0.35), tt)
+    o = events["outro"]
+    place(sfx, riser(0.9), o["reveal"] - 0.9, 0.45)
+    place(sfx, impact(a=0.7), o["reveal"])
+    place(sfx, bell(587.3, a=.35), o["reveal"])
+    place(sfx, bell(880, a=.18), o["reveal"] + .02)
+    place(sfx, tick(1100, .05, .3), o["start"])
+    for i, tt in enumerate(o["steps"]):          # descending steps down the loss curve
+        place(sfx, bell(1318.5 / (1.06 ** (i * 2)), 0.6, .16), tt)
+        place(sfx, tick(1600 - 120 * i, .04, .25), tt)
+    place(sfx, impact(a=1.0), o["land"])
+    for f, a in ((440, .32), (659.3, .22), (880, .18), (1108.7, .12)):
+        place(sfx, bell(f, 3.2, a), o["land"])
+    place(sfx, bell(2637, 1.4, .08), o["shine"])
+    place(sfx, tick(1900, .05, .35), o["tap"])
+    place(sfx, bell(1760, 0.9, .1), o["tap"] + .03)
 
     mix = voice * 0.95 + music + sfx * 0.55
     st = np.stack([mix, mix], axis=1)

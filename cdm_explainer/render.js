@@ -15,7 +15,9 @@ const OUT = path.join(HERE, 'out', 'cdm_explainer.mp4');
   const browser = await chromium.launch();
   const page = await browser.newPage({ viewport: { width: 1080, height: 1920 } });
   await page.goto('file://' + path.join(HERE, 'explainer.html') + '?capture');
-  await page.evaluate(t => window.init(t), tl);
+  // pass the logo as a data URL: a file:// image would taint the canvas and block capture
+  const logo = 'data:image/png;base64,' + fs.readFileSync(path.join(HERE, 'assets', 'optimizer_step_logo.png')).toString('base64');
+  await page.evaluate(([t, l]) => window.init(t, l), [tl, logo]);
   const grab = async t => {
     const url = await page.evaluate(t => { window.renderFrame(t); return document.getElementById('c').toDataURL('image/jpeg', 0.94); }, t);
     return Buffer.from(url.split(',')[1], 'base64');

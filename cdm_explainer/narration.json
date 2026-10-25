@@ -7,33 +7,81 @@
     {
       "id": "llm",
       "sentences": [
-        { "say": "An L L M answers by writing, one token at a time.", "show": "An LLM answers by writing, one token at a time." },
-        { "say": "Every token is another full pass through the model.", "show": "Every token is another full pass through the model." },
-        { "say": "Ask if an email is spam, and you pay for a paragraph, just to get one word.", "show": "Ask if an email is spam, and you pay for a paragraph just to get one word." }
+        {
+          "say": "An L L M answers by writing, one token at a time.",
+          "show": "An LLM answers by writing, one token at a time."
+        },
+        {
+          "say": "Every token is another full pass through the model.",
+          "show": "Every token is another full pass through the model."
+        },
+        {
+          "say": "Ask if an email is spam, and you pay for a paragraph, just to get one word.",
+          "show": "Ask if an email is spam, and you pay for a paragraph just to get one word."
+        }
       ]
     },
     {
       "id": "jev",
       "sentences": [
-        { "say": "Jev, from TypeSafe A.I., doesn't write. It decides.", "show": "Jev, from TypeSafe AI, doesn't write. It decides." },
-        { "say": "Give it the situation, and the options.", "show": "Give it the situation and the options." },
-        { "say": "In one pass, it returns a probability for each.", "show": "In one pass, it returns a probability for each." }
+        {
+          "say": "Jev, from TypeSafe A.I., doesn't write. It decides.",
+          "show": "Jev, from TypeSafe AI, doesn't write. It decides."
+        },
+        {
+          "say": "Give it the situation, and the options.",
+          "show": "Give it the situation and the options."
+        },
+        {
+          "say": "In one pass, it returns a probability for each.",
+          "show": "In one pass, it returns a probability for each."
+        }
       ]
     },
     {
       "id": "cdm",
       "sentences": [
-        { "say": "C D Ms, Constrained Decoding Models from ScaleDown, take it further.", "show": "CDMs, Constrained Decoding Models from ScaleDown, take it further." },
-        { "say": "The output is locked to a schema, so it always comes back in the right shape.", "show": "The output is locked to a schema, so it always comes back in the right shape." },
-        { "say": "Classify. Extract. Summarize.", "show": "Classify. Extract. Summarize." },
-        { "say": "ScaleDown claims up to two hundred times faster than frontier models.", "show": "ScaleDown claims up to 200× faster than frontier models." }
+        {
+          "say": "C D Ms, Constrained Decoding Models from ScaleDown, take it further.",
+          "show": "CDMs, Constrained Decoding Models from ScaleDown, take it further."
+        },
+        {
+          "say": "The output is locked to a schema, so it always comes back in the right shape.",
+          "show": "The output is locked to a schema, so it always comes back in the right shape."
+        },
+        {
+          "say": "Classify. Extract. Summarize.",
+          "show": "Classify. Extract. Summarize."
+        },
+        {
+          "say": "ScaleDown claims up to two hundred times faster than frontier models.",
+          "show": "ScaleDown claims up to 200× faster than frontier models."
+        }
       ]
     },
     {
       "id": "end",
       "sentences": [
-        { "say": "Just remember, a valid format isn't a correct answer.", "show": "Just remember: a valid format isn't a correct answer." },
-        { "say": "L L Ms write. Jev decides. C D Ms structure.", "show": "LLMs write. Jev decides. CDMs structure.", "pause_after": 1.6 }
+        {
+          "say": "Just remember, a valid format isn't a correct answer.",
+          "show": "Just remember: a valid format isn't a correct answer."
+        },
+        {
+          "say": "L L Ms write. Jev decides. C D Ms structure.",
+          "show": "LLMs write. Jev decides. CDMs structure.",
+          "pause_after": 1.1
+        }
+      ]
+    },
+    {
+      "id": "outro",
+      "sentences": [
+        {
+          "say": "Follow Optimizer Step, for more A.I., decoded.",
+          "show": "Follow Optimizer Step for more AI, decoded.",
+          "pause_before": 3.25,
+          "pause_after": 2.3
+        }
       ]
     }
   ]
