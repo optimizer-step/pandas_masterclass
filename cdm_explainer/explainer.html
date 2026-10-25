@@ -1,0 +1,920 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>LLM → Jev → CDM</title>
+<style>
+  html, body { margin: 0; background: #05060c; }
+  body { display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+  canvas { width: auto; height: 96vh; aspect-ratio: 9 / 16; display: block; }
+  body.capture canvas { width: 1080px; height: 1920px; }
+  #play { position: fixed; inset: 0; background: #05060cdd; color: #fff; font: 600 28px Inter, sans-serif;
+          display: flex; align-items: center; justify-content: center; cursor: pointer; }
+  body.capture #play { display: none; }
+</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<div id="play">▶ Play preview</div>
+<script>
+// ---------------------------------------------------------------------------
+// LLM → Jev → CDM explainer. Every frame is a pure function of time `t`, so the
+// same code drives the live preview and the frame-exact capture in render.js.
+// ---------------------------------------------------------------------------
+const W = 1080, H = 1920;
+const cv = document.getElementById('c');
+const ctx = cv.getContext('2d');
+
+const C = {
+  bg: '#06070e', ink: '#f4f6ff', dim: '#8a90a8', faint: '#2a2e45', panel: '#0f1222', panel2: '#151932',
+  llm: '#ffb547', jev: '#34e4d7', cdm: '#a88bff', red: '#ff5c7a', green: '#4be38f',
+};
+const SANS = 'Inter, "Inter Display", sans-serif';
+const DISPLAY = '"Inter Display", Inter, sans-serif';
+const MONO = '"JetBrains Mono", "DejaVu Sans Mono", monospace';
+
+let TL = null;            // timeline.json
+const SC = {};            // scenes by id
+
+// ---------- math / easing ----------
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const lerp = (a, b, k) => a + (b - a) * k;
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const eOut = k => 1 - Math.pow(1 - k, 3);
+const eInOut = k => k < .5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
+const eBack = k => { const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(k - 1, 3) + c1 * Math.pow(k - 1, 2); };
+const eExpo = k => k === 1 ? 1 : 1 - Math.pow(2, -10 * k);
+function rnd(seed) { const x = Math.sin(seed * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); }
+function hexA(hex, a) {
+  const n = parseInt(hex.slice(1), 16);
+  return `rgba(${n >> 16},${(n >> 8) & 255},${n & 255},${a})`;
+}
+function mixHex(h1, h2, k) {
+  const a = parseInt(h1.slice(1), 16), b = parseInt(h2.slice(1), 16);
+  const r = Math.round(lerp(a >> 16, b >> 16, k)), g = Math.round(lerp((a >> 8) & 255, (b >> 8) & 255, k)),
+        bl = Math.round(lerp(a & 255, b & 255, k));
+  return '#' + ((1 << 24) + (r << 16) + (g << 8) + bl).toString(16).slice(1);
+}
+// fade in at a (over d), fade out at b (over d)
+function win(t, a, b, d = .35) { return eOut(prog(t, a, a + d)) * (1 - eInOut(prog(t, b - d, b))); }
+
+// sentence / word helpers
+const st = (id, i) => SC[id].sentences[i].t0;
+const se = (id, i) => SC[id].sentences[i].t1;
+function wordT(id, i, re) {
+  const w = SC[id].sentences[i].words.find(w => re.test(w.w));
+  return w ? w.t0 : st(id, i);
+}
+
+// ---------- drawing primitives ----------
+function font(px, weight = 600, fam = SANS) { ctx.font = `${weight} ${px}px ${fam}`; }
+function text(s, x, y, { size = 48, weight = 600, fam = SANS, color = C.ink, align = 'center', alpha = 1,
+                         spacing = 0, glow = 0, base = 'middle' } = {}) {
+  if (alpha <= 0) return;
+  ctx.save();
+  ctx.globalAlpha *= alpha;
+  font(size, weight, fam);
+  ctx.letterSpacing = spacing + 'px';
+  ctx.textAlign = align; ctx.textBaseline = base;
+  ctx.fillStyle = color;
+  if (glow) { ctx.shadowColor = color; ctx.shadowBlur = glow; }
+  ctx.fillText(s, x, y);
+  ctx.restore();
+}
+function measure(s, size, weight = 600, fam = SANS, spacing = 0) {
+  font(size, weight, fam); ctx.letterSpacing = spacing + 'px';
+  const w = ctx.measureText(s).width; ctx.letterSpacing = '0px'; return w;
+}
+function rrect(x, y, w, h, r, { fill, stroke, lw = 2, alpha = 1, glow = 0, glowColor } = {}) {
+  if (alpha <= 0) return;
+  ctx.save(); ctx.globalAlpha *= alpha;
+  ctx.beginPath(); ctx.roundRect(x, y, w, h, r);
+  if (glow) { ctx.shadowColor = glowColor || stroke || fill; ctx.shadowBlur = glow; }
+  if (fill) { ctx.fillStyle = fill; ctx.fill(); }
+  if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = lw; ctx.stroke(); }
+  ctx.restore();
+}
+function panel(x, y, w, h, accent, alpha = 1, label) {
+  rrect(x, y, w, h, 28, { fill: hexA('#11142a', .92), stroke: hexA(accent, .55), lw: 2, alpha, glow: 30, glowColor: hexA(accent, .25) });
+  if (label) text(label, x + 32, y + 40, { size: 24, weight: 700, fam: MONO, color: accent, align: 'left', alpha, spacing: 4 });
+}
+function line(x1, y1, x2, y2, color, lw = 2, alpha = 1, dash) {
+  if (alpha <= 0) return;
+  ctx.save(); ctx.globalAlpha *= alpha; ctx.strokeStyle = color; ctx.lineWidth = lw; ctx.lineCap = 'round';
+  if (dash) ctx.setLineDash(dash);
+  ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); ctx.restore();
+}
+function dot(x, y, r, color, alpha = 1, glow = 0) {
+  if (alpha <= 0) return;
+  ctx.save(); ctx.globalAlpha *= alpha; ctx.fillStyle = color;
+  if (glow) { ctx.shadowColor = color; ctx.shadowBlur = glow; }
+  ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+}
+function chip(label, x, y, color, { size = 30, alpha = 1, filled = false, padX = 26, h = 62, fam = MONO, glow = 0 } = {}) {
+  const w = measure(label, size, 700, fam, 3) + padX * 2;
+  rrect(x - w / 2, y - h / 2, w, h, h / 2, { fill: filled ? color : hexA(color, .1), stroke: color, lw: 2.5, alpha, glow, glowColor: color });
+  text(label, x, y + 1, { size, weight: 700, fam, color: filled ? '#0a0b14' : color, alpha, spacing: 3 });
+  return w;
+}
+function wrap(s, maxW, size, weight = 600, fam = SANS) {
+  font(size, weight, fam);
+  const out = []; let cur = '';
+  for (const w of s.split(' ')) {
+    const tryS = cur ? cur + ' ' + w : w;
+    if (ctx.measureText(tryS).width > maxW && cur) { out.push(cur); cur = w; } else cur = tryS;
+  }
+  if (cur) out.push(cur);
+  return out;
+}
+function scaleAt(x, y, s, fn) { ctx.save(); ctx.translate(x, y); ctx.scale(s, s); ctx.translate(-x, -y); fn(); ctx.restore(); }
+function bar(x, y, w, h, k, color, alpha = 1) {
+  rrect(x, y, w, h, h / 2, { fill: hexA(color, .12), alpha });
+  if (k > 0) rrect(x, y, Math.max(h, w * k), h, h / 2, { fill: color, alpha, glow: 18, glowColor: color });
+}
+
+// ---------- background ----------
+function accentAt(t) {
+  const order = ['hook', 'llm', 'insight', 'jev', 'cdm', 'compare', 'caveat', 'outro'];
+  const col = { hook: C.cdm, llm: C.llm, insight: C.jev, jev: C.jev, cdm: C.cdm, compare: C.cdm, caveat: C.red, outro: C.cdm };
+  for (let i = 0; i < order.length; i++) {
+    const s = SC[order[i]];
+    if (t < s.t1 || i === order.length - 1) {
+      const prev = i ? col[order[i - 1]] : col[order[0]];
+      return mixHex(prev, col[order[i]], eInOut(prog(t, s.t0 - .4, s.t0 + .6)));
+    }
+  }
+}
+function background(t, acc) {
+  ctx.fillStyle = C.bg; ctx.fillRect(0, 0, W, H);
+  // drifting glow blobs
+  const g1x = 540 + Math.sin(t * .23) * 260, g1y = 760 + Math.cos(t * .17) * 220;
+  let g = ctx.createRadialGradient(g1x, g1y, 0, g1x, g1y, 900);
+  g.addColorStop(0, hexA(acc, .20)); g.addColorStop(1, hexA(acc, 0));
+  ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+  const g2x = 540 + Math.cos(t * .19) * 380, g2y = 1500 + Math.sin(t * .13) * 200;
+  g = ctx.createRadialGradient(g2x, g2y, 0, g2x, g2y, 700);
+  g.addColorStop(0, 'rgba(70,90,255,0.10)'); g.addColorStop(1, 'rgba(70,90,255,0)');
+  ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+  // dot grid with a slow scrolling offset
+  const sp = 54, off = (t * 12) % sp;
+  ctx.fillStyle = 'rgba(160,170,220,0.10)';
+  for (let y = -sp + off; y < H; y += sp)
+    for (let x = 27; x < W; x += sp) { ctx.beginPath(); ctx.arc(x, y, 1.6, 0, 6.283); ctx.fill(); }
+  // particles
+  for (let i = 0; i < 46; i++) {
+    const sx = rnd(i) * W, sp2 = 20 + rnd(i + 9) * 50;
+    const y = H - ((rnd(i + 3) * H + t * sp2) % (H + 100)) + 50;
+    const x = sx + Math.sin(t * .5 + i) * 18;
+    dot(x, y, 1.5 + rnd(i + 5) * 2.5, i % 3 ? acc : '#ffffff', .18 + rnd(i + 7) * .3, 8);
+  }
+  // vignette
+  g = ctx.createRadialGradient(540, 960, 500, 540, 960, 1250);
+  g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,0.55)');
+  ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+}
+
+// ---------- chapter tracker (top) ----------
+function tracker(t) {
+  const items = [['LLM', C.llm], ['JEV', C.jev], ['CDM', C.cdm]];
+  const xs = [270, 540, 810], y = 150;
+  let act = [0, 0, 0];
+  const h = SC.hook;
+  if (t < h.t1) act = [prog(t, st('hook', 0), st('hook', 0) + .3), prog(t, st('hook', 1), st('hook', 1) + .3), prog(t, st('hook', 2), st('hook', 2) + .3)].map(x => x * .5);
+  else if (t < SC.insight.t1) act = [1, 0, 0];
+  else if (t < SC.jev.t1) act = [.35, 1, 0];
+  else if (t < SC.cdm.t1) act = [.35, .35, 1];
+  else act = [1, 1, 1];
+  const alpha = eOut(prog(t, .2, .8));
+  for (let i = 0; i < 2; i++) {
+    line(xs[i] + 70, y, xs[i + 1] - 70, y, C.faint, 3, alpha);
+    const k = act[i + 1] > .5 ? 1 : 0;
+    line(xs[i] + 70, y, lerp(xs[i] + 70, xs[i + 1] - 70, k), y, items[i + 1][1], 3, alpha * .9);
+  }
+  items.forEach(([l, c], i) => {
+    const a = act[i];
+    chip(l, xs[i], y, a > .9 ? c : C.dim, { size: 26, alpha: alpha * (0.45 + .55 * a), filled: a > .9, h: 56, glow: a > .9 ? 24 : 0 });
+  });
+}
+
+// ---------- captions (bottom) ----------
+function captions(t, acc) {
+  let sent = null;
+  for (const s of TL.scenes) for (const x of s.sentences) if (t >= x.t0 - .15 && t <= x.t1 + .25) sent = x;
+  if (!sent) return;
+  // chunk into groups of max 6 words, show the chunk the current word belongs to
+  const ws = sent.words, chunks = [];
+  for (let i = 0; i < ws.length; i += 6) chunks.push(ws.slice(i, i + 6));
+  if (chunks.length > 1 && chunks[chunks.length - 1].length <= 2) {
+    const last = chunks.pop(); chunks[chunks.length - 1].push(...last);
+  }
+  let ci = chunks.findIndex(c => t < c[c.length - 1].t1);
+  if (ci < 0) ci = chunks.length - 1;
+  const chunk = chunks[ci];
+  const a = eOut(prog(t, sent.t0 - .15, sent.t0 + .1)) * (1 - prog(t, sent.t1 + .05, sent.t1 + .25));
+  const size = 52, y = 1680;
+  const full = chunk.map(w => w.w).join(' ');
+  const lines = wrap(full, 920, size, 700);
+  // background pill
+  const bw = Math.min(980, Math.max(...lines.map(l => measure(l, size, 700))) + 70);
+  const bh = lines.length * 70 + 40;
+  rrect(540 - bw / 2, y - bh / 2, bw, bh, 30, { fill: 'rgba(5,6,14,0.72)', stroke: 'rgba(255,255,255,0.06)', alpha: a });
+  let wi = 0;
+  lines.forEach((ln, li) => {
+    const lw = measure(ln, size, 700);
+    let x = 540 - lw / 2;
+    const ly = y - (lines.length - 1) * 35 + li * 70;
+    for (const word of ln.split(' ')) {
+      const w = chunk[wi++];
+      const ww = measure(word, size, 700), sw = measure(' ', size, 700);
+      const spoken = t >= w.t0, current = spoken && t < w.t1 + .05;
+      const k = eOut(prog(t, w.t0, w.t0 + .12));
+      const col = current ? acc : C.ink;
+      scaleAt(x + ww / 2, ly, current ? 1 + .06 * (1 - prog(t, w.t0 + .1, w.t1)) : 1, () =>
+        text(word, x, ly, { size, weight: 700, align: 'left', color: col, alpha: a * (0.35 + .65 * k), glow: current ? 16 : 0 }));
+      x += ww + sw;
+    }
+  });
+}
+
+// ---------- scene transition helpers ----------
+function sceneAlpha(id, t) { const s = SC[id]; return win(t, s.t0, s.t1, .4); }
+function header(t, id, label, sub, color) {
+  const a = eOut(prog(t, SC[id].t0, SC[id].t0 + .5));
+  const slide = (1 - a) * -40;
+  chip(label, 540, 270 + slide, color, { size: 34, filled: true, h: 70, alpha: a, glow: 30 });
+  text(sub, 540, 345 + slide, { size: 30, weight: 500, color: C.dim, alpha: a, spacing: 1 });
+}
+
+// ======================= SCENE 1: HOOK =====================================
+function sHook(t) {
+  const words = [['LLMs', C.llm, 'writes · token by token'], ['Jev', C.jev, 'decides · one pass'], ['CDMs', C.cdm, 'structures · schema-locked']];
+  const ys = [560, 840, 1120];
+  const last = st('hook', 3);
+  words.forEach(([w, c, sub], i) => {
+    const t0 = st('hook', i);
+    const k = prog(t, t0 - .05, t0 + .45);
+    if (k <= 0) return;
+    const s = lerp(1.7, 1, eBack(k));
+    const dimK = 1 - .4 * eOut(prog(t, last, last + .5));
+    const y = ys[i] - 60 * eOut(prog(t, last, last + .6));
+    scaleAt(540, y, s, () => text(w, 540, y, { size: 210, weight: 800, fam: DISPLAY, color: c, alpha: eOut(k) * dimK, glow: 50 * (1 - k) + 18, spacing: -4 }));
+    text(sub.toUpperCase(), 540, y + 120, { size: 26, weight: 600, fam: MONO, color: C.dim, alpha: eOut(prog(t, t0 + .3, t0 + .8)) * dimK, spacing: 4 });
+    // sweep line
+    const sk = prog(t, t0, t0 + .6);
+    if (sk > 0 && sk < 1) line(lerp(-100, 1180, eOut(sk)) - 300, y, lerp(-100, 1180, eOut(sk)), y, c, 6, 1 - sk);
+    if (i < 2) {
+      const ak = eOut(prog(t, st('hook', i + 1) - .2, st('hook', i + 1) + .2));
+      line(540, y + 160, 540, y + 160 + 70 * ak, C.faint, 4, ak * dimK);
+    }
+  });
+  // "answers without writing" with strike
+  const k = prog(t, last, last + .5);
+  if (k > 0) {
+    const y = 1390;
+    text('AI that answers', 540, y, { size: 70, weight: 700, alpha: eOut(k) });
+    const wT = wordT('hook', 3, /writing/);
+    const wk = eOut(prog(t, wT - .3, wT + .2));
+    const ww = measure('without writing', 70, 700);
+    text('without writing', 540, y + 95, { size: 70, weight: 700, alpha: wk, color: C.ink });
+    const sk = eOut(prog(t, wT + .3, wT + .8));
+    const wx = 540 + ww / 2 - measure('writing', 70, 700);
+    line(wx - 6, y + 100, lerp(wx - 6, 540 + ww / 2 + 6, sk), y + 100, C.red, 8, sk > 0 ? 1 : 0);
+  }
+}
+
+// ======================= SCENE 2: LLM ======================================
+const LLM_TOKENS = ('Based on the content of this email , it appears to be a phishing attempt . The message urges you to ' +
+  'verify your account and includes a suspicious link , which are common signs of spam . Therefore , I would classify ' +
+  'this email as most likely spam , although you should always').split(' ');
+const LLM_TARGET = LLM_TOKENS.lastIndexOf('spam');
+let llmLayout = null;
+function layoutLLM() {
+  font(32, 500, MONO);
+  const maxW = 800, out = []; let x = 0, y = 0;
+  const sp = ctx.measureText(' ').width;
+  LLM_TOKENS.forEach(tok => {
+    const w = ctx.measureText(tok).width;
+    const glue = /^[,.]$/.test(tok);
+    if (!glue && x + w > maxW) { x = 0; y += 46; }
+    if (glue) x -= sp;
+    out.push({ tok, x, y, w });
+    x += w + sp;
+  });
+  return out;
+}
+function netNodes(cx, cy, w, h) {
+  const cols = 6, rows = [3, 5, 5, 5, 5, 3], pts = [];
+  for (let c = 0; c < cols; c++) {
+    const x = cx - w / 2 + 70 + c * (w - 140) / (cols - 1);
+    const n = rows[c];
+    for (let r = 0; r < n; r++) pts.push({ x, y: cy - (n - 1) * 26 + r * 52, c });
+  }
+  return pts;
+}
+function drawNet(cx, cy, w, h, wave, color, alpha) {
+  const pts = netNodes(cx, cy, w, h);
+  for (const a of pts) for (const b of pts) if (b.c === a.c + 1) {
+    const lit = Math.max(0, 1 - Math.abs(wave - (a.c + .5)) * 1.2);
+    line(a.x, a.y, b.x, b.y, lit > 0 ? color : '#3a3f60', 1.4 + lit * 1.5, alpha * (.25 + lit * .7));
+  }
+  for (const p of pts) {
+    const lit = Math.max(0, 1 - Math.abs(wave - p.c) * 1.4);
+    dot(p.x, p.y, 9, lit > 0 ? color : '#4a4f72', alpha * (.6 + .4 * lit), lit * 22);
+  }
+}
+function sLLM(t) {
+  const id = 'llm', A = sceneAlpha(id, t);
+  ctx.save(); ctx.globalAlpha = A;
+  header(t, id, 'LLM', 'Large Language Model', C.llm);
+  if (!llmLayout) llmLayout = layoutLLM();
+  const N = LLM_TOKENS.length;
+  const gen0 = st(id, 1) + .2, gen1 = st(id, 2) + 2.6;
+  const tokT = i => gen0 + (gen1 - gen0) * Math.pow((i + 1) / N, 0.62);
+  let n = 0; while (n < N && t >= tokT(n)) n++;
+  // prompt card
+  const pk = eOut(prog(t, SC[id].t0 + .2, SC[id].t0 + .7));
+  panel(110, 420 - (1 - pk) * 30, 860, 120, C.llm, pk, 'PROMPT');
+  text('"Is this email spam?"', 142, 495 - (1 - pk) * 30, { size: 38, weight: 600, fam: MONO, align: 'left', alpha: pk });
+  // model block
+  const mk = eOut(prog(t, SC[id].t0 + .5, SC[id].t0 + 1));
+  const lastT = n > 0 ? tokT(n - 1) : -10;
+  const passDur = Math.min(.4, n > 0 && n < N ? tokT(n) - lastT : .4);
+  const wave = (t - lastT) / Math.max(passDur, .08) * 6.5 - .5;
+  panel(110, 590, 860, 320, C.llm, mk);
+  text('MODEL', 142, 630, { size: 22, weight: 700, fam: MONO, color: C.dim, align: 'left', alpha: mk, spacing: 4 });
+  drawNet(540, 760, 860, 300, n > 0 && n < N ? wave : (n >= N ? -9 : (t > st(id, 0) + .5 ? ((t * 2) % 1) * 7 - .5 : -9)), C.llm, mk);
+  // input → model arrow
+  line(540, 545, 540, 585, C.llm, 3, pk * .7);
+  // output box
+  const ok = eOut(prog(t, st(id, 0) + .3, st(id, 0) + .8));
+  panel(110, 960, 860, 470, C.llm, ok, 'OUTPUT');
+  const highlight = eOut(prog(t, gen1 + .2, gen1 + .7));
+  for (let i = 0; i < n; i++) {
+    const L = llmLayout[i];
+    const age = t - tokT(i);
+    const col = i === LLM_TARGET && highlight > 0 ? mixHex(C.ink, C.llm, highlight) : (age < .35 ? mixHex(C.llm, C.ink, age / .35) : C.ink);
+    const al = ok * (i === LLM_TARGET ? 1 : 1 - .65 * highlight);
+    text(L.tok, 142 + L.x, 1040 + L.y + (1 - eOut(clamp(age / .2))) * 14, { size: 32, weight: 500, fam: MONO, align: 'left', color: col, alpha: al * eOut(clamp(age / .15)) });
+  }
+  if (n < N && n > 0 && Math.floor(t * 3) % 2 === 0) {
+    const L = llmLayout[n - 1];
+    rrect(142 + L.x + L.w + 8, 1022 + L.y, 16, 36, 3, { fill: C.llm, alpha: ok });
+  }
+  // the token that comes out flies back up into the prompt (autoregressive loop)
+  if (n > 0 && n < N) {
+    const L = llmLayout[n - 1], k = eInOut(clamp((t - lastT) / Math.max(passDur * .9, .08)));
+    const sx = 142 + L.x + L.w / 2, sy = 1040 + L.y;
+    const px = lerp(sx, 1010, Math.min(1, k * 2)), py = k < .5 ? sy : lerp(sy, 480, (k - .5) * 2);
+    ctx.save(); ctx.strokeStyle = hexA(C.llm, .35 * ok); ctx.lineWidth = 3; ctx.setLineDash([8, 10]);
+    ctx.beginPath(); ctx.moveTo(975, 1200); ctx.bezierCurveTo(1050, 1100, 1050, 560, 975, 480); ctx.stroke(); ctx.restore();
+    dot(px, py, 8, C.llm, ok * (1 - k * .3), 20);
+  }
+  // counters
+  const ck = eOut(prog(t, st(id, 1), st(id, 1) + .5));
+  text('FORWARD PASSES', 150, 1475, { size: 22, weight: 700, fam: MONO, color: C.dim, align: 'left', alpha: ck, spacing: 3 });
+  text(String(n), 150, 1525, { size: 56, weight: 800, fam: MONO, color: C.llm, align: 'left', alpha: ck, glow: 14 });
+  text('TOKENS YOU PAY FOR', 930, 1475, { size: 22, weight: 700, fam: MONO, color: C.dim, align: 'right', alpha: ck, spacing: 3 });
+  text(String(n), 930, 1525, { size: 56, weight: 800, fam: MONO, color: C.llm, align: 'right', alpha: ck, glow: 14 });
+  // highlight the actual answer
+  if (highlight > 0) {
+    const L = llmLayout[LLM_TARGET];
+    const bx = 142 + L.x - 12, by = 1040 + L.y - 28;
+    rrect(bx, by, L.w + 24, 56, 12, { stroke: C.red, lw: 4, alpha: highlight, glow: 24 });
+    const lk = eOut(prog(t, gen1 + .5, gen1 + 1));
+    chip(`${N} tokens → 1 useful word`, 540, 1395, C.red, { size: 26, alpha: lk, h: 56 });
+  }
+  ctx.restore();
+}
+
+// ======================= SCENE 3: INSIGHT ==================================
+function icon(kind, x, y, s, color, a) {
+  ctx.save(); ctx.globalAlpha *= a; ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 5; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+  ctx.translate(x, y); ctx.scale(s, s);
+  ctx.beginPath();
+  if (kind === 'route') { ctx.moveTo(-22, 0); ctx.lineTo(0, 0); ctx.lineTo(20, -18); ctx.moveTo(0, 0); ctx.lineTo(20, 18); ctx.stroke();
+    ctx.beginPath(); ctx.arc(-24, 0, 6, 0, 7); ctx.fill(); }
+  else if (kind === 'label') { ctx.moveTo(-22, -16); ctx.lineTo(8, -16); ctx.lineTo(24, 0); ctx.lineTo(8, 16); ctx.lineTo(-22, 16); ctx.closePath(); ctx.stroke();
+    ctx.beginPath(); ctx.arc(-10, 0, 4, 0, 7); ctx.fill(); }
+  else if (kind === 'extract') { ctx.moveTo(-10, -22); ctx.quadraticCurveTo(-20, -22, -20, -10); ctx.lineTo(-20, -4); ctx.lineTo(-26, 0); ctx.lineTo(-20, 4); ctx.lineTo(-20, 10);
+    ctx.quadraticCurveTo(-20, 22, -10, 22); ctx.moveTo(10, -22); ctx.quadraticCurveTo(20, -22, 20, -10); ctx.lineTo(20, -4); ctx.lineTo(26, 0); ctx.lineTo(20, 4); ctx.lineTo(20, 10); ctx.quadraticCurveTo(20, 22, 10, 22); ctx.stroke(); }
+  else if (kind === 'score') { ctx.arc(0, 8, 24, Math.PI, 0); ctx.stroke(); ctx.beginPath(); ctx.moveTo(0, 8); ctx.lineTo(14, -10); ctx.stroke(); }
+  else if (kind === 'pen') { ctx.moveTo(-20, 20); ctx.lineTo(14, -14); ctx.lineTo(20, -8); ctx.lineTo(-14, 26); ctx.lineTo(-24, 26); ctx.closePath(); ctx.stroke(); }
+  else if (kind === 'target') { ctx.arc(0, 0, 24, 0, 7); ctx.stroke(); ctx.beginPath(); ctx.arc(0, 0, 12, 0, 7); ctx.stroke(); ctx.beginPath(); ctx.arc(0, 0, 4, 0, 7); ctx.fill(); }
+  else if (kind === 'form') { ctx.roundRect(-20, -26, 40, 52, 5); ctx.stroke(); for (let i = 0; i < 3; i++) { ctx.beginPath(); ctx.moveTo(-10, -12 + i * 13); ctx.lineTo(10, -12 + i * 13); ctx.stroke(); } }
+  ctx.restore();
+}
+function sInsight(t) {
+  const id = 'insight', A = sceneAlpha(id, t);
+  ctx.save(); ctx.globalAlpha = A;
+  const k0 = eOut(prog(t, st(id, 0), st(id, 0) + .5));
+  const up = eInOut(prog(t, st(id, 2), st(id, 2) + .6)) * 160;
+  text('Most work inside', 540, 520 - up, { size: 84, weight: 800, fam: DISPLAY, alpha: k0 });
+  text('an AI agent isn\'t', 540, 625 - up, { size: 84, weight: 800, fam: DISPLAY, alpha: eOut(prog(t, st(id, 0) + .4, st(id, 0) + .9)) });
+  const wk = eOut(prog(t, wordT(id, 0, /writing/), wordT(id, 0, /writing/) + .4));
+  text('writing.', 540, 735 - up, { size: 84, weight: 800, fam: DISPLAY, color: C.llm, alpha: wk });
+  const sk = eOut(prog(t, st(id, 1) - .2, st(id, 1) + .2));
+  const ww = measure('writing.', 84, 800, DISPLAY);
+  line(540 - ww / 2 - 8, 740 - up, lerp(540 - ww / 2 - 8, 540 + ww / 2 + 8, sk), 740 - up, C.red, 9, sk > 0 ? 1 : 0);
+  const dk = prog(t, st(id, 1), st(id, 1) + .5);
+  scaleAt(540, 900 - up, lerp(1.5, 1, eBack(dk)), () =>
+    text('It\'s deciding.', 540, 900 - up, { size: 120, weight: 800, fam: DISPLAY, color: C.jev, alpha: eOut(dk), glow: 30 }));
+  // decision pipeline
+  const items = [['ROUTE', 'route', /Route/], ['LABEL', 'label', /label/], ['EXTRACT', 'extract', /field/], ['SCORE', 'score', /risk/]];
+  const pos = [[300, 1000], [780, 1000], [300, 1250], [780, 1250]];
+  items.forEach(([l, ic, re], i) => {
+    const t0 = wordT(id, 2, re) - .25;
+    const k = prog(t, t0, t0 + .45);
+    if (k <= 0) return;
+    const [x, y] = pos[i];
+    if (i > 0) {
+      const [px, py] = pos[i - 1];
+      const lk = eOut(prog(t, t0 - .1, t0 + .3));
+      line(px, py, lerp(px, x, lk), lerp(py, y, lk), hexA(C.jev, .5), 3, 1, [10, 10]);
+    }
+    scaleAt(x, y, lerp(.6, 1, eBack(k)), () => {
+      rrect(x - 190, y - 85, 380, 170, 32, { fill: hexA('#11142a', .95), stroke: C.jev, lw: 2.5, alpha: eOut(k), glow: 26, glowColor: hexA(C.jev, .4) });
+      icon(ic, x - 105, y, 1.25, C.jev, eOut(k));
+      text(l, x + 40, y, { size: 38, weight: 800, fam: MONO, color: C.ink, alpha: eOut(k), spacing: 3 });
+    });
+  });
+  // packet travelling the pipeline once all nodes are up
+  const pt0 = wordT(id, 2, /risk/) + .3;
+  const pk = prog(t, pt0, SC[id].t1 - .2);
+  if (pk > 0) {
+    const seg = Math.min(2, Math.floor(pk * 3)), f = eInOut((pk * 3) - seg);
+    const [ax, ay] = pos[seg], [bx, by] = pos[seg + 1];
+    dot(lerp(ax, bx, f), lerp(ay, by, f), 12, C.jev, 1, 30);
+  }
+  ctx.restore();
+}
+
+// ======================= SCENE 4: JEV ======================================
+function sJev(t) {
+  const id = 'jev', A = sceneAlpha(id, t);
+  ctx.save(); ctx.globalAlpha = A;
+  header(t, id, 'JEV', 'TypeSafe AI · decision model', C.jev);
+  const gameT = st(id, 4) - .3;
+  const out = 1 - eInOut(prog(t, gameT, gameT + .5));
+  // system-1 badge
+  const bk = eOut(prog(t, wordT(id, 0, /System/), wordT(id, 0, /System/) + .5));
+  chip('SYSTEM 1  =  FAST INTUITION', 540, 430, C.jev, { size: 24, alpha: bk * out, h: 54 });
+  // state + actions cards
+  const ck = eOut(prog(t, st(id, 1), st(id, 1) + .5));
+  const ak = eOut(prog(t, wordT(id, 1, /allowed/), wordT(id, 1, /allowed/) + .5));
+  const cy = 500 + (1 - ck) * 40;
+  panel(90, cy, 440, 330, C.jev, ck * out, 'SITUATION');
+  [['speed', '12 m/s'], ['lane', 'center'], ['ahead', 'barrier · 4 m'], ['height', 'low']].forEach(([k, v], i) => {
+    const r = eOut(prog(t, st(id, 1) + .15 * i, st(id, 1) + .15 * i + .4));
+    text(k, 122, cy + 110 + i * 56, { size: 28, weight: 500, fam: MONO, color: C.dim, align: 'left', alpha: r * out });
+    text(v, 498, cy + 110 + i * 56, { size: 28, weight: 700, fam: MONO, color: C.ink, align: 'right', alpha: r * out });
+  });
+  panel(550, cy, 440, 330, C.jev, ak * out, 'ALLOWED ACTIONS');
+  const acts = ['JUMP', 'DUCK', 'LEFT', 'RIGHT'];
+  acts.forEach((a, i) => {
+    const r = eOut(prog(t, wordT(id, 1, /allowed/) + .1 * i, wordT(id, 1, /allowed/) + .1 * i + .4));
+    chip(a, 660 + (i % 2) * 220, cy + 145 + Math.floor(i / 2) * 110, C.jev, { size: 28, alpha: r * out, h: 70 });
+  });
+  // single pass
+  const p0 = st(id, 2);
+  const mk = eOut(prog(t, p0, p0 + .4));
+  panel(90, 870, 900, 150, C.jev, mk * out);
+  text('JEV', 140, 945, { size: 40, weight: 800, fam: MONO, color: C.jev, align: 'left', alpha: mk * out, spacing: 4 });
+  const beam = prog(t, p0 + .4, p0 + 1.2);
+  for (let i = 0; i < 18; i++) {
+    const x = 290 + i * 38, lit = Math.max(0, 1 - Math.abs(beam * 22 - i - 2) / 3);
+    rrect(x, 915, 26, 60, 6, { fill: lit > 0 ? C.jev : '#2b3055', alpha: mk * out * (.5 + .5 * lit), glow: lit * 24, glowColor: C.jev });
+  }
+  chip('1 PASS', 880, 945, C.jev, { size: 24, filled: beam >= 1, alpha: mk * out, h: 52 });
+  // probability bars
+  const probs = [.81, .11, .05, .03];
+  const b0 = p0 + 1.1;
+  acts.forEach((a, i) => {
+    const k = eOut(prog(t, b0 + i * .08, b0 + .8 + i * .08));
+    const y = 1080 + i * 82;
+    const win1 = i === 0 ? eOut(prog(t, st(id, 3), st(id, 3) + .4)) : 0;
+    text(a, 110, y, { size: 32, weight: 700, fam: MONO, color: i === 0 ? C.jev : C.dim, align: 'left', alpha: k * out });
+    bar(260, y - 18, 560, 36, probs[i] * k, i === 0 ? C.jev : '#5b6185', k * out);
+    text((probs[i] * k).toFixed(2), 970, y, { size: 32, weight: 700, fam: MONO, color: C.ink, align: 'right', alpha: k * out });
+    if (win1 > 0) rrect(90, y - 38, 900, 76, 20, { stroke: C.jev, lw: 3, alpha: win1 * out, glow: 30 });
+  });
+  // decision output
+  const dk = eOut(prog(t, st(id, 3) + .5, st(id, 3) + 1));
+  rrect(140, 1405, 800, 90, 22, { fill: hexA(C.jev, .1), stroke: C.jev, lw: 2.5, alpha: dk * out });
+  text('{ "action": "JUMP", "confidence": 0.81 }', 540, 1450, { size: 30, weight: 700, fam: MONO, color: C.jev, alpha: dk * out });
+  const essayK = eOut(prog(t, wordT(id, 3, /essay/) - .1, wordT(id, 3, /essay/) + .3));
+  if (essayK > 0 && dk < 1) {
+    for (let i = 0; i < 3; i++) rrect(300, 1415 + i * 26, 480 - i * 90, 12, 6, { fill: '#5b6185', alpha: essayK * (1 - dk) * out });
+    line(280, 1470, 800, 1410, C.red, 7, essayK * (1 - dk) * out);
+  }
+  // runner game
+  if (t > gameT) runner(t - gameT - .2, eOut(prog(t, gameT + .2, gameT + .7)));
+  ctx.restore();
+}
+function runner(tt, a) {
+  if (a <= 0) return;
+  const vx = 540, vy = 520, by = 1320;
+  // road
+  ctx.save(); ctx.globalAlpha *= a;
+  const roadW = 860;
+  ctx.beginPath(); ctx.moveTo(vx - 30, vy); ctx.lineTo(vx + 30, vy); ctx.lineTo(vx + roadW / 2, by); ctx.lineTo(vx - roadW / 2, by); ctx.closePath();
+  const g = ctx.createLinearGradient(0, vy, 0, by); g.addColorStop(0, hexA(C.jev, 0)); g.addColorStop(1, hexA(C.jev, .14));
+  ctx.fillStyle = g; ctx.fill();
+  for (const f of [-1 / 3, 1 / 3]) line(vx + f * 60, vy, vx + f * roadW, by, hexA(C.jev, .45), 3);
+  line(vx - 30, vy, vx - roadW / 2, by, C.jev, 4, .8); line(vx + 30, vy, vx + roadW / 2, by, C.jev, 4, .8);
+  // moving stripes
+  for (let i = 0; i < 10; i++) {
+    const z = ((i / 10) + tt * .9) % 1, d = z * z;
+    const y = lerp(vy, by, d);
+    line(lerp(vx - 30, vx - roadW / 2, d), y, lerp(vx + 30, vx + roadW / 2, d), y, hexA(C.jev, .12), 2);
+  }
+  ctx.restore();
+  // obstacles: [spawn time, lane, kind, action]
+  const obs = [[0, 0, 'low', 'JUMP', .84], [.75, 0, 'high', 'DUCK', .91], [1.5, 0, 'block', 'LEFT', .88], [2.25, -1, 'low', 'JUMP', .86], [3.0, -1, 'block', 'RIGHT', .9]];
+  const travel = 1.0;
+  let lane = 0, action = null, actT = -9, conf = 0, decisions = 0;
+  for (const [s0, ln, kind, act, p] of obs) {
+    const hit = s0 + travel;
+    const decideT = hit - .45;
+    if (tt > decideT) { decisions++; action = act; actT = decideT; conf = p; }
+    if (tt > decideT && (act === 'LEFT')) lane = -1;
+    if (tt > decideT && (act === 'RIGHT')) lane = 0;
+    const k = (tt - s0) / travel;
+    if (k < 0 || k > 1.15) continue;
+    const d = k * k, y = lerp(vy, by - 40, d), sc = lerp(.08, 1, d);
+    const x = vx + ln * sc * 280;
+    const col = C.red;
+    if (kind === 'low') rrect(x - 120 * sc, y - 50 * sc, 240 * sc, 50 * sc, 8 * sc, { fill: hexA(col, .25), stroke: col, lw: 3, alpha: a * (1 - prog(k, 1, 1.15)) });
+    else if (kind === 'high') { rrect(x - 130 * sc, y - 230 * sc, 260 * sc, 40 * sc, 8 * sc, { fill: hexA(col, .25), stroke: col, lw: 3, alpha: a * (1 - prog(k, 1, 1.15)) });
+      line(x - 120 * sc, y, x - 120 * sc, y - 190 * sc, col, 3, a); line(x + 120 * sc, y, x + 120 * sc, y - 190 * sc, col, 3, a); }
+    else rrect(x - 110 * sc, y - 190 * sc, 220 * sc, 190 * sc, 12 * sc, { fill: hexA(col, .25), stroke: col, lw: 3, alpha: a * (1 - prog(k, 1, 1.15)) });
+  }
+  // player
+  const ak = clamp((tt - actT) / .55);
+  let jump = 0, duck = 1;
+  if (action === 'JUMP') jump = Math.sin(Math.PI * ak) * 170;
+  if (action === 'DUCK') duck = 1 - .45 * Math.sin(Math.PI * ak);
+  const px = vx + lane * 280, py = by - 40 - jump;
+  rrect(px - 55, py - 140 * duck, 110, 140 * duck, 22, { fill: C.jev, alpha: a, glow: 40 });
+  ctx.save(); ctx.globalAlpha = a * .4; ctx.fillStyle = '#000';
+  ctx.beginPath(); ctx.ellipse(px, by - 30, 70 * (1 - jump / 400), 14, 0, 0, 7); ctx.fill(); ctx.restore();
+  // decision callout
+  if (action) {
+    const ck = eOut(clamp((tt - actT) / .2)) * (1 - prog(tt - actT, .55, .7));
+    chip(`${action} · ${conf.toFixed(2)}`, px, py - 230 * duck, C.jev, { size: 30, filled: true, alpha: a * ck, h: 64 });
+  }
+  // HUD
+  text('DECISIONS', 110, 1440, { size: 22, weight: 700, fam: MONO, color: C.dim, align: 'left', alpha: a, spacing: 3 });
+  text(String(decisions), 110, 1490, { size: 54, weight: 800, fam: MONO, color: C.jev, align: 'left', alpha: a, glow: 14 });
+  text('LATENCY / CALL', 970, 1440, { size: 22, weight: 700, fam: MONO, color: C.dim, align: 'right', alpha: a, spacing: 3 });
+  text('70–500 ms', 970, 1490, { size: 46, weight: 800, fam: MONO, color: C.jev, align: 'right', alpha: a, glow: 14 });
+}
+
+// ======================= SCENE 5: CDM ======================================
+const VOCAB = ['the', '{', 'maybe', '"label"', 'I', 'think', ':', 'so', '"billing"', 'well', 'it', '"shipping"', 'seems', ',', 'hmm', '"other"',
+  'because', '"score"', 'which', '0.86', 'likely', '}', 'Sure!', 'And', 'probably', 'here', 'is', 'my', 'answer', 'Okay', '...', 'as'];
+const ALLOWED = new Set(['{', '"label"', ':', '"billing"', '"shipping"', '"other"', ',', '"score"', '0.86', '}']);
+function sCDM(t) {
+  const id = 'cdm', A = sceneAlpha(id, t);
+  ctx.save(); ctx.globalAlpha = A;
+  header(t, id, 'CDM', 'Constrained Decoding Models · ScaleDown', C.cdm);
+  // ---- part 1: schema mask (s0, s1) ----
+  const p1 = win(t, SC[id].t0 + .3, st(id, 2) + .1, .45);
+  if (p1 > 0) {
+    ctx.save(); ctx.globalAlpha *= p1;
+    const m0 = wordT(id, 1, /locked/);
+    const mask = eInOut(prog(t, m0, m0 + .7));
+    text('EVERY POSSIBLE NEXT TOKEN', 540, 440, { size: 24, weight: 700, fam: MONO, color: C.dim, spacing: 4 });
+    VOCAB.forEach((v, i) => {
+      const c = i % 4, r = Math.floor(i / 4);
+      const x = 180 + c * 240, y = 510 + r * 62;
+      const ok = ALLOWED.has(v);
+      const ik = eOut(prog(t, SC[id].t0 + .4 + i * .03, SC[id].t0 + .8 + i * .03));
+      const col = ok ? mixHex(C.dim, C.cdm, mask) : C.dim;
+      const al = ik * (ok ? 1 : 1 - .75 * mask);
+      rrect(x - 105, y - 25, 210, 50, 14, { fill: ok && mask > .5 ? hexA(C.cdm, .15) : 'rgba(255,255,255,0.04)', stroke: hexA(col, .7), lw: 2, alpha: al, glow: ok ? mask * 18 : 0, glowColor: C.cdm });
+      text(v, x, y + 1, { size: 26, weight: 600, fam: MONO, color: col, alpha: al });
+      if (!ok && mask > 0) line(x - 80, y, lerp(x - 80, x + 80, mask), y, C.red, 3, al * 1.4);
+    });
+    // JSON slots fill in
+    const jk = eOut(prog(t, wordT(id, 1, /shape/) - .6, wordT(id, 1, /shape/) - .1));
+    panel(140, 1040, 800, 290, C.cdm, jk, 'SCHEMA');
+    const f1 = eOut(prog(t, wordT(id, 1, /shape/) - .1, wordT(id, 1, /shape/) + .3));
+    const f2 = eOut(prog(t, wordT(id, 1, /shape/) + .2, wordT(id, 1, /shape/) + .6));
+    text('{', 180, 1120, { size: 34, weight: 600, fam: MONO, align: 'left', alpha: jk });
+    text('"label":', 220, 1175, { size: 34, weight: 600, fam: MONO, align: 'left', color: C.dim, alpha: jk });
+    text('"score":', 220, 1230, { size: 34, weight: 600, fam: MONO, align: 'left', color: C.dim, alpha: jk });
+    text('}', 180, 1285, { size: 34, weight: 600, fam: MONO, align: 'left', alpha: jk });
+    rrect(420, 1150, 250, 50, 10, { stroke: hexA(C.cdm, .6), lw: 2, alpha: jk * (1 - f1), fill: hexA(C.cdm, .06) });
+    rrect(420, 1205, 130, 50, 10, { stroke: hexA(C.cdm, .6), lw: 2, alpha: jk * (1 - f2), fill: hexA(C.cdm, .06) });
+    text('"billing"', 430, 1175 - (1 - f1) * 20, { size: 34, weight: 700, fam: MONO, align: 'left', color: C.cdm, alpha: f1 });
+    text('0.86', 430, 1230 - (1 - f2) * 20, { size: 34, weight: 700, fam: MONO, align: 'left', color: C.cdm, alpha: f2 });
+    const vk = eOut(prog(t, wordT(id, 1, /shape/) + .5, wordT(id, 1, /shape/) + .9));
+    chip('✓ ALWAYS VALID', 790, 1290, C.green, { size: 22, alpha: vk, h: 50 });
+    ctx.restore();
+  }
+  // ---- part 2: three models (s2..s5) ----
+  const p2 = win(t, st(id, 2) - .1, st(id, 6) - .1, .45);
+  if (p2 > 0) {
+    ctx.save(); ctx.globalAlpha *= p2;
+    const tabs = [['CLASSIFY', 3], ['EXTRACT', 4], ['SUMMARIZE', 5]];
+    let focus = -1;
+    tabs.forEach(([, si], i) => { if (t >= st(id, si) - .2) focus = i; });
+    tabs.forEach(([l], i) => {
+      const k = prog(t, st(id, 2) + i * .15, st(id, 2) + i * .15 + .45);
+      const x = 205 + i * 335, y = 450;
+      const on = i === focus;
+      scaleAt(x, y, lerp(.5, 1, eBack(k)), () => {
+        rrect(x - 155, y - 55, 310, 110, 26, { fill: on ? C.cdm : hexA('#11142a', .95), stroke: C.cdm, lw: 2.5, alpha: eOut(k), glow: on ? 34 : 0, glowColor: C.cdm });
+        text(l, x, y + 1, { size: 30, weight: 800, fam: MONO, color: on ? '#0a0b14' : C.cdm, alpha: eOut(k), spacing: 2 });
+      });
+    });
+    if (focus === -1) {
+      const k = eOut(prog(t, st(id, 2), st(id, 2) + .5));
+      text('3', 540, 900, { size: 360, weight: 800, fam: DISPLAY, color: C.cdm, alpha: k * .9, glow: 40 });
+      text('single-job models', 540, 1130, { size: 44, weight: 600, color: C.dim, alpha: k });
+    }
+    // Classify
+    const c3 = win(t, st(id, 3) - .2, st(id, 4) - .1, .35);
+    if (c3 > 0) {
+      ctx.save(); ctx.globalAlpha *= c3;
+      panel(110, 560, 860, 175, C.cdm, 1, 'INPUT');
+      text('"My refund still hasn\'t arrived', 142, 645, { size: 32, weight: 500, fam: MONO, align: 'left' });
+      text(' after 10 days."', 142, 692, { size: 32, weight: 500, fam: MONO, align: 'left' });
+      const labels = [['billing', .86], ['shipping', .10], ['other', .04]];
+      const b0 = st(id, 3) + .5;
+      labels.forEach(([l, p], i) => {
+        const k = eOut(prog(t, b0 + i * .1, b0 + .8 + i * .1));
+        const y = 800 + i * 95;
+        text(l, 120, y, { size: 34, weight: 700, fam: MONO, color: i ? C.dim : C.cdm, align: 'left', alpha: k });
+        bar(330, y - 20, 470, 40, p * k, i ? '#5b6185' : C.cdm, k);
+        text((p * k).toFixed(2), 960, y, { size: 34, weight: 700, fam: MONO, align: 'right', alpha: k });
+      });
+      // stacked bar summing to 1
+      const sk = eOut(prog(t, wordT(id, 3, /add/), wordT(id, 3, /add/) + .6));
+      let x = 120;
+      labels.forEach(([, p], i) => {
+        const w = 840 * p * sk;
+        rrect(x, 1140, Math.max(0, w - 6), 70, 14, { fill: i ? (i === 1 ? '#7d6bc4' : '#4f4880') : C.cdm, alpha: sk });
+        x += w;
+      });
+      text('Σ = 1.00', 540, 1290, { size: 64, weight: 800, fam: MONO, color: C.cdm, alpha: eOut(prog(t, wordT(id, 3, /one/) - .1, wordT(id, 3, /one/) + .3)), glow: 22 });
+      ctx.restore();
+    }
+    // Extract
+    const c4 = win(t, st(id, 4) - .1, st(id, 5) - .1, .35);
+    if (c4 > 0) {
+      ctx.save(); ctx.globalAlpha *= c4;
+      panel(110, 560, 860, 300, C.cdm, 1, 'DOCUMENT');
+      const doc = [['Invoice from ', 0], ['Priya Sharma', 1], [', dated', 0], ['|', 0], ['Oct 3, 2026', 2], ['. Total due:', 0], ['|', 0], ['$420.00', 3], [' to Acme Corp.', 0]];
+      let x = 142, y = 640;
+      const spanPos = {};
+      font(32, 500, MONO);
+      doc.forEach(([s, k]) => {
+        if (s === '|') { x = 142; y += 60; return; }
+        const w = ctx.measureText(s).width;
+        if (k) {
+          const kt = st(id, 4) + .4 + k * .35;
+          const hk = eOut(prog(t, kt, kt + .3));
+          rrect(x - 6, y - 26, w + 12, 52, 10, { fill: hexA(C.cdm, .22 * hk), stroke: C.cdm, lw: 2, alpha: hk });
+          spanPos[k] = [x + w / 2, y + 26];
+        }
+        text(s, x, y, { size: 32, weight: k ? 700 : 500, fam: MONO, align: 'left', color: k ? C.ink : C.dim });
+        x += w;
+      });
+      // JSON out
+      const jk = eOut(prog(t, wordT(id, 4, /JSON/) - .3, wordT(id, 4, /JSON/) + .2));
+      panel(110, 930, 860, 400, C.cdm, jk, 'JSON');
+      const rows = [['"name"', '"Priya Sharma"', '0.98', 1], ['"date"', '"2026-10-03"', '0.95', 2], ['"amount"', '"$420.00"', '0.99', 3]];
+      rows.forEach(([k, v, c, sp], i) => {
+        const rk = eOut(prog(t, wordT(id, 4, /JSON/) + i * .2, wordT(id, 4, /JSON/) + i * .2 + .4));
+        const ry = 1030 + i * 80;
+        text(k + ':', 150, ry, { size: 30, weight: 600, fam: MONO, color: C.dim, align: 'left', alpha: rk });
+        text(v, 340, ry, { size: 30, weight: 700, fam: MONO, color: C.cdm, align: 'left', alpha: rk });
+        const ck = eOut(prog(t, wordT(id, 4, /confidence/), wordT(id, 4, /confidence/) + .4 + i * .1));
+        chip(c, 880, ry, C.green, { size: 22, alpha: ck, h: 46, padX: 16 });
+        if (spanPos[sp] && rk > 0 && rk < 1) {
+          const [sx, sy] = spanPos[sp];
+          dot(lerp(sx, 400, rk), lerp(sy, ry, rk), 8, C.cdm, 1, 20);
+        }
+      });
+      text('spans come straight from your input', 540, 1285, { size: 26, weight: 500, color: C.dim, alpha: jk });
+      ctx.restore();
+    }
+    // Summarize
+    const c5 = win(t, st(id, 5) - .1, st(id, 6) - .1, .35);
+    if (c5 > 0) {
+      ctx.save(); ctx.globalAlpha *= c5;
+      const sk = eInOut(prog(t, wordT(id, 5, /tokens/) - .3, wordT(id, 5, /tokens/) + .5));
+      for (let i = 0; i < 14; i++) {
+        const k = eOut(prog(t, st(id, 5) + i * .04, st(id, 5) + .3 + i * .04));
+        const ox = 290 + (i % 7) * 18 - 60, oy = 600 + i * 22;
+        const tx = 540 - 160, ty = 1000;
+        const x = lerp(ox, tx, sk), y = lerp(oy, ty, sk);
+        const w = lerp(380, 320, sk), h = lerp(470, 80, sk);
+        rrect(x, y, w, h, 14, { fill: '#141836', stroke: hexA(C.cdm, .5), lw: 1.5, alpha: k * (1 - sk * .9) });
+        if (sk < .5) for (let j = 0; j < 6; j++) rrect(x + 26, y + 30 + j * 26, w - 70 - (j % 3) * 40, 9, 4, { fill: '#2c3160', alpha: k * (1 - sk * 2) });
+      }
+      text('UP TO 1,000,000 TOKENS IN', 760, 700, { size: 26, weight: 700, fam: MONO, color: C.cdm, alpha: eOut(prog(t, st(id, 5) + .3, st(id, 5) + .7)) * (1 - sk), spacing: 2 });
+      const ok = eOut(prog(t, wordT(id, 5, /tokens/) + .3, wordT(id, 5, /tokens/) + .7));
+      panel(190, 920, 700, 300, C.cdm, ok, 'SUMMARY · ≤ 1,000 TOKENS');
+      for (let j = 0; j < 4; j++) rrect(230, 1010 + j * 44, 600 - (j === 3 ? 260 : j * 30), 14, 7, { fill: hexA(C.cdm, .6), alpha: ok * eOut(prog(t, wordT(id, 5, /tokens/) + .5 + j * .12, wordT(id, 5, /tokens/) + .8 + j * .12)) });
+      ctx.restore();
+    }
+    ctx.restore();
+  }
+  // ---- part 3: pricing + claims (s6, s7) ----
+  const p3 = win(t, st(id, 6) - .1, SC[id].t1, .45);
+  if (p3 > 0) {
+    ctx.save(); ctx.globalAlpha *= p3;
+    const k1 = eOut(prog(t, st(id, 6), st(id, 6) + .5));
+    panel(110, 460, 410, 300, C.cdm, k1, 'INPUT');
+    text('$0.05', 315, 610, { size: 96, weight: 800, fam: MONO, color: C.cdm, alpha: k1, glow: 24 });
+    text('per 1M tokens', 315, 700, { size: 28, weight: 500, color: C.dim, alpha: k1 });
+    const k2 = eOut(prog(t, wordT(id, 6, /output/), wordT(id, 6, /output/) + .5));
+    panel(560, 460, 410, 300, C.green, k2, 'OUTPUT');
+    text('$0', 765, 610, { size: 110, weight: 800, fam: MONO, color: C.green, alpha: k2, glow: 24 });
+    text('free', 765, 700, { size: 28, weight: 500, color: C.dim, alpha: k2 });
+    // speed & cost claims
+    const c0 = st(id, 7);
+    const f = eExpo(prog(t, wordT(id, 7, /two/) - .2, wordT(id, 7, /two/) + 1.2));
+    const c = eExpo(prog(t, wordT(id, 7, /four/) - .2, wordT(id, 7, /four/) + 1.4));
+    const ka = eOut(prog(t, c0, c0 + .4));
+    text(`${Math.round(200 * f)}×`, 315, 920, { size: 120, weight: 800, fam: DISPLAY, color: C.ink, alpha: ka, glow: 20 });
+    text('FASTER', 315, 1010, { size: 30, weight: 700, fam: MONO, color: C.cdm, alpha: ka, spacing: 6 });
+    text(`${Math.round(467 * c)}×`, 765, 920, { size: 120, weight: 800, fam: DISPLAY, color: C.ink, alpha: eOut(prog(t, wordT(id, 7, /four/) - .2, wordT(id, 7, /four/) + .2)), glow: 20 });
+    text('CHEAPER', 765, 1010, { size: 30, weight: 700, fam: MONO, color: C.cdm, alpha: eOut(prog(t, wordT(id, 7, /four/) - .2, wordT(id, 7, /four/) + .2)), spacing: 6 });
+    // bar race: frontier LLM vs CDM time
+    const bk = eOut(prog(t, wordT(id, 7, /frontier/) - .2, wordT(id, 7, /frontier/) + .3));
+    const race = prog(t, wordT(id, 7, /frontier/), wordT(id, 7, /frontier/) + 2.4);
+    text('FRONTIER LLM', 120, 1130, { size: 24, weight: 700, fam: MONO, color: C.llm, align: 'left', alpha: bk, spacing: 2 });
+    bar(120, 1155, 840, 34, race, C.llm, bk);
+    text('CDM', 120, 1240, { size: 24, weight: 700, fam: MONO, color: C.cdm, align: 'left', alpha: bk, spacing: 2 });
+    bar(120, 1265, 840, 34, clamp(race * 200), C.cdm, bk);
+    if (race * 200 >= 1) chip('DONE', 880, 1240, C.green, { size: 20, h: 40, filled: true, alpha: bk, padX: 14 });
+    text('* vendor-reported · narrow tasks only', 540, 1370, { size: 26, weight: 500, color: C.dim, alpha: eOut(prog(t, wordT(id, 7, /narrow/) - .2, wordT(id, 7, /narrow/) + .3)) });
+    ctx.restore();
+  }
+  ctx.restore();
+}
+
+// ======================= SCENE 6: COMPARE ==================================
+function sCompare(t) {
+  const id = 'compare', A = sceneAlpha(id, t);
+  ctx.save(); ctx.globalAlpha = A;
+  const rows = [['LLM', C.llm, 'pen', 'WRITES', 'token by token · anything'], ['JEV', C.jev, 'target', 'DECIDES', 'one pass · picks an option'], ['CDM', C.cdm, 'form', 'FILLS THE FORM', 'classify · extract · summarize']];
+  rows.forEach(([n, c, ic, verb, sub], i) => {
+    const t0 = st(id, i);
+    const k = prog(t, t0 - .1, t0 + .45);
+    if (k <= 0) return;
+    const y = 520 + i * 330, x = lerp(-200, 0, eOut(k));
+    ctx.save(); ctx.translate(x, 0);
+    rrect(90, y - 130, 900, 260, 34, { fill: hexA('#11142a', .95), stroke: c, lw: 2.5, alpha: eOut(k), glow: 30, glowColor: hexA(c, .35) });
+    ctx.save(); ctx.globalAlpha *= eOut(k);
+    dot(220, y, 70, hexA(c, .14)); ctx.restore();
+    icon(ic, 220, y, 1.6, c, eOut(k));
+    text(n, 330, y - 55, { size: 30, weight: 800, fam: MONO, color: c, align: 'left', alpha: eOut(k), spacing: 4 });
+    text(verb, 330, y + 5, { size: verb.length > 10 ? 58 : 72, weight: 800, fam: DISPLAY, align: 'left', alpha: eOut(k) });
+    text(sub, 330, y + 70, { size: 28, weight: 500, color: C.dim, align: 'left', alpha: eOut(k) });
+    ctx.restore();
+  });
+  ctx.restore();
+}
+
+// ======================= SCENE 7: CAVEAT ===================================
+function sCaveat(t) {
+  const id = 'caveat', A = sceneAlpha(id, t);
+  ctx.save(); ctx.globalAlpha = A;
+  // part 1: valid != correct
+  const p1 = win(t, SC[id].t0, st(id, 2) - .1, .4);
+  if (p1 > 0) {
+    ctx.save(); ctx.globalAlpha *= p1;
+    const k = eOut(prog(t, st(id, 0), st(id, 0) + .5));
+    text('ONE CATCH', 540, 300, { size: 32, weight: 800, fam: MONO, color: C.red, alpha: k, spacing: 8 });
+    panel(140, 380, 800, 220, C.cdm, k, 'CDM OUTPUT');
+    text('{ "label": "shipping" }', 540, 510, { size: 40, weight: 700, fam: MONO, color: C.ink, alpha: k });
+    const v = eOut(prog(t, wordT(id, 0, /format/) - .1, wordT(id, 0, /format/) + .3));
+    chip('FORMAT  ✓', 330, 690, C.green, { size: 30, alpha: v, h: 70 });
+    const w = eOut(prog(t, wordT(id, 0, /correct/) - .1, wordT(id, 0, /correct/) + .3));
+    chip('CORRECT  ✗', 750, 690, C.red, { size: 30, alpha: w, h: 70, filled: true });
+    text('the refund was a billing issue', 540, 780, { size: 28, weight: 500, color: C.dim, alpha: w });
+    const big = prog(t, wordT(id, 0, /answer/), wordT(id, 0, /answer/) + .5);
+    scaleAt(540, 920, lerp(1.4, 1, eBack(big)), () => text('valid ≠ true', 540, 920, { size: 110, weight: 800, fam: DISPLAY, color: C.ink, alpha: eOut(big), glow: 20 }));
+    // vendor numbers
+    const vk = eOut(prog(t, st(id, 1), st(id, 1) + .5));
+    panel(140, 1060, 800, 300, C.llm, vk, 'FINE PRINT');
+    text('200×  ·  467×  ·  70–500 ms', 540, 1180, { size: 42, weight: 800, fam: MONO, alpha: vk });
+    const sk = prog(t, wordT(id, 1, /vendors/) - .1, wordT(id, 1, /vendors/) + .4);
+    ctx.save(); ctx.translate(540, 1280); ctx.rotate(-.06);
+    scaleAt(0, 0, lerp(1.8, 1, eBack(sk)), () => {
+      rrect(-230, -36, 460, 72, 12, { stroke: C.llm, lw: 4, alpha: eOut(sk) });
+      text('VENDOR-REPORTED', 0, 2, { size: 34, weight: 800, fam: MONO, color: C.llm, alpha: eOut(sk), spacing: 4 });
+    });
+    ctx.restore();
+    ctx.restore();
+  }
+  // part 2: hybrid pipeline
+  const p2 = win(t, st(id, 2) - .1, SC[id].t1, .4);
+  if (p2 > 0) {
+    ctx.save(); ctx.globalAlpha *= p2;
+    const cx = 540, cy = 880;
+    const k0 = eOut(prog(t, st(id, 2), st(id, 2) + .5));
+    const sats = [['ROUTE', C.jev, -1, -1], ['CLASSIFY', C.cdm, 1, -1], ['EXTRACT', C.cdm, -1, 1], ['SCORE', C.jev, 1, 1]];
+    const kS = wordT(id, 2, /these/) - .1;
+    sats.forEach(([l, c, sx, sy], i) => {
+      const k = eOut(prog(t, kS + i * .12, kS + .4 + i * .12));
+      const x = cx + sx * 255, y = cy + sy * 330;
+      line(cx, cy, lerp(cx, x, k), lerp(cy, y, k), hexA(c, .6), 3, 1, [10, 10]);
+      rrect(x - 160, y - 60, 320, 120, 28, { fill: hexA('#11142a', .95), stroke: c, lw: 2.5, alpha: k, glow: 24, glowColor: hexA(c, .4) });
+      text(l, x, y, { size: 32, weight: 800, fam: MONO, color: c, alpha: k, spacing: 2 });
+      // packets
+      const ph = ((t - kS) * .8 + i * .25) % 1;
+      if (k >= 1) dot(lerp(x, cx, ph), lerp(y, cy, ph), 7, c, .9, 16);
+    });
+    scaleAt(cx, cy, lerp(.6, 1, eBack(prog(t, st(id, 2), st(id, 2) + .5))), () => {
+      dot(cx, cy, 150, '#120f1c'); dot(cx, cy, 150, hexA(C.llm, .12));
+      ctx.save(); ctx.globalAlpha *= k0; ctx.strokeStyle = C.llm; ctx.lineWidth = 3; ctx.shadowColor = C.llm; ctx.shadowBlur = 30;
+      ctx.beginPath(); ctx.arc(cx, cy, 130, 0, 7); ctx.stroke(); ctx.restore();
+      text('LLM', cx, cy - 22, { size: 64, weight: 800, fam: DISPLAY, color: C.llm, alpha: k0 });
+      text('think · plan · write', cx, cy + 38, { size: 24, weight: 600, color: C.dim, alpha: k0 });
+    });
+    text('open-ended in the middle,', 540, 1355, { size: 34, weight: 600, color: C.ink, alpha: eOut(prog(t, kS + .6, kS + 1)) });
+    text('repetitive decisions around it', 540, 1405, { size: 34, weight: 600, color: C.ink, alpha: eOut(prog(t, kS + .9, kS + 1.3)) });
+    ctx.restore();
+  }
+  ctx.restore();
+}
+
+// ======================= SCENE 8: OUTRO ====================================
+function sOutro(t) {
+  const id = 'outro', A = eOut(prog(t, SC[id].t0, SC[id].t0 + .4)) * (1 - prog(t, SC[id].t1 - .5, SC[id].t1));
+  ctx.save(); ctx.globalAlpha = A;
+  const ws = [['WRITE.', C.llm, /Write/], ['DECIDE.', C.jev, /Decide/], ['STRUCTURE.', C.cdm, /Structure/]];
+  ws.forEach(([w, c, re], i) => {
+    const t0 = wordT(id, 0, re) - .1;
+    const k = prog(t, t0, t0 + .4);
+    scaleAt(540, 620 + i * 190, lerp(1.6, 1, eBack(k)), () =>
+      text(w, 540, 620 + i * 190, { size: 150, weight: 800, fam: DISPLAY, color: c, alpha: eOut(k), glow: 30, spacing: -2 }));
+  });
+  const k = eOut(prog(t, st(id, 1), st(id, 1) + .5));
+  text('Pick the right model', 540, 1210, { size: 64, weight: 700, alpha: k });
+  text('for the job.', 540, 1290, { size: 64, weight: 700, alpha: k });
+  const s = eOut(prog(t, se(id, 1), se(id, 1) + .6));
+  text('Jev: TypeSafe AI (Sep 2026) · CDMs: ScaleDown (Oct 2026)', 540, 1440, { size: 24, weight: 500, color: C.dim, alpha: s });
+  text('performance figures are vendor-reported', 540, 1480, { size: 24, weight: 500, color: C.dim, alpha: s });
+  ctx.restore();
+}
+
+// ---------- scene flash on cuts ----------
+function cutFlash(t, acc) {
+  for (const s of TL.scenes.slice(1)) {
+    const k = prog(t, s.t0 - .25, s.t0 + .35);
+    if (k > 0 && k < 1) {
+      const x = lerp(-600, W + 600, eInOut(k));
+      const g = ctx.createLinearGradient(x - 300, 0, x + 300, 0);
+      g.addColorStop(0, hexA(acc, 0)); g.addColorStop(.5, hexA(acc, .16)); g.addColorStop(1, hexA(acc, 0));
+      ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+    }
+  }
+}
+
+// ---------- frame ----------
+function renderFrame(t) {
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.globalAlpha = 1;
+  const acc = accentAt(t);
+  background(t, acc);
+  tracker(t);
+  const scenes = { hook: sHook, llm: sLLM, insight: sInsight, jev: sJev, cdm: sCDM, compare: sCompare, caveat: sCaveat, outro: sOutro };
+  for (const s of TL.scenes) if (t >= s.t0 - .05 && t <= s.t1 + .05) {
+    if (s.id === 'hook') { ctx.save(); ctx.globalAlpha = 1 - eInOut(prog(t, s.t1 - .4, s.t1)); scenes.hook(t); ctx.restore(); }
+    else scenes[s.id](t);
+  }
+  cutFlash(t, acc);
+  captions(t, acc);
+  // progress bar
+  rrect(0, H - 8, W * (t / TL.duration), 8, 0, { fill: acc, alpha: .8 });
+}
+
+window.init = function (tl) {
+  TL = tl; for (const s of tl.scenes) SC[s.id] = s;
+  return document.fonts.ready.then(() => Promise.all([
+    document.fonts.load(`800 100px ${DISPLAY}`), document.fonts.load(`600 40px ${SANS}`),
+    document.fonts.load(`700 40px ${MONO}`), document.fonts.load(`500 40px ${MONO}`)]));
+};
+window.renderFrame = renderFrame;
+
+// live preview when opened directly in a browser
+if (!location.search.includes('capture')) {
+  fetch('build/timeline.json').then(r => r.json()).then(tl => window.init(tl)).then(() => {
+    renderFrame(0);
+    const audio = new Audio('build/mix.wav');
+    document.getElementById('play').onclick = e => {
+      e.target.remove(); audio.play();
+      const loop = () => { renderFrame(audio.currentTime); if (!audio.ended) requestAnimationFrame(loop); };
+      loop();
+    };
+  });
+} else document.body.classList.add('capture');
+</script>
+</body>
+</html>

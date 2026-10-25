@@ -1,0 +1,175 @@
+{
+  "voice": "en_US-ryan-high",
+  "length_scale": 0.92,
+  "sentence_gap": 0.24,
+  "scene_tail": 0.45,
+  "scenes": [
+    {
+      "id": "hook",
+      "sentences": [
+        {
+          "say": "First, L L Ms.",
+          "show": "First, LLMs."
+        },
+        {
+          "say": "Then, Jev.",
+          "show": "Then, Jev."
+        },
+        {
+          "say": "Now, C D Ms.",
+          "show": "Now, CDMs."
+        },
+        {
+          "say": "A new kind of A.I. that answers, without writing.",
+          "show": "A new kind of AI that answers without writing."
+        }
+      ]
+    },
+    {
+      "id": "llm",
+      "sentences": [
+        {
+          "say": "An L L M answers by writing.",
+          "show": "An LLM answers by writing."
+        },
+        {
+          "say": "It predicts one token, feeds it back in, and runs the whole model again. And again. And again.",
+          "show": "It predicts one token, feeds it back in, and runs the whole model again. And again. And again."
+        },
+        {
+          "say": "Ask, is this email spam? And you pay for every word of the essay, then still have to dig the answer out of it.",
+          "show": "Ask \"is this email spam?\" and you pay for every word of the essay, then still have to dig the answer out of it."
+        }
+      ]
+    },
+    {
+      "id": "insight",
+      "sentences": [
+        {
+          "say": "But most of the work inside an A.I. agent isn't writing.",
+          "show": "But most of the work inside an AI agent isn't writing."
+        },
+        {
+          "say": "It's deciding.",
+          "show": "It's deciding."
+        },
+        {
+          "say": "Route this ticket. Pick a label. Pull out a field. Score a risk.",
+          "show": "Route this ticket. Pick a label. Pull out a field. Score a risk."
+        }
+      ]
+    },
+    {
+      "id": "jev",
+      "sentences": [
+        {
+          "say": "So TypeSafe A.I. built Jev, a System One decision model.",
+          "show": "So TypeSafe AI built Jev, a \"System 1\" decision model."
+        },
+        {
+          "say": "You give it the situation, and the list of allowed actions.",
+          "show": "You give it the situation and the list of allowed actions."
+        },
+        {
+          "say": "In a single pass, it returns a probability for every option.",
+          "show": "In a single pass, it returns a probability for every option."
+        },
+        {
+          "say": "No essay. Just the decision, with a confidence score.",
+          "show": "No essay. Just the decision, with a confidence score."
+        },
+        {
+          "say": "Fast enough to play a game in real time.",
+          "show": "Fast enough to play a game in real time.",
+          "pause_after": 2.4
+        }
+      ]
+    },
+    {
+      "id": "cdm",
+      "sentences": [
+        {
+          "say": "Then ScaleDown pushed the idea further, with Constrained Decoding Models. C D Ms.",
+          "show": "Then ScaleDown pushed the idea further with Constrained Decoding Models: CDMs."
+        },
+        {
+          "say": "The output is locked to a schema, so every answer comes back in exactly the right shape.",
+          "show": "The output is locked to a schema, so every answer comes back in exactly the right shape."
+        },
+        {
+          "say": "There are three.",
+          "show": "There are three."
+        },
+        {
+          "say": "Classify scores your labels, and the probabilities add up to one.",
+          "show": "Classify scores your labels, and the probabilities add up to one."
+        },
+        {
+          "say": "Extract points to the exact spans in your document, and returns clean jason, with confidence scores.",
+          "show": "Extract points to the exact spans in your document and returns clean JSON with confidence scores."
+        },
+        {
+          "say": "Summarize condenses up to a million tokens, into a short summary.",
+          "show": "Summarize condenses up to a million tokens into a short summary."
+        },
+        {
+          "say": "Input costs five cents per million tokens, and output is free.",
+          "show": "Input costs $0.05 per million tokens, and output is free."
+        },
+        {
+          "say": "ScaleDown claims two hundred times faster, and four hundred and sixty seven times cheaper than frontier models, on these narrow tasks.",
+          "show": "ScaleDown claims 200× faster and 467× cheaper than frontier models on these narrow tasks.",
+          "pause_after": 0.6
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "sentences": [
+        {
+          "say": "So. L L Ms write.",
+          "show": "So: LLMs write."
+        },
+        {
+          "say": "Jev decides.",
+          "show": "Jev decides."
+        },
+        {
+          "say": "C D Ms fill in the form.",
+          "show": "CDMs fill in the form."
+        }
+      ]
+    },
+    {
+      "id": "caveat",
+      "sentences": [
+        {
+          "say": "One catch. A perfect format is not a correct answer.",
+          "show": "One catch: a perfect format is not a correct answer."
+        },
+        {
+          "say": "And those speed numbers come from the vendors themselves.",
+          "show": "And those speed numbers come from the vendors themselves."
+        },
+        {
+          "say": "Use L L Ms for open ended thinking, and these models for the repetitive decisions in between.",
+          "show": "Use LLMs for open-ended thinking, and these models for the repetitive decisions in between."
+        }
+      ]
+    },
+    {
+      "id": "outro",
+      "sentences": [
+        {
+          "say": "Write. Decide. Structure.",
+          "show": "Write. Decide. Structure."
+        },
+        {
+          "say": "Pick the right model for the job.",
+          "show": "Pick the right model for the job.",
+          "pause_after": 1.6
+        }
+      ]
+    }
+  ]
+}
