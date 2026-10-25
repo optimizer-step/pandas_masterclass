@@ -21,6 +21,16 @@ const OUT = path.join(HERE, 'out', 'cdm_explainer.mp4');
     return Buffer.from(url.split(',')[1], 'base64');
   };
 
+  // Text-free seed frames (one per section) for Higgsfield image-to-video.
+  if (process.argv.includes('--plates')) {
+    await page.evaluate(() => { window.PLATE = true; });
+    for (const s of tl.scenes) {
+      fs.writeFileSync(path.join(BUILD, `plate_${s.id}.jpg`), await grab((s.t0 + s.t1) / 2));
+    }
+    await browser.close();
+    return;
+  }
+
   const si = process.argv.indexOf('--stills');
   if (si > 0) {
     for (const t of process.argv[si + 1].split(',').map(Number)) {

@@ -1,50 +1,57 @@
-# LLM → Jev → CDM: faceless motion-graphics explainer
+# LLM → Jev → CDM: motion-graphics explainer (v2)
 
-A 1:49, 9:16 (1080×1920, 30 fps) explainer reel. It is all motion graphics with an AI voiceover and
-karaoke captions, and it explains how **CDMs (Constrained Decoding Models)** differ from **LLMs** and **Jev**.
+A 46-second, 9:16 (1080×1920, 30 fps) faceless explainer. It uses motion graphics, a natural AI voiceover,
+captions and a sound design built to match the picture.
 
-**Final video:** [`out/cdm_explainer.mp4`](out/cdm_explainer.mp4)
-**Higgsfield B-roll prompts:** [`HIGGSFIELD_PROMPTS.md`](HIGGSFIELD_PROMPTS.md)
+**Video:** [`out/cdm_explainer.mp4`](out/cdm_explainer.mp4)
+**With Higgsfield B-roll** (once an API key is set): `out/cdm_explainer_higgsfield.mp4`
 
-## Storyboard
+## The idea, in one continuous shot
 
-| Time | Scene | What the graphics show |
-|---|---|---|
-| 0:00 | Hook | "LLMs → Jev → CDMs" slam in; "without ~~writing~~" |
-| 0:08 | LLM | Prompt → neural net → tokens stream out one by one and loop back in; pass counter climbs to 53; the single useful word "spam" is circled |
-| 0:22 | Insight | "Most work inside an AI agent isn't ~~writing~~. **It's deciding.**" Route → Label → Extract → Score pipeline |
-| 0:30 | Jev | Situation + allowed actions → **one pass** → probability bars → `{"action":"JUMP","confidence":0.81}` → real-time runner game making decisions |
-| 0:49 | CDM | Vocabulary mask (only schema-legal tokens survive) → always-valid JSON; then Classify (Σ = 1.00), Extract (spans → JSON + confidence), Summarize (1M tokens → ≤1,000); $0.05 / 1M input, $0 output; 200× / 467× claims with a bar race |
-| 1:26 | Compare | LLM **writes** · Jev **decides** · CDM **fills the form** |
-| 1:31 | Caveat | Valid ≠ true; the speed figures are vendor-reported; hybrid stack with the LLM in the middle and Jev/CDM around it |
-| 1:43 | Outro | WRITE. DECIDE. STRUCTURE. |
+A single 3D point cloud, standing in for "the model", morphs to carry each idea:
+
+| Time | Section | The point cloud becomes | On screen |
+|---|---|---|---|
+| 0:00 | 01 · LLM | a rotating sphere that pulses on every forward pass | the answer is typed out token by token, `PASS 28`, then "28 tokens billed, 1 word needed" |
+| 0:12 | 02 · Jev | one scan line passes through it, then it collapses into probability bars | situation + options → APPROVE 0.82 / ESCALATE 0.15 / REJECT 0.03 |
+| 0:21 | 03 · CDM | the outline of a schema card | free-form words (“Sure!”, “I think”) get struck out; only schema-legal values snap into the slots; Classify / Extract / Summarize; then a ring around **200×** |
+| 0:36 | 04 · The catch | the card again, with the wrong slot turning red | FORMAT ✓, ANSWER ✗ → "Valid ≠ correct." |
+| 0:40 | Finale | a tri-colour sphere | LLMs write. Jev decides. CDMs structure. |
 
 ## Facts used (October 2026)
 
-- **Jev** is TypeSafe AI's "System 1" *decision model* (early access 15 Sep 2026). It takes a situation and a
-  list of allowed actions and returns probabilities and confidence in a single non-autoregressive pass. It
-  does not write prose. Vendor figures: about 70–500 ms per call, ~$0.042 per 1M input tokens, output free.
-- **CDMs** are ScaleDown's *Constrained Decoding Models* (13 Oct 2026): **Classify**, **Extract** and
-  **Summarize**. Output is constrained to a schema. Each accepts up to 1M input tokens, costs $0.05 per 1M
-  input tokens, and output is free. ScaleDown claims they are "200× faster, 467× cheaper" than frontier
-  models on these narrow tasks.
-- **Caveats:** constrained decoding guarantees valid *format*, not correct *content*. Summarize still
-  generates text. All speed and cost numbers are the vendors' own.
+- **Jev** (TypeSafe AI, Sep 2026) is a "System 1" decision model. It takes a situation and the allowed
+  options, and in one non-autoregressive pass returns a probability for each. It does not write text.
+- **CDMs** (ScaleDown, 13 Oct 2026) are Constrained Decoding Models: Classify, Extract and Summarize. Output
+  is locked to a schema. Pricing is $0.05 per 1M input tokens with free output. ScaleDown claims "200×
+  faster" than frontier models on these narrow tasks.
+- **Caveat:** a schema guarantees valid format, not correct content, and the speed and cost figures are the
+  vendors' own.
 
-## Rebuild
+## Build
 
 ```bash
-# 1. voice + timeline + music/sfx (Piper TTS, offline neural voice)
-python3 -m venv tts && tts/bin/pip install piper-tts
-curl -LO https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/ryan/high/en_US-ryan-high.onnx
-curl -LO https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/ryan/high/en_US-ryan-high.onnx.json
-python3 build_audio.py tts/bin/piper en_US-ryan-high.onnx
+# voice (Kokoro TTS) + music + sound design + timeline
+pip install kokoro-onnx soundfile numpy
+curl -LO https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/kokoro-v1.0.onnx
+curl -LO https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin
+python build_audio.py kokoro-v1.0.onnx voices-v1.0.bin
 
-# 2. frame-exact render (Playwright + Chromium + ffmpeg)
-node render.js                      # -> out/cdm_explainer.mp4
-node render.js --stills 12,40,70    # quick PNG/JPG checks in build/
+# graphics (Playwright + Chromium + ffmpeg)
+node render.js                       # -> out/cdm_explainer.mp4
+node render.js --stills 5,15,30      # review frames in build/
 ```
 
-To change the narration, edit `narration.json` and rerun both steps. Every animation is keyed to sentence
-and word timings, so it re-syncs automatically. To watch a live preview with audio, serve the folder
-(`python3 -m http.server`) and open `explainer.html`.
+### Higgsfield B-roll
+
+```bash
+pip install higgsfield-client
+export HF_KEY="<api-key-id>:<api-key-secret>"    # from console.higgsfield.ai
+node render.js --plates              # text-free 9:16 seed frames, one per section
+python higgsfield_broll.py           # Kling 2.5 Turbo image-to-video -> broll/<section>.mp4
+python compose.py                    # screen-blends the B-roll under the graphics
+```
+
+Higgsfield's text-to-video endpoints have no aspect-ratio setting, so each clip is made with
+**image-to-video** from a 9:16 frame of the animation itself. That keeps the format vertical and the look
+consistent. Set `HF_VIDEO_MODEL` to switch models, for example `minimax/hailuo-2.3/standard/image-to-video`.
