@@ -2,6 +2,10 @@
 
 Usage: python build_audio.py <kokoro-v1.0.onnx> <voices-v1.0.bin>
 
+Your own voice: put one take per sentence in voice/<scene>_<n>.wav (or .m4a,
+.mp3, ...), e.g. voice/llm_1.m4a. Any sentence with a take uses it; the rest
+fall back to Kokoro (the model args are only needed if something is missing).
+
 Each sentence is synthesised on its own so the animation can key off exact
 sentence starts. Word timings inside a sentence are estimated from character
 length. Animation beats that also make a sound (token ticks, the Jev pass,
@@ -162,22 +166,43 @@ def place(buf, clip, t, gain=1.0):
         buf[i:j] += clip[: j - i] * gain
 
 
+TAKE_EXTS = (".wav", ".m4a", ".mp3", ".aac", ".ogg", ".opus", ".flac", ".webm")
+
+
+def recorded_take(scene_id, n):
+    """A human recording at voice/<scene>_<n>.<ext> (n is 1-based), cleaned up for VO, or None."""
+    for ext in TAKE_EXTS:
+        src = os.path.join(HERE, "voice", f"{scene_id}_{n}{ext}")
+        if os.path.exists(src):
+            out = os.path.join(BUILD, f"take_{scene_id}_{n}.wav")
+            # rumble cut, gentle denoise, broadcast-style compression
+            subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", src, "-af",
+                            "highpass=f=80,afftdn=nf=-25,acompressor=threshold=-20dB:ratio=3:attack=5:release=80:makeup=2",
+                            "-ac", "1", "-ar", str(SR), out], check=True)
+            a, _ = sf.read(out, dtype="float32")
+            return trim(a, thr=0.03 * np.max(np.abs(a)))
+    return None
+
+
 def main():
-    model, voices = sys.argv[1], sys.argv[2]
     os.makedirs(BUILD, exist_ok=True)
     cfg = json.load(open(os.path.join(HERE, "narration.json")))
-    tts = Kokoro(model, voices)
+    tts = None
 
     t, clips, scenes = 0.45, [], []
     for si, sc in enumerate(cfg["scenes"]):
         s_start = t if si else 0.0
         sents = []
-        for s in sc["sentences"]:
+        for n, s in enumerate(sc["sentences"], start=1):
             t += s.get("pause_before", 0)
-            # espeak spells the plural "Ms" in "L L Ms" / "C D Ms" as "em-ess"; say "ems".
-            ph = tts.tokenizer.phonemize(s["say"], "en-us").replace("ˌɛmˈɛs", "ˈɛmz")
-            audio, sr = tts.create(ph, voice=cfg["voice"], speed=cfg["speed"], lang="en-us", is_phonemes=True)
-            a = resample(trim(audio), sr)
+            a = recorded_take(sc["id"], n)
+            if a is None:
+                if tts is None:
+                    tts = Kokoro(sys.argv[1], sys.argv[2])
+                # espeak spells the plural "Ms" in "L L Ms" / "C D Ms" as "em-ess"; say "ems".
+                ph = tts.tokenizer.phonemize(s["say"], "en-us").replace("ˌɛmˈɛs", "ˈɛmz")
+                audio, sr = tts.create(ph, voice=cfg["voice"], speed=cfg["speed"], lang="en-us", is_phonemes=True)
+                a = resample(trim(audio), sr)
             dur = len(a) / SR
             clips.append((t, a))
             sents.append({"show": s["show"], "t0": round(t, 3), "t1": round(t + dur, 3),
